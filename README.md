@@ -1,5 +1,5 @@
 # tipplr-app
-CodeFellows Code201 Class Project.
+Tippler or in our case tipplr, a habitual drinker of alcohol.
 
 ### Members:
 - Andrew Enyeart
@@ -8,6 +8,7 @@ CodeFellows Code201 Class Project.
 - Spencer Tower
 
 ### Additional Resources:
+ - [Asana - Tipplr Project](https://app.asana.com/0/1201367791360026/overview)
  - [Google Drive](https://drive.google.com/drive/folders/15NCmAkLO5YskJMwSisfSIme9kqXutvRt)
  - [Work Agreement](https://docs.google.com/document/d/1EWqoIjHevwoeMd498koeLVaLgHBfE0i_gl43d3N-tsg/edit?usp=sharing)
  - [Pitch/MVP](https://docs.google.com/document/d/1yVgFbKpPoL3dMFSfXpoGq8YGnJSBrriiFG2HRkGxpFY/edit?usp=sharing)
