@@ -21,7 +21,7 @@
 .body-grid-container {
     display: grid;
     grid-template-columns: 13% 74% 13%;
-    grid-template-rows: 4rem 2rem .8rem 6rem 6rem .8rem 6rem 6rem .8rem 13rem;
+    grid-template-rows: 4rem 2rem .8rem 6rem 6rem .8rem 6rem 6rem .8rem 13rem 26rem;
     grid-gap: 8px;
 }
 header {
@@ -141,4 +141,14 @@ header {
 
 .mySlides {
     display: none;
-  }
+}
+
+.cocktail-recipe {
+    grid-row: 11;
+    grid-column: 2;
+}
+
+.cocktail-recipe-flexbox {
+    display: flex;
+    justify-content: space-between;
+}
