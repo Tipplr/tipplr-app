@@ -21,7 +21,7 @@
 .body-grid-container {
     display: grid;
     grid-template-columns: 13% 74% 13%;
-    grid-template-rows: 4rem 2rem .8rem 6rem 6rem .8rem 6rem 6rem .8rem 13rem 26rem;
+    grid-template-rows: 4rem 2rem 6rem .8rem;
     grid-gap: 8px;
 }
 header {
@@ -43,52 +43,29 @@ header {
     grid-column: 2;
     justify-self: right;
 }
-
-.spirit-filter-title {
-    grid-column: 2;
-    grid-row: 3;
+.recipe-form {
+    position: absolute;
+    display: grid;
+    grid-template-columns: 50% 50%;
+    grid-template-rows: 3.5rem;
+    /* display: none; */
 }
-
-.spirit-filter1 {
-    grid-column: 2;
-    grid-row: 4;
+.recipe-form > div {
     display: flex;
-    justify-content: space-around;
-    align-items: center;
+    flex-direction: column;
 }
-
-.spirit-filter2 {
-    grid-column: 2;
-    grid-row: 5;
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-}
-
-.spirit-filter1 > div {
-    height: 60%;
-    width: 20%;
-    border: 2px solid black;
-}
-
-.spirit-filter2 > div {
-    height: 60%;
-    width: 20%;
-    border: 2px solid black;
-}
-
 .recipe-list-title {
     grid-column: 2;
-    grid-row: 6;
+    grid-row: 4;
 }
 
 .recipe-list-grid {
     grid-column: 2;
-    grid-row: 7/9;
+    grid-row: 6 / 11;
     display: grid;
     grid-template-columns: 33.3% 33.3% 33.3%;
     grid-auto-rows: 6rem;
-    overflow: scroll;
+    /* overflow: scroll; */
 }
 
 .recipe-list-grid > div {
@@ -99,56 +76,5 @@ header {
     width: 80%;
 }
 
-.slide-show-title {
-    grid-column: 2;
-    grid-row: 9;
-}
-.slideshow-container {
-    grid-column: 2;
-    grid-row: 10;
-    height: 100%;
-}
 
-.prev{
-    cursor: pointer;
-    width: auto;
-    font-weight: 1000;
-    font-size: x-large;
-    transition: 0.6s ease;
-    border-radius: 0 3px 3px 0;
-    user-select: none; 
-}
-.next {
-    cursor: pointer;
-    width: auto;
-    font-weight: 1000;
-    font-size: x-large;
-    transition: 0.6s ease;
-    border-radius: 3px 0 0 3px;
-    user-select: none;
-}
 
-.prev:hover, .next:hover {
-    background-color: rgba(0, 0, 0, 0.3);
-}
-
-.button-flexbox {
-    display: flex;
-    justify-content: space-between;
-    position: relative;
-    top: 45%;
-}
-
-.mySlides {
-    display: none;
-}
-
-.cocktail-recipe {
-    grid-row: 11;
-    grid-column: 2;
-}
-
-.cocktail-recipe-flexbox {
-    display: flex;
-    justify-content: space-between;
-}
