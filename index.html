@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/reset.css">
+    <link rel="stylesheet" href="css/style.css">
+    <script src="app.js" defer></script>
+    <title>Tipplr</title>
+</head>
+
+<body class='body-grid-container'>
+    <header class='grid-item'>
+        <h1>Tipplr</h1>
+        <nav>
+            <ul class='nav-bar'>
+                <li><a href="">Suggested</a></li>
+                <li><a href="">My Inventory</a></li>
+                <li><a href="">Add Recipe</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section class="grid-item search-bar">
+        <input type="text" placeholder="Search..">
+    </section>
+
+    <h2 class="grid-item spirit-filter-title">Recipe By Base Spirit</h2>
+
+    <section class="grid-item spirit-filter1">
+        <div></div>
+        <div></div>
+        <div></div>
+    </section>
+
+    <section class="grid-item spirit-filter2">
+        <div></div>
+        <div></div>
+        <div></div>
+    </section>
+
+    <h2 class="grid-item recipe-list-title">Recipe List</h2>
+
+    <!--when pushing grid items here, assign index to items, and use that index to determine column and row placement-->
+    <section class="grid-item recipe-list-grid">
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+    </section>
+
+    <h2 class="grid-item slide-show-title">Suggested - One ingredient away!</h2>
+
+    <section class="grid-item slideshow-container">
+        <!-- <div class="slides fade"></div>
+        <div class="slides fade"></div>
+        <div class="slides fade"></div> -->
+        <div class="button-flexbox">
+            <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+            <a class="next" onclick="plusSlides(1)">&#10095;</a>
+        </div>
+    </section>
+
+    <section class='grid-item cocktail-recipe'>
+        <div class='cocktail-recipe-flexbox'>
+            <h3>Some Words in here</h3>
+            <!-- <img class='icon' cocktail-recipe-flexboxsrc="assets/whiskey.png" alt="small image of whiskey glass"> -->
+        </div>
+        <ul>
+            <li>some ingredient</li>
+            <li>some ingredient</li>
+            <li>some ingredient</li>
+            <li>some ingredient</li>
+            <li>some ingredient</li>
+            <li>some ingredient</li>
+            <li>some ingredient</li>
+            <li>some ingredient</li>
+        </ul>
+        <div>
+            <h4>How to make:</h4>
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Officiis quisquam voluptatum reprehenderit enim laborum autem alias impedit sit minima ratione similique, facere rerum nobis quaerat distinctio? Similique, magni ullam quia cupiditate qui ad? Maiores quibusdam quia eaque consequuntur architecto doloribus quam ipsum molestiae aut porro. Odit neque ipsa adipisci nisi!</p>
+        </div>
+        <div>
+            <h4>Notes:</h4> 
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Distinctio dignissimos ab cum labore. Beatae est ipsam deleniti suscipit hic eveniet provident, nam ratione maiores commodi ipsum aliquam at, enim illum error. Distinctio deleniti dolores est iusto! Temporibus modi qui neque.</p>
+        </div>
+        <div>
+            <h4>Tags:</h4>         
+        </div>
+        <button>Add A Tag Here!</button>
+    </section>
+</body>
+
+</html>
