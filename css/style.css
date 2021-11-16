@@ -33,12 +33,7 @@ html {
     display: grid;
     grid-template-columns: 12.5% 70% 12.5%;
     grid-template-rows: 4rem 2rem .8rem 6rem .8rem auto .8rem 26rem;
-    grid-gap: 2.5%;
-}
-
-h1 {
-    font-family: var(--ff-title);
-    font-size: 2rem;
+    grid-gap: 2.5rem;
 }
 
 header {
@@ -50,6 +45,11 @@ header {
     display: flex;  
     justify-content: space-between;
     grid-column: 2;
+}
+
+h1 {
+    font-family: var(--ff-title);
+    font-size: 2rem;
 }
 
 .nav-bar {
@@ -172,7 +172,7 @@ header {
 
 @media screen and (max-width: 375px) {
     .body-grid-container {
-        grid-template-columns: 8% 80% 8%;
+        grid-template-columns: 8.8% 80% 8.8%;
         grid-gap: 1%;
     }
     header {
