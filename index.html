@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="css/reset.css">
     <link rel="stylesheet" href="css/style.css">
     <script src="app.js" defer></script>
@@ -23,9 +24,10 @@
         </nav>
     </header>
 
-    <section class="grid-item search-bar">
+    <form class="grid-item search-bar">
         <input type="text" placeholder="Search..">
-    </section>
+        <button type="submit"><i class="fa fa-search"></i></button>
+    </form>
 
     <h2 class="grid-item spirit-filter-title">Recipe By Base Spirit</h2>
 
@@ -33,9 +35,8 @@
         <div></div>
         <div></div>
         <div></div>
-    </section>
-
-    <section class="grid-item spirit-filter2">
+        <div></div>
+        <div></div>
         <div></div>
         <div></div>
         <div></div>
@@ -44,20 +45,14 @@
     <h2 class="grid-item recipe-list-title">Recipe List</h2>
 
     <!--when pushing grid items here, assign index to items, and use that index to determine column and row placement-->
-    <section class="grid-item recipe-list-grid">
+    <div class="grid-item recipe-list-grid">
         <div></div>
         <div></div>
         <div></div>
         <div></div>
         <div></div>
         <div></div>
-        <div></div>
-        <div></div>
-        <div></div>
-        <div></div>
-        <div></div>
-        <div></div>
-    </section>
+    </div>
 
     <h2 class="grid-item slide-show-title">Suggested - Just one ingredient away!</h2>
 
