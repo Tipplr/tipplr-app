@@ -227,6 +227,7 @@ function renderRecipeCard(array) {
         event.preventDefault();
         newRecipeFormSubmit();
         showNewRecipeForm();
+        clearForm();
     }
 
     function newRecipeFormSubmit(){
@@ -250,7 +251,14 @@ function renderRecipeCard(array) {
     }
     function clearForm(){
         //clears all form fields
+        const nameField = document.getElementById('recipe-name');
+        const specsField = document.getElementById('specs');
+        const instructionsField = document.getElementById('instruct');
 
+        // may need refactor
+        nameField.value = '';
+        specsField.value = '';
+        instructionsField.value = '';
     }
     function cancelButton(){
         //calls clearForm()
