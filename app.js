@@ -76,6 +76,37 @@ Ingredient.userInventory = []; // array of ingredient objects
 
     // eventlistener on button click
     //    filters property of base spirt clicked as milestone to story #1
+  // Below is mock data for testing function:
+  Ingredient.userInventory = [{
+          name: "Rittenhouse Rye",
+          type: "whiskey",
+      },
+      {
+          name: "Roku",
+          type: "gin",
+      },
+      {
+          name: "Lime",
+          type: "basics",
+      },
+      {
+          name: "Simple syrup",
+          type: "basics",
+      },
+      {
+          name: "Sweet vermouth",
+          type: "vermouth",
+      },
+      {
+          name: "Campari",
+          type: "liqueur",
+      },
+      {
+          name: "Angostura Bitters",
+          type: "bitters",
+      },
+      // {name: "", type: "",},
+  ]
     function filterDrinksPossible(tolerance) {  
         // tolerance of 0 if currently possible, tolerance of 1 for one-ingredient-away
         // filter based on userInventory (see story #5)
