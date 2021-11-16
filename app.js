@@ -221,11 +221,25 @@ recipeEventListner();
     function newRecipeFormSubmit(){
         //calls new Cocktail construtor
         //pushes form values into Cocktail constructor
+        // grab field input
+        const name = document.getElementById('recipe-name').value; // change to camelCase
+        console.log('reciepName Input: ' + name);
+
+        const specs = document.getElementById('specs').value;
+        console.log('specs Input: ' + specs);
+        const instructions = document.getElementById('instruct').value;
+        console.log('instructions input: ' + instructions);
+
+        const newCocktail = new Cocktail(name, instructions);
+
+        console.log(newCocktail);
+
         //STRETCH: call filterFunction() if applicable new recipe will now show in filtered array
         //STRETCH: call renderFiltered() re-renders page so if new recipe meets requirements is now displayed on the page
     }
     function clearForm(){
         //clears all form fields
+
     }
     function cancelButton(){
         //calls clearForm()
