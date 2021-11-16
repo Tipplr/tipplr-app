@@ -98,10 +98,18 @@ h1 {
     display: grid;
     grid-template-columns: 33.3% 33.3% 33.3%;
     grid-auto-rows: 6rem;
+    grid-auto-flow: row;
 }
 
 #recipe-list-grid > div {
     height: 60%;
+    width: 20%;
+    border: 2px solid black;
+    margin: auto;
+    width: 80%;
+}
+#recipe-list-grid > div > div {
+    height: auto;
     width: 20%;
     border: 2px solid black;
     margin: auto;

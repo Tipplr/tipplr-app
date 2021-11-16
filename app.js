@@ -59,10 +59,34 @@ Ingredient.userInventory = []; // array of ingredient objects
         //render specifically the name and base property of Cocktail object
         array.forEach(e => {
             const recipeList = document.getElementById('recipe-list-grid');
-            let writeRecipe = document.createElement('div');
+            let recipeName = document.createElement('div');
 
-            recipeList.appendChild(writeRecipe);
-            writeRecipe.innerHTML = `${e.name} with a base of ${e.base}`;
+            recipeList.appendChild(recipeName);
+            recipeName.innerHTML = `${e.name} with a base of ${e.base}`;
+
+            let writeRecipe = document.createElement('div');
+            recipeName.appendChild(writeRecipe);
+
+            let ingrs = document.createElement('ul');
+            writeRecipe.append(ingrs);
+            let oneIng = document.createElement('li');
+            ingrs.append(oneIng);
+            for (let i = 0; i < e.ingr.length; i += 1) {
+                let oneIng = document.createElement('li');
+                ingrs.append(oneIng);
+                oneIng.innerHTML = `${e.ingr[i]} - ${e.amount[i]}`
+            }
+            let howToMake = document.createElement('p');
+            writeRecipe.append(howToMake);
+            howToMake.innerHTML = `How to make: ${e.instructions}`
+
+            let notes = document.createElement('p');
+            writeRecipe.append(notes);
+
+            notes.innerHTML = `Notes: ${e.notes}`
+
+            console.log(e.ingr);
+            console.log(e.amount);
         })
     }
     function alphabetFunction(){
