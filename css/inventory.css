@@ -31,7 +31,7 @@ html {
 
 .body-grid-container {
     display: grid;
-    grid-template-columns: 12.5% 69% 12.5%;
+    grid-template-columns: 12.4% 69.32% 12.5%;
     grid-template-rows: 4rem 2rem auto;
     grid-gap: 2.5rem;
 }

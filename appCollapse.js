@@ -1,5 +1,6 @@
 let coll = document.getElementsByClassName('collapsible');
 let add = document.getElementById('plus');
+let minusBtn = document.getElementById('minus');
 let i;
 
 let collapsingFunction = function () {
@@ -23,9 +24,19 @@ let addFunction = function (event) {
 
     newSpecInput.setAttribute('type', 'text');
     newSpecInput.setAttribute('name', 'specs');
-    newSpecInput.setAttribute('id', 'specs');
+    newSpecInput.setAttribute('id', 'specs-new');
 
     specForm.append(newSpecInput);
 }
 
 add.addEventListener('click', addFunction)
+
+let minusFunction = function (event) {
+    event.preventDefault();
+    const specForm = document.getElementById('inputSpecs');
+    // will throw error if no new spec fields created
+    const newSpecInput = document.getElementById('specs-new');
+    specForm.removeChild(newSpecInput);
+}
+
+minusBtn.addEventListener('click', minusFunction);

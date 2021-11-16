@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="css/recipe.css">
     <script src="app.js" defer></script>
     <script src="appCollapse.js" defer></script>
+    <script src="recipe.js" defer></script>
     <title>Tipplr Recipes</title>
 </head>
 
@@ -43,6 +44,7 @@
             <div>
                 <label for="Specs">Specs</label>
                 <button id="plus">+</button>
+                <button id="minus">-</button>
             </div>
             <input type="text" name="specs" id="specs">
         </div>
@@ -52,7 +54,8 @@
             <input type="text" name="instruct" id="instruct">
         </div>
 
-        <input type="submit" value="Submit">
+        <input type="submit" value="Submit" id="recipeSubmitBtn">
+        <input type="reset" value="Reset" id="recipeResetBtn">
     </form>
 
     <h2 class="grid-item recipe-list-title">Recipe List</h2>

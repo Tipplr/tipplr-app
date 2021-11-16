@@ -92,15 +92,16 @@ h1 {
     grid-row: 5;
 }
 
-.recipe-list-grid {
+#recipe-list-grid {
     grid-column: 2;
     grid-row: 6;
     display: grid;
     grid-template-columns: 33.3% 33.3% 33.3%;
     grid-auto-rows: 6rem;
+    grid-auto-flow: row;
 }
 
-.recipe-list-grid > div {
+#recipe-list-grid > div {
     height: 60%;
     width: 20%;
     border: 2px solid black;
@@ -108,6 +109,72 @@ h1 {
     width: 80%;
 }
 
+.recipe-card {
+    height: auto;
+    width: 20%;
+    border: 2px solid black;
+    margin: auto;
+    width: 80%;
+}
+
+.recipe-grid {
+    width: 80%;
+    height: 70%;
+    position: fixed;
+    left: 10%;
+    top: 20%;
+    background-color: bisque;
+    z-index: 1000;
+    font-family: var(--ff-primary);
+    font-size: 2rem;
+    padding-left: 1.5rem;
+    display: grid;
+    grid-template-columns: 40% 30% 30%;
+    grid-template-rows: 15% auto 25% 25%;
+    overflow: auto;
+}
+
+.hidden {
+    display: none;
+}
+
+.rendered-title {
+    font-size: 3rem;
+    margin: auto;
+}
+.icon {
+    grid-column: 2;
+    grid-row: 1;
+    background-color: black;
+    margin: auto 0;
+    color: white;
+    width: 30px;
+    height: 30px;
+}
+.ingredients-list {
+    grid-column: 1 / 4;
+    grid-row: 2;
+    grid-auto-flow: column; 
+}
+.ingredients-list > li {
+    padding: .3rem;
+}
+.how-make {
+    grid-column: 1 / 4;
+    grid-row: 3;
+    padding-top: 1.2rem;
+}
+.notes {
+    grid-column: 1 / 4;
+    grid-row: 4;
+}
+.close-popup {
+    grid-column: 3;
+    grid-row: 1;
+    height: 2rem;
+    width: 2rem;
+    justify-self: right;
+}
 .slide-show-title {
     grid-column: 2;
     grid-row: 8;
@@ -156,16 +223,6 @@ h1 {
     display: none;
 }
 
-.cocktail-recipe {
-    grid-row: 11;
-    grid-column: 2;
-}
-
-.cocktail-recipe-flexbox {
-    display: flex;
-    justify-content: space-between;
-}
-
 @media screen and (max-width: 375px) {
     .body-grid-container {
         grid-template-columns: 8.8% 80% 8.8%;
@@ -174,4 +231,30 @@ h1 {
     header {
         grid-column: 1/4;
     }
+    #recipe-list-grid {
+        grid-template-columns: 50% 50%;
+    }
+
+    .recipe-grid {
+        width: 90%;
+        height: 80%;
+        left: 5%;
+        top: 10%;
+        font-size: 1.2rem;
+        margin-left: .2rem;
+        display: grid;
+        grid-template-columns: 40% 30% 30%;
+        grid-template-rows: 15% auto 25% 25%;
+        overflow: auto;
+    }
+    .recipe-grid > h4 {
+        font-size: 1.3rem;
+    }
+    .recipe-grid > .icon {
+        grid-column: 2;
+        justify-self: right;
+    }
+    /* .recipe-grid > .close-popup {
+
+    } */
 }
