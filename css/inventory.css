@@ -51,7 +51,7 @@ header {
     left: 14%;
 }
 
-.recipe-form {
+.inventory-form {
     display: none;
     overflow: hidden;
     position: absolute;
@@ -68,16 +68,16 @@ header {
 #inputSpecs > button {
     width: 15px;
 }
-.recipe-form > div {
+.inventory-form > div {
     display: flex;
     flex-direction: column;
 }
-.recipe-list-title {
+.inventory-list-title {
     grid-column: 2;
     grid-row: 3;
 }
 
-.recipe-list-grid {
+.inventory-list-grid {
     grid-column: 2;
     grid-row: 6 / 11;
     display: grid;
@@ -86,7 +86,7 @@ header {
     /* overflow: scroll; */
 }
 
-.recipe-list-grid > div {
+.inventory-list-grid > div {
     height: 60%;
     width: 20%;
     border: 2px solid black;
