@@ -57,60 +57,66 @@ Ingredient.userInventory = []; // array of ingredient objects
     function renderThumbnails(array){
         //render array of allCocktails
         //render specifically the name and base property of Cocktail object
-        array.forEach(e => {
+        array.forEach((e, index) => {
             const recipeList = document.getElementById('recipe-list-grid');
             let renderRecipe = document.createElement('div');
 
             recipeList.appendChild(renderRecipe);
+            renderRecipe.setAttribute('class', 'recipe-card');
+            renderRecipe.setAttribute('id', `${index}`);
             renderRecipe.innerHTML = `${e.name} with a base of ${e.base}`;
-
-            let writeRecipe = document.createElement('div');
-            renderRecipe.appendChild(writeRecipe);
-
-            let icon = document.createElement('div');
-            icon.setAttribute('class', 'icon');
-            writeRecipe.append(icon);
-
-            let recipeName = document.createElement('h4');
-            recipeName.setAttribute('class', 'rendered-title');
-            writeRecipe.append(recipeName);
-            recipeName.innerHTML = `${e.name}`
-
-
-            let ingrs = document.createElement('ul');
-            writeRecipe.append(ingrs);
-            let oneIng = document.createElement('li');
-            ingrs.append(oneIng);
-            for (let i = 0; i < e.ingr.length; i += 1) {
-                let oneIng = document.createElement('li');
-                ingrs.append(oneIng);
-                oneIng.innerHTML = `${e.ingr[i]} - ${e.amount[i]}`
-            }
-            let howToMake = document.createElement('p');
-            writeRecipe.append(howToMake);
-            howToMake.innerHTML = `How to make: ${e.instructions}`
-
-            let notes = document.createElement('p');
-            writeRecipe.append(notes);
-
-            notes.innerHTML = `Notes: ${e.notes}`
 
             console.log(e.ingr);
             console.log(e.amount);
         })
-    }
-    function alphabetFunction(){
-        //push cocktail object to allCocktails in alphabetical order
+}
+function alphabetFunction() {
+    //push cocktail object to allCocktails in alphabetical order
     // add eventlisteners
-    }
+}
 // Viewing a recipe:
-    function eventlistener() {
-         //to display recipe "card" 
-    }
-    function renderRecipeCard() {
-        //change from hidden to shown
-        //add event listener for nav left, right, return to list
-    }
+function eventlistener() {
+    //to display recipe "card" 
+}
+function renderRecipeCard(array) {
+    //change from hidden to shown
+    //add event listener for nav left, right, return to list
+    array.forEach((e, index) => {
+        let recipeCard = document.getElementById(`${index}`)
+
+        let writeRecipe = document.createElement('div');
+        writeRecipe.setAttribute('class', 'popup-recipe');
+        recipeCard.append(writeRecipe);
+
+        let icon = document.createElement('div');
+        icon.setAttribute('class', 'icon');
+        writeRecipe.append(icon);
+
+        let recipeName = document.createElement('h4');
+        recipeName.setAttribute('class', 'rendered-title');
+        writeRecipe.append(recipeName);
+        recipeName.innerHTML = `${e.name}`
+
+
+        let ingrs = document.createElement('ul');
+        writeRecipe.append(ingrs);
+        let oneIng = document.createElement('li');
+        ingrs.append(oneIng);
+        for (let i = 0; i < e.ingr.length; i += 1) {
+            let oneIng = document.createElement('li');
+            ingrs.append(oneIng);
+            oneIng.innerHTML = `${e.ingr[i]} - ${e.amount[i]}`
+        }
+        let howToMake = document.createElement('p');
+        writeRecipe.append(howToMake);
+        howToMake.innerHTML = `How to make: ${e.instructions}`
+
+        let notes = document.createElement('p');
+        writeRecipe.append(notes);
+
+        notes.innerHTML = `Notes: ${e.notes}`
+    })
+}
 
 
 // User story #1: ability to filter the provided cocktail recipe list to view only the recipes possible with current inventory
@@ -246,3 +252,4 @@ generateCocktails();
 const roku = new Ingredient('Roku', 'Gin');
 
 renderThumbnails(Cocktail.all);
+renderRecipeCard(Cocktail.all);

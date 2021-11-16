@@ -108,12 +108,17 @@ h1 {
     margin: auto;
     width: 80%;
 }
-#recipe-list-grid > div > div {
+
+.recipe-card {
     height: auto;
     width: 20%;
     border: 2px solid black;
     margin: auto;
     width: 80%;
+}
+
+.popup-recipe {
+    
 }
 
 .icon {
