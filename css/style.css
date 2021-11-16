@@ -223,7 +223,7 @@ h1 {
     display: none;
 }
 
-@media screen and (max-width: 375px) {
+@media screen and (max-width: 950px) {
     .body-grid-container {
         grid-template-columns: 8.8% 80% 8.8%;
         grid-gap: 1%;
@@ -254,7 +254,4 @@ h1 {
         grid-column: 2;
         justify-self: right;
     }
-    /* .recipe-grid > .close-popup {
-
-    } */
 }

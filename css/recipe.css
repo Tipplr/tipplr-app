@@ -122,7 +122,7 @@ h1 {
     width: 80%;
 }
 
-@media screen and (max-width: 375px) {
+@media screen and (max-width: 950px) {
 
     .body-grid-container {
         grid-template-columns: 8.8% 80% 8.8%;
@@ -140,7 +140,7 @@ h1 {
     .collapsible {
         cursor: pointer;
         position: absolute;
-        top: 18.8%;
+        top: 9.5rem;
         left: 15%;
     }
 
@@ -149,7 +149,7 @@ h1 {
         overflow: hidden;
         position: absolute;
         left: 15%;
-        top: 21.8%;
+        top: 11rem;
         width: 70%;
     }
 
