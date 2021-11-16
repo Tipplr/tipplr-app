@@ -1,10 +1,18 @@
+@import url('https://fonts.googleapis.com/css2?family=Martel:wght@600&family=Praise&family=Russo+One&family=Shippori+Antique&display=swap');
+
+:root {
+    --ff-primary: 'Martel', serif;
+    --ff-highlights: 'Praise', cursive;
+    --ff-title: 'Russo One', sans-serif;
+}
+
 *,
 *::before,
 *::after {
     box-sizing: border-box;
 }
 
-.grid-item {
+/* .grid-item {
     /* position: relative; */
     /* font-size: 25px;
     padding: 20px;
@@ -12,7 +20,7 @@
     background-color: #379AD6;
     color: #222;
     border: 1px solid black;
-}
+} */
   
 .grid-item:nth-child(odd) {
     background-color: #5bbdfa;
@@ -24,9 +32,17 @@
     grid-template-rows: 4rem 2rem .8rem 6rem 6rem .8rem 6rem 6rem .8rem 13rem 26rem;
     grid-gap: 8px;
 }
+
+h1 {
+    font-family: var(--ff-title);
+    font-size: 2rem;
+}
+
 header {
-    margin-left: .5rem;
-    margin-right: .5rem;
+    font-family: var(--ff-primary);
+    align-items: center;
+    margin-left: 1.2rem;
+    margin-right: 1.2rem;
     margin-top: .5rem;
     display: flex;  
     justify-content: space-between;
