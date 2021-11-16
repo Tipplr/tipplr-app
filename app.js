@@ -3,10 +3,12 @@ let allTags = []; //holds all tags
 let glasswareIcons = []; // holds filepaths for images
 // "drink" as shorthand for "Cocktail object instance"
 
-const Cocktail = function(name, base, specs = [], glassware, instructions = "", notes = "") { // user-gen or from API, also template for mock dataset
+const Cocktail = function(name, base, ingr = [], amount = [], glassware, instructions = "", notes = "") { // user-gen or from API, also template for mock dataset
     this.name = name;
     this.base = base;
-    this.specs = specs; //array specs = [[amount, ingredient], [amount, ingredient]]
+    this.ingr = ingr;
+    this.amount = amount;
+    this.specs = []; //array specs = [[amount + ingredient], [amount + ingredient]]
     this.glassware = glassware;
     this.instructions = instructions;
     this.notes = notes;
@@ -90,7 +92,7 @@ Ingredient.userInventory = []; // array of ingredient objects
     }
         
 //User story #2 input ingredients I own, and have the website track it
-    function getlocalstorage() { 
+    function getLocalStorage() { 
         // happens when user navs to/refreshes inventory page
         //get array of ingredient objects stored in the userInventory array
         //parse JSON
@@ -189,11 +191,15 @@ Ingredient.userInventory = []; // array of ingredient objects
     //this is accomplished at the page load
 
 // const Cocktail = function(name, base, specs = [], glassware, instructions = "", notes = "", tags = [], possible, almostPossible)    
-const manhattan = new Cocktail("Manhattan", 'Whiskey', [['2 oz', 'Whiskey'], ['1 oz', 'Sweet Vermouth'], ['2 dashes', 'Angostura Bitters']], 'Up','');
-const beesKnees = new Cocktail("Bee's Knees", 'Gin', [['2 oz', 'Gin'], ['3/4 oz', 'Lemon'], ['3/4 oz', 'Honey Syrup']], 'Up', '');
-const gimlet = new Cocktail("Gimlet", 'Gin', [['2 oz', 'Gin'], ['3/4 oz', 'Lime'], ['1/2 oz', 'Simple Syrup']], 'Up', '');
-const mojito = new Cocktail("Mojito", 'Rum', [['2 oz', 'Rum'], ['3/4 oz', 'Lime'], ['1/2 oz', 'Simple Syrup']], 'Collins', '');
-const rosita = new Cocktail("Rosita", 'Tequila', [['1 3/4 oz', 'Tequila'], ['1/2 oz', 'Sweet Vermouth'], ['1/2 oz', 'Dry Vermouth'], ['1/2 oz', 'Campari']], 'Rocks', '');
-const moscowMule = new Cocktail("Moscow Mule", 'Vokda', [['1 1/2 oz', 'Vodka'], ['1/2 oz', 'Lime'], ['Top', 'Ginger Beer ']], 'Mule Mug', '');
+function generateCocktails(){
+    const manhattan = new Cocktail("Manhattan", 'Whiskey', ['Whiskey', 'Sweet Vermouth', 'Angostura Bitters'], ['2 oz', '1 oz', '2 dashes'], 'Up');
+    const beesKnees = new Cocktail("Bee's Knees", 'Gin', ['Gin','Lemon', 'Honey Syrup'],['2 oz', '3/4 oz', '3/4 oz'], 'Up');
+    const gimlet = new Cocktail("Gimlet", 'Gin', ['Gin', 'Lime', 'Simple Syrup'],['2 oz', '3/4 oz', '1/2 oz'], 'Up');
+    const mojito = new Cocktail("Mojito", 'Rum', ['Rum', 'Lime', 'Simple Syrup'],['2 oz', '3/4 oz', '1/2 oz'], 'Collins');
+    const rosita = new Cocktail("Rosita", 'Tequila', ['Tequila', 'Sweet Vermouth', 'Dry Vermouth', 'Campari'], ['1 3/4 oz', '1/2 oz', '1/2 oz', '1/2 oz'], 'Rocks');
+    const moscowMule = new Cocktail("Moscow Mule", 'Vokda', ['Vodka', 'Lime', 'Ginger Beer '], ['1 1/2 oz', '1/2 oz', 'Top'], 'Mule Mug');
+}
+
+generateCocktails();
 
 const roku = new Ingredient('Roku', 'Gin');
