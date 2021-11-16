@@ -78,43 +78,42 @@ Ingredient.missingIngredients = [];
     // eventlistener on button click
     //    filters property of base spirt clicked as milestone to story #1
   // Below is mock data for testing function:
-  Ingredient.userInventory = [{
-          name: "Rittenhouse Rye",
-          type: "whiskey",
-      },
-      {
-          name: "Roku",
-          type: "gin",
-      },
-      {
-          name: "Lime",
-          type: "basics",
-      },
-      {
-          name: "Simple syrup",
-          type: "basics",
-      },
-      {
-          name: "Sweet vermouth",
-          type: "vermouth",
-      },
-      {
-          name: "Campari",
-          type: "liqueur",
-      },
-      {
-          name: "Angostura Bitters",
-          type: "bitters",
-      },
-      {
-          name: "Rum",
-          type: "rum",
-      },
-  ];
+//   Ingredient.userInventory = [{
+//           name: "Rittenhouse Rye",
+//           type: "whiskey",
+//       },
+//       {
+//           name: "Roku",
+//           type: "gin",
+//       },
+//       {
+//           name: "Lime",
+//           type: "basics",
+//       },
+//       {
+//           name: "Simple syrup",
+//           type: "basics",
+//       },
+//       {
+//           name: "Sweet vermouth",
+//           type: "vermouth",
+//       },
+//       {
+//           name: "Campari",
+//           type: "liqueur",
+//       },
+//       {
+//           name: "Angostura Bitters",
+//           type: "bitters",
+//       },
+//       {
+//           name: "Rum",
+//           type: "rum",
+//       },
+//   ];
   generateCocktails();
     function filterDrinksPossible(tolerance) {  
         // tolerance of 0 if currently possible, tolerance of 1 for one-ingredient-away
-        // perhaps default param of -1 or 100 for displaying cocktails regardless of inventory
         let inventoryNames = Ingredient.userInventory.map(element => element.name.toLowerCase());
         let inventoryTypes = Ingredient.userInventory.map(element => element.type.toLowerCase());
         Cocktail.all.forEach(cocktail => { // iterate through array of cocktail instances
@@ -130,20 +129,20 @@ Ingredient.missingIngredients = [];
                     deltas++;
                     Ingredient.missingIngredients.push(ingredient); // ADDS TO ARRAY OF INGREDIENTS USER DOESN'T HAVE
                 }
-                });
-                // done comparing each drink ingredient against inventory
-                if (deltas === 0) { // delta/tolerance possibilities: [ 0/0, 0/1, 0/2, 1/0/, 1/1, 1,2, 2/0, 2/1, 2/2]
-                    cocktail.possible = true;
-                    if (tolerance === 0) Cocktail.filtered.push(cocktail);
-                } else if (deltas === tolerance) {
-                    cocktail.almostPossible = true;
+            });
+            // done comparing each drink ingredient against inventory
+            if (deltas === 0) { // delta/tolerance possibilities: [ 0/0, 0/1, 0/2, 1/0/, 1/1, 1,2, 2/0, 2/1, 2/2]
+                cocktail.possible = true;
+                if (tolerance === 0) Cocktail.filtered.push(cocktail);
+            } else if (deltas === tolerance) {
+                cocktail.almostPossible = true;
                 Cocktail.filtered.push(cocktail);
             }
         });
         console.log(Cocktail.filtered);
         return Cocktail.filtered;
     }
-    filterDrinksPossible(0);
+    // filterDrinksPossible(0); // called here for testing
     function renderFiltered() {
         //update the displayed cocktails
     }
