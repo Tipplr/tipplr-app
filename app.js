@@ -122,8 +122,16 @@ Ingredient.userInventory = []; // array of ingredient objects
         //remove clicked ingredient from the userInventory array
         //saveAndRenderInv() 
     } 
-    function saveToLocalStorage() {
-        // saves userInventory to local Storage
+    function saveToLocalStorage(object) {
+        // DONE saves userInventory to local Storage
+        //checks if the ingredient being uploaded is a Cocktail object or an Ingredient Object
+        const objectName = object[0].constructor.name
+
+        if (objectName === 'Cocktail'){
+            localStorage.setItem('cocktails', JSON.stringify(object));
+        } else {
+            localStorage.setItem('ingredients', JSON.stringify(object));
+        }
     }
     function clearTable() {
         //erases rows in table
