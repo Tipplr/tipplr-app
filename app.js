@@ -38,6 +38,7 @@ const Ingredient = function (name, type) {
 
 Ingredient.all = [];
 Ingredient.userInventory = []; // array of ingredient objects
+Ingredient.missingIngredients = [];
 
 // Ingredients as inventory object
 // recipe item (Ingred instance with qty/unit values)
@@ -156,22 +157,85 @@ function renderRecipeCard(event) {
 
 // User story #1: ability to filter the provided cocktail recipe list to view only the recipes possible with current inventory
 
-// eventlistener on button click
-//    filters property of base spirt clicked as milestone to story #1
-function filterDrinksPossible(tolerance) {
-    // tolerance of 0 if currently possible, tolerance of 1 for one-ingredient-away
-    // filter based on userInventory (see story #5)
-    //outputs filtered array of Cocktails filteredCocktails []
-}
-function renderFiltered() {
-    //update the displayed cocktails
-}
 
+    // eventlistener on button click
+    //    filters property of base spirt clicked as milestone to story #1
+  // Below is mock data for testing function:
+//   Ingredient.userInventory = [{
+//           name: "Rittenhouse Rye",
+//           type: "whiskey",
+//       },
+//       {
+//           name: "Roku",
+//           type: "gin",
+//       },
+//       {
+//           name: "Lime",
+//           type: "basics",
+//       },
+//       {
+//           name: "Simple syrup",
+//           type: "basics",
+//       },
+//       {
+//           name: "Sweet vermouth",
+//           type: "vermouth",
+//       },
+//       {
+//           name: "Campari",
+//           type: "liqueur",
+//       },
+//       {
+//           name: "Angostura Bitters",
+//           type: "bitters",
+//       },
+//       {
+//           name: "Rum",
+//           type: "rum",
+//       },
+//   ];
+  generateCocktails();
+    function filterDrinksPossible(tolerance) {  
+        // tolerance of 0 if currently possible, tolerance of 1 for one-ingredient-away
+        let inventoryNames = Ingredient.userInventory.map(element => element.name.toLowerCase());
+        let inventoryTypes = Ingredient.userInventory.map(element => element.type.toLowerCase());
+        Cocktail.all.forEach(cocktail => { // iterate through array of cocktail instances
+            let ingredients = cocktail.ingr.slice(); // Copies this ingr array for safe handling
+            let deltas = 0;
 
-function searchBar() { // STRETCH
-    //updates displayFiltered based on cocktail name entered (returns 1 cocktail or more if smart)
-    //call renderFiltered()
-}
+            ingredients.forEach(ingredient => { // for the ingredients in this recipe,
+                        ingredient = ingredient.toLowerCase();
+                        let typeMatch = inventoryTypes.some(type => ingredient === type); // Boolean 
+                        let nameMatch = inventoryNames.some(name => ingredient === name); // Boolean
+
+                if (!typeMatch && !nameMatch) { // if this ingredient is NOT found in the inventory names or types
+                    deltas++;
+                    Ingredient.missingIngredients.push(ingredient); // ADDS TO ARRAY OF INGREDIENTS USER DOESN'T HAVE
+                }
+            });
+            // done comparing each drink ingredient against inventory
+            if (deltas === 0) { // delta/tolerance possibilities: [ 0/0, 0/1, 0/2, 1/0/, 1/1, 1,2, 2/0, 2/1, 2/2]
+                cocktail.possible = true;
+                if (tolerance === 0) Cocktail.filtered.push(cocktail);
+            } else if (deltas === tolerance) {
+                cocktail.almostPossible = true;
+                Cocktail.filtered.push(cocktail);
+            }
+        });
+        console.log(Cocktail.filtered);
+        return Cocktail.filtered;
+    }
+    // filterDrinksPossible(0); // called here for testing
+    function renderFiltered() {
+        //update the displayed cocktails
+    }
+        
+    
+    function searchBar() { // STRETCH
+        //updates displayFiltered based on cocktail name entered (returns 1 cocktail or more if smart)
+        //call renderFiltered()
+    }
+        
 
 //User story #2 input ingredients I own, and have the website track it
 
@@ -292,18 +356,20 @@ function addTagButton() {
 }
 
 // User story #5 which ingredient would most broaden the drinks possible 
-// Call vvv
-let almostPossible = filterDrinksPossible(1); //argument of tolerance = 1. Uses userInventory, allCocktails. Outputs array to almostPossible
-// (# userInventory IN this.specs) === specs.length-1)
-// an array of cocktails for which all ingredients except one can be found in userInventory[]
-// this COULD be the same function as the filter for "is possible", with an argument of 1 passed as the "tolerance". When the function gets used for "is possible", we would pass an argument of 0. 
-// get highYieldBottle and corresponding newBottleRecipes[]    
-// from almostPossible[] or at the same time, create array of one-off missing ingredients
-// .reduce() oneOff[] to get total additional cocktails possible per missing ingredient
-// .sort() to get highYieldBottle, the highest number of new possible drinks 
-// use highYieldBottle to .filter() through specs in almostPossible[] to produce newBottleRecipes[]
-// render highYieldBottle and highYieldRecipes[]
 
+    // Call vvv
+    // let almostPossible = filterDrinksPossible(1); //argument of tolerance = 1. Uses userInventory, allCocktails. Outputs array to almostPossible
+            // (# userInventory IN this.specs) === specs.length-1) 
+            // an array of cocktails for which all ingredients except one can be found in userInventory[]
+            // this COULD be the same function as the filter for "is possible", with an argument of 1 passed as the "tolerance". When the function gets used for "is possible", we would pass an argument of 0. 
+    // get highYieldBottle and corresponding newBottleRecipes[]    
+        // from almostPossible[] or at the same time, create array of one-off missing ingredients
+        // .reduce() oneOff[] to get total additional cocktails possible per missing ingredient
+        // .sort() to get highYieldBottle, the highest number of new possible drinks 
+        // use highYieldBottle to .filter() through specs in almostPossible[] to produce newBottleRecipes[]
+    // render highYieldBottle and highYieldRecipes[]
+    
+        
 
 // User story #6 quick access to the app’s cocktail recipes and search feature with minimal clicks/prompts
 // primarily HTML/CSS driven
