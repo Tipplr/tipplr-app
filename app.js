@@ -57,6 +57,13 @@ Ingredient.userInventory = []; // array of ingredient objects
     function renderThumbnails(array){
         //render array of allCocktails
         //render specifically the name and base property of Cocktail object
+        array.forEach(e => {
+            const recipeList = document.getElementById('recipe-list-grid');
+            let writeRecipe = document.createElement('div');
+
+            recipeList.appendChild(writeRecipe);
+            writeRecipe.innerHTML = `${e.name} with a base of ${e.base}`;
+        })
     }
     function alphabetFunction(){
         //push cocktail object to allCocktails in alphabetical order
@@ -203,3 +210,5 @@ function generateCocktails(){
 generateCocktails();
 
 const roku = new Ingredient('Roku', 'Gin');
+
+renderThumbnails(Cocktail.all);

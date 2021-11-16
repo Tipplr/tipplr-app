@@ -92,7 +92,7 @@ h1 {
     grid-row: 5;
 }
 
-.recipe-list-grid {
+#recipe-list-grid {
     grid-column: 2;
     grid-row: 6;
     display: grid;
@@ -100,7 +100,7 @@ h1 {
     grid-auto-rows: 6rem;
 }
 
-.recipe-list-grid > div {
+#recipe-list-grid > div {
     height: 60%;
     width: 20%;
     border: 2px solid black;
