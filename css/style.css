@@ -92,20 +92,41 @@ h1 {
     grid-row: 5;
 }
 
-.recipe-list-grid {
+#recipe-list-grid {
     grid-column: 2;
     grid-row: 6;
     display: grid;
     grid-template-columns: 33.3% 33.3% 33.3%;
     grid-auto-rows: 6rem;
+    grid-auto-flow: row;
 }
 
-.recipe-list-grid > div {
+#recipe-list-grid > div {
     height: 60%;
     width: 20%;
     border: 2px solid black;
     margin: auto;
     width: 80%;
+}
+
+.recipe-card {
+    height: auto;
+    width: 20%;
+    border: 2px solid black;
+    margin: auto;
+    width: 80%;
+}
+
+.popup-recipe {
+    
+}
+
+.icon {
+    float: right;
+    background-color: black;
+    color: white;
+    width: 30px;
+    height: 30px;
 }
 
 .slide-show-title {
