@@ -77,9 +77,20 @@ Ingredient.userInventory = []; // array of ingredient objects
             console.log(e.amount);
         })
 }
-function alphabetFunction() {
-    //push cocktail object to allCocktails in alphabetical order
-    // add eventlisteners
+function alphabetize(array) {
+    //pass in array of objects and alphabetize that array by name property
+    array.sort((a, b) => {
+        let stringa = a.name.toLowerCase();
+        let stringb = b.name.toLowerCase();
+
+        if (stringa < stringb){
+            return -1;
+        }
+        if (stringa > stringb){
+            return 1;
+        }
+        return 0;
+    });
 }
 // Viewing a recipe:
 function eventlistener() {
@@ -205,7 +216,7 @@ function renderRecipeCard(array) {
         recipeSubmitBtn.addEventListener('click', addRecipeHandler);
     }
 
-recipeEventListner();
+// recipeEventListner();
 
     function showNewRecipeForm() {
         //changes CSS display styling to properly display the recipe card pop-up form
