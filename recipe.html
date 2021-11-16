@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/reset.css">
+    <link rel="stylesheet" href="css/recipe.css">
+    <script src="app.js" defer></script>
+    <script src="appCollapse.js" defer></script>
+    <title>Tipplr Recipes</title>
+</head>
+
+<body class='body-grid-container'>
+    <header class='grid-item'>
+        <h1><a href="index.html">Tipplr</a></h1>
+        <nav>
+            <ul class='nav-bar'>
+                <li><a href="">Suggested</a></li>
+                <li><a href="inventory.html">My Inventory</a></li>
+                <li><a href="recipe.html">Recipes</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section class="grid-item search-bar">
+        <input type="text" placeholder="Search..">
+    </section>
+
+    <button type="button" class="collapsible">Enter Recipe</button>
+
+    <form class="grid-item recipe-form">
+
+        <div>
+            <label for="Recipe Name">Recipe Name</label>
+            <input type="text" name="recipename" id="recipe-name">
+        </div>
+
+        <div id='inputSpecs'>
+            <div>
+                <label for="Specs">Specs</label>
+                <button id="plus">+</button>
+            </div>
+            <input type="text" name="specs" id="specs">
+        </div>
+
+        <div>
+            <label for="Instructions">Instructions</label>
+            <input type="text" name="instruct" id="instruct">
+        </div>
+
+        <input type="submit" value="Submit">
+    </form>
+
+    <h2 class="grid-item recipe-list-title">Recipe List</h2>
+    <!--when pushing grid items here, assign index to items, and use that index to determine column and row placement-->
+    <section class="grid-item recipe-list-grid">
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+    </section>
+
+</body>
+
+</html>
