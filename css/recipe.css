@@ -57,9 +57,17 @@ header {
     position: absolute;
     left: 13%;
     top: 20%;
-    width: 60%;
+    width: 77.5%;
 }
 
+#inputSpecs > div{ 
+    display: flex;
+    justify-content: space-between;
+    width: 5rem;
+}
+#inputSpecs > button {
+    width: 15px;
+}
 .recipe-form > div {
     display: flex;
     flex-direction: column;

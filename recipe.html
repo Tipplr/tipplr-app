@@ -27,7 +27,7 @@
     <section class="grid-item search-bar">
         <input type="text" placeholder="Search..">
     </section>
-    
+
     <button type="button" class="collapsible">Enter Recipe</button>
 
     <form class="grid-item recipe-form">
@@ -36,10 +36,15 @@
             <label for="Recipe Name">Recipe Name</label>
             <input type="text" name="recipename" id="recipe-name">
         </div>
-        <div>
-            <label for="Specs">Specs</label>
+
+        <div id='inputSpecs'>
+            <div>
+                <label for="Specs">Specs</label>
+                <button id="plus">+</button>
+            </div>
             <input type="text" name="specs" id="specs">
         </div>
+
         <div>
             <label for="Instructions">Instructions</label>
             <input type="text" name="instruct" id="instruct">
