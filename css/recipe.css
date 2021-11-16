@@ -45,10 +45,9 @@ header {
 }
 .recipe-form {
     position: absolute;
-    display: grid;
-    grid-template-columns: 50% 50%;
-    grid-template-rows: 3.5rem;
-    /* display: none; */
+    left: 5%;
+    top: 10%;
+    width: 60%;
 }
 .recipe-form > div {
     display: flex;
