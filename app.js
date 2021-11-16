@@ -216,7 +216,7 @@ function renderRecipeCard(array) {
         recipeSubmitBtn.addEventListener('click', addRecipeHandler);
     }
 
-// recipeEventListner();
+recipeEventListner();
 
     function showNewRecipeForm() {
         //changes CSS display styling to properly display the recipe card pop-up form
@@ -260,10 +260,7 @@ function renderRecipeCard(array) {
         specsField.value = '';
         instructionsField.value = '';
     }
-    function cancelButton(){
-        //calls clearForm()
-        //changes CSS display styling back so pop-up form is hidden  
-    } 
+
 //User story #4 save drinks my friends like, and filter by them
     //within the recipe card...
    function tagEventListener() {
