@@ -89,6 +89,27 @@ function alphabetize(array) {
         return 0;
     });
 }
+
+function loadRecipes(){
+    let storedUserRecipes = getLocalStorage('cocktails');
+    let cocktail;
+    if (storedUserRecipes){
+        generateCocktails();
+        for(let i = 0; i < storedUserRecipes.length; i += 1){
+           cocktail = new Cocktail (`${storedUserRecipes[i].name}`,`${storedUserRecipes[i].base}`, [], [], `${storedUserRecipes[i].glassware}`, `${storedUserRecipes[i].instructions}`, `${storedUserRecipes[i].notes}`);
+           //template literal of array outputs a string...
+           cocktail.ingr = storedUserRecipes[i].ingr;
+           cocktail.amount = storedUserRecipes[i].amount;
+        
+           Cocktail.userRecipes.push(cocktail); //pushes this cocktail back into userRecipes array
+        }
+        alphabetize(Cocktail.all);
+    } else {
+        generateCocktails();
+        console.log ('no user recipes');
+    }
+
+}
 // Viewing a recipe:
 const recipeListEventListener = document.getElementById('recipe-list-grid');
 recipeListEventListener.addEventListener('click', renderRecipeCard);
@@ -320,9 +341,10 @@ function generateCocktails() {
     const moscowMule = new Cocktail("Moscow Mule", 'Vokda', ['Vodka', 'Lime', 'Ginger Beer '], ['1 1/2 oz', '1/2 oz', 'Top'], 'Mule Mug');
 }
 
-generateCocktails();
+loadRecipes();
 
 const roku = new Ingredient('Roku', 'Gin');
 
 renderThumbnails(Cocktail.all);
-renderRecipeCard(Cocktail.all);
+
+//const negroni = new Cocktail("Negroni", 'Gin', ['Gin', 'Campari', 'Sweet Vermouth'], ['1 oz', '1 oz', '1 oz'], 'Rocks');
