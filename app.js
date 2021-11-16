@@ -112,16 +112,17 @@ Ingredient.missingIngredients = [];
     function filterDrinksPossible(tolerance) {  
         // tolerance of 0 if currently possible, tolerance of 1 for one-ingredient-away
         // perhaps default param of -1 or 100 for displaying cocktails regardless of inventory
-        let inventoryNames = Ingredient.userInventory.map(element => element.name);
-        let inventoryTypes = Ingredient.userInventory.map(element => element.type);
+        let inventoryNames = Ingredient.userInventory.map(element => element.name.toLowerCase());
+        let inventoryTypes = Ingredient.userInventory.map(element => element.type.toLowerCase());
         Cocktail.all.forEach(cocktail => { // iterate through array of cocktail instances
                     let ingredients = cocktail.ingr.slice(); // Copies this ingr array for safe handling
-            let numCompare = ingredients.length;
+            // let numCompare = ingredients.length;
             let deltas = 0;
             // console.log(element.name, ingredients, numCompare);
 
             // for the ingredients in this recipe,
             ingredients.forEach(ingredient => {
+                        ingredient = ingredient.toLowerCase();
                         let typeMatch = inventoryTypes.some(type => ingredient === type); // Boolean 
                         let nameMatch = inventoryNames.some(name => ingredient === name); // Boolean
 
@@ -133,12 +134,12 @@ Ingredient.missingIngredients = [];
 
             if (deltas === 0) cocktail.possible = true;
             if (deltas === tolerance) cocktail.almostPossible = true;
-            // if deltas === tolerance   
-            // if deltas === 0
-            // if deltas > tolerance  
-
-
+            if (deltas === 0 || deltas === tolerance) {
+                Cocktail.filtered.push(cocktail);
+            }
         });
+        console.log(Cocktail.filtered);
+        return Cocktail.filtered;
         //outputs filtered array of Cocktails filteredCocktails []
     }
     filterDrinksPossible(0);
