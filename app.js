@@ -1,12 +1,5 @@
 'use strict';
-// console.log('linked');
-let userInventory = []; // array of ingredient objects
-let userRecipes = [];
 let allTags = []; //holds all tags 
-
-let filteredCocktails = [];
-let allIngred = [];
-let allCocktails = []; //cocktail objects stored alphabetically
 let glasswareIcons = []; // holds filepaths for images
 // "drink" as shorthand for "Cocktail object instance"
 
@@ -20,7 +13,13 @@ const Cocktail = function(name, base, specs = [], glassware, instructions = "", 
     // this.tags = tags;
     this.possible = false; // this prop indicates if drink is compatible with userInventory
     this.almostPossible = false; // same as above, but for those missing one ingredient
+
+    Cocktail.all.push(this);
 }
+
+Cocktail.all = []; //cocktail objects stored alphabetically
+Cocktail.userRecipes = [];
+Cocktail.filtered = [];
 
 // Tied to the user-generated recipe feature
 Cocktail.prototype.specsBuilder = function () { // Takes user form entry as input, pushes to drink specs
@@ -31,7 +30,12 @@ this.specs.push(/*output*/);
 const Ingredient = function (name, type){
     this.name = name;
     this.type = type;
+
+    Ingredient.all.push(this);
 }
+
+Ingredient.all = [];
+Ingredient.userInventory = []; // array of ingredient objects
 
 // Ingredients as inventory object
 // recipe item (Ingred instance with qty/unit values)
@@ -48,8 +52,9 @@ const Ingredient = function (name, type){
         // get userInventory[]
         // STRETCH: get allTags[] 
     }       
-    function renderFunction(array){
+    function renderThumbnails(array){
         //render array of allCocktails
+        //render specifically the name and base property of Cocktail object
     }
     function alphabetFunction(){
         //push cocktail object to allCocktails in alphabetical order
@@ -184,4 +189,11 @@ const Ingredient = function (name, type){
     //this is accomplished at the page load
 
 // const Cocktail = function(name, base, specs = [], glassware, instructions = "", notes = "", tags = [], possible, almostPossible)    
-const manhattan = new Cocktail('Manhattan', 'Whiskey', [['2 oz', 'Whiskey'], ['1 oz', 'Sweet Vermouth'], ['2 dashes', 'Angostura Bitters']], 'Up','', );
+const manhattan = new Cocktail("Manhattan", 'Whiskey', [['2 oz', 'Whiskey'], ['1 oz', 'Sweet Vermouth'], ['2 dashes', 'Angostura Bitters']], 'Up','');
+const beesKnees = new Cocktail("Bee's Knees", 'Gin', [['2 oz', 'Gin'], ['3/4 oz', 'Lemon'], ['3/4 oz', 'Honey Syrup']], 'Up', '');
+const gimlet = new Cocktail("Gimlet", 'Gin', [['2 oz', 'Gin'], ['3/4 oz', 'Lime'], ['1/2 oz', 'Simple Syrup']], 'Up', '');
+const mojito = new Cocktail("Mojito", 'Rum', [['2 oz', 'Rum'], ['3/4 oz', 'Lime'], ['1/2 oz', 'Simple Syrup']], 'Collins', '');
+const rosita = new Cocktail("Rosita", 'Tequila', [['1 3/4 oz', 'Tequila'], ['1/2 oz', 'Sweet Vermouth'], ['1/2 oz', 'Dry Vermouth'], ['1/2 oz', 'Campari']], 'Rocks', '');
+const moscowMule = new Cocktail("Moscow Mule", 'Vokda', [['1 1/2 oz', 'Vodka'], ['1/2 oz', 'Lime'], ['Top', 'Ginger Beer ']], 'Mule Mug', '');
+
+const roku = new Ingredient('Roku', 'Gin');
