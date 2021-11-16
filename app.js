@@ -106,12 +106,44 @@ Ingredient.userInventory = []; // array of ingredient objects
           type: "bitters",
       },
       // {name: "", type: "",},
-  ]
+  ];
+  generateCocktails();
     function filterDrinksPossible(tolerance) {  
         // tolerance of 0 if currently possible, tolerance of 1 for one-ingredient-away
+        // perhaps default param of -1 or 100 for displaying cocktails regardless of inventory
         // filter based on userInventory (see story #5)
+        let inventoryNames = Ingredient.userInventory.map(element => element.name);
+        let inventoryTypes = Ingredient.userInventory.map(element => element.type);
+        Cocktail.all.forEach(element => { // iterate through array of cocktail instances
+            let ingredients = element.ingr.slice(); // Copies this ingr array for safe handling
+            let numCompare = ingredients.length;
+            let deltas = 0;
+            // console.log(element.name, ingredients, numCompare);
+
+            ingredients.forEach(ingredient => { // for the ingredients in this recipe,
+
+                userInventory.forEach(item => { // an array of objects {name: , type: ,}
+                    if (item.name === ingredient || item.type === ingredient) {
+                        break; // continues to next ingredient
+                    } else
+                });
+
+                // ---- if userInventory contains this ingredient
+                // ------ break to ingredients.forEach
+                // ---- else, if not found, 
+                // ------ increment deltas
+                // ------ push this ingredient to missingIngredients[]
+            });
+
+            // if deltas < tolerance push this cocktail to  
+            // if deltas === 0
+            // if deltas > tolerance  
+
+
+        });
         //outputs filtered array of Cocktails filteredCocktails []
     }
+    filterDrinksPossible(0);
     function renderFiltered() {
         //update the displayed cocktails
     }
