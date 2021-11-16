@@ -75,15 +75,11 @@ h1 {
     grid-row: 4;
     display: grid;
     grid-auto-columns: 30%;
-    /* grid-template-columns: 30% 30% 30% 30% 30%; */
     grid-template-rows: 37px 37px;
+    grid-gap: 3px;
     overflow: auto;
-    white-space: nowrap;
-    grid-auto-flow: row;
     grid-auto-flow: column;
 }
-
-
 
 .spirit-filter1 > div {
     height: 2rem;
