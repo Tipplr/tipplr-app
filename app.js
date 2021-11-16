@@ -150,12 +150,17 @@ Ingredient.userInventory = []; // array of ingredient objects
         recipeSubmitBtn.addEventListener('click', addRecipeHandler);
     }
 
+recipeEventListner();
+
     function showNewRecipeForm() {
         //changes CSS display styling to properly display the recipe card pop-up form
         // show pop-up card form
     }
     function addRecipeHandler(event) {
         //call showNewRecipeForm()
+        event.preventDefault();
+        newRecipeFormSubmit();
+        showNewRecipeForm();
     }
 
     function newRecipeFormSubmit(){
