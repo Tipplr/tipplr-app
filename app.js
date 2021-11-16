@@ -74,9 +74,20 @@ function renderThumbnails(array) {
         renderRecipe.innerHTML = `${e.name} with a base of ${e.base}`;
     })
 }
-function alphabetFunction() {
-    //push cocktail object to allCocktails in alphabetical order
-    // add eventlisteners
+function alphabetize(array) {
+    //pass in array of objects and alphabetize that array by name property
+    array.sort((a, b) => {
+        let stringa = a.name.toLowerCase();
+        let stringb = b.name.toLowerCase();
+
+        if (stringa < stringb){
+            return -1;
+        }
+        if (stringa > stringb){
+            return 1;
+        }
+        return 0;
+    });
 }
 // Viewing a recipe:
 const recipeListEventListener = document.getElementById('recipe-list-grid');
@@ -224,30 +235,49 @@ function recipeEventListner() {
 
 // recipeEventListner();
 
-function showNewRecipeForm() {
-    //changes CSS display styling to properly display the recipe card pop-up form
-    // show pop-up card form
-}
-function addRecipeHandler(event) {
-    //call showNewRecipeForm()
-    event.preventDefault();
-    newRecipeFormSubmit();
-    showNewRecipeForm();
-}
+    function showNewRecipeForm() {
+        //changes CSS display styling to properly display the recipe card pop-up form
+        // show pop-up card form
+    }
+    function addRecipeHandler(event) {
+        //call showNewRecipeForm()
+        event.preventDefault();
+        newRecipeFormSubmit();
+        showNewRecipeForm();
+        clearForm();
+    }
 
-function newRecipeFormSubmit() {
-    //calls new Cocktail construtor
-    //pushes form values into Cocktail constructor
-    //STRETCH: call filterFunction() if applicable new recipe will now show in filtered array
-    //STRETCH: call renderFiltered() re-renders page so if new recipe meets requirements is now displayed on the page
-}
-function clearForm() {
-    //clears all form fields
-}
-function cancelButton() {
-    //calls clearForm()
-    //changes CSS display styling back so pop-up form is hidden  
-}
+    function newRecipeFormSubmit(){
+        //calls new Cocktail construtor
+        //pushes form values into Cocktail constructor
+        // grab field input
+        const name = document.getElementById('recipe-name').value; // change to camelCase
+        console.log('reciepName Input: ' + name);
+
+        const specs = document.getElementById('specs').value;
+        console.log('specs Input: ' + specs);
+        const instructions = document.getElementById('instruct').value;
+        console.log('instructions input: ' + instructions);
+
+        const newCocktail = new Cocktail(name, instructions);
+
+        console.log(newCocktail);
+
+        //STRETCH: call filterFunction() if applicable new recipe will now show in filtered array
+        //STRETCH: call renderFiltered() re-renders page so if new recipe meets requirements is now displayed on the page
+    }
+    function clearForm(){
+        //clears all form fields
+        const nameField = document.getElementById('recipe-name');
+        const specsField = document.getElementById('specs');
+        const instructionsField = document.getElementById('instruct');
+
+        // may need refactor
+        nameField.value = '';
+        specsField.value = '';
+        instructionsField.value = '';
+    }
+
 //User story #4 save drinks my friends like, and filter by them
 //within the recipe card...
 function tagEventListener() {
