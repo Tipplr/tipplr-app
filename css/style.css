@@ -12,25 +12,28 @@
     box-sizing: border-box;
 }
 
+html {
+    background-color: #81ADC8;
+}
 /* .grid-item {
-    /* position: relative; */
-    /* font-size: 25px;
+     position: relative; 
+     font-size: 25px;
     padding: 20px;
-    padding-top: 50px; */
-    /* background-color: #379AD6;
+    padding-top: 50px; 
+    background-color: #379AD6;
     color: #222;
     border: 1px solid black;
-} */ */
+}  */
   
-.grid-item:nth-child(odd) {
+/* .grid-item:nth-child(odd) {
     background-color: #5bbdfa;
-}
+} */
 
 .body-grid-container {
     display: grid;
-    grid-template-columns: 13% 74% 13%;
-    grid-template-rows: 4rem 2rem .8rem 6rem 6rem .8rem 6rem 6rem .8rem 13rem 26rem;
-    grid-gap: 8px;
+    grid-template-columns: 12.5% 70% 12.5%;
+    grid-template-rows: 4rem 2rem .8rem 6rem .8rem auto .8rem 26rem;
+    grid-gap: 2.5%;
 }
 
 h1 {
@@ -46,12 +49,14 @@ header {
     margin-top: .5rem;
     display: flex;  
     justify-content: space-between;
-    grid-column: 1 / 4;
+    grid-column: 2;
 }
 
 .nav-bar {
-    width:100%;
-    margin-right: 1rem;
+    margin-top: .5rem;
+}
+.nav-bar > li {
+    padding: 3px;
 }
 
 .search-bar {
@@ -68,43 +73,35 @@ header {
 .spirit-filter1 {
     grid-column: 2;
     grid-row: 4;
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
+    display: grid;
+    grid-auto-columns: 30%;
+    /* grid-template-columns: 30% 30% 30% 30% 30%; */
+    grid-template-rows: 37px 37px;
+    overflow: auto;
+    white-space: nowrap;
+    grid-auto-flow: row;
+    grid-auto-flow: column;
 }
 
-.spirit-filter2 {
-    grid-column: 2;
-    grid-row: 5;
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-}
+
 
 .spirit-filter1 > div {
-    height: 60%;
-    width: 20%;
-    border: 2px solid black;
-}
-
-.spirit-filter2 > div {
-    height: 60%;
-    width: 20%;
+    height: 2rem;
+    min-width: 2%;
     border: 2px solid black;
 }
 
 .recipe-list-title {
     grid-column: 2;
-    grid-row: 6;
+    grid-row: 5;
 }
 
 .recipe-list-grid {
     grid-column: 2;
-    grid-row: 7/9;
+    grid-row: 6;
     display: grid;
     grid-template-columns: 33.3% 33.3% 33.3%;
     grid-auto-rows: 6rem;
-    overflow: scroll;
 }
 
 .recipe-list-grid > div {
@@ -117,11 +114,15 @@ header {
 
 .slide-show-title {
     grid-column: 2;
-    grid-row: 9;
+    grid-row: 8;
+    z-index: 100;
+    font-family: var(--ff-highlights);
+    color: aliceblue;
+    font-size: 2.5rem;
 }
 .slideshow-container {
     grid-column: 2;
-    grid-row: 10;
+    grid-row: 8;
     height: 100%;
 }
 
@@ -167,4 +168,14 @@ header {
 .cocktail-recipe-flexbox {
     display: flex;
     justify-content: space-between;
+}
+
+@media screen and (max-width: 375px) {
+    .body-grid-container {
+        grid-template-columns: 8% 80% 8%;
+        grid-gap: 1%;
+    }
+    header {
+        grid-column: 1/4;
+    }
 }
