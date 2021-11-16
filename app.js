@@ -138,13 +138,18 @@ Ingredient.userInventory = []; // array of ingredient objects
 //User story #3 enter and store my own recipe
     function recipeEventListner(){
         //listens for button click to add a recipe
+        const recipeSubmitBtn = document.getElementById('recipeSubmitBtn');
+        recipeSubmitBtn.addEventListener('click', addRecipeHandler);
     }
+
     function showNewRecipeForm() {
         //changes CSS display styling to properly display the recipe card pop-up form
+        // show pop-up card form
     }
-    function addRecipeHandler(){
+    function addRecipeHandler(event) {
         //call showNewRecipeForm()
     }
+
     function newRecipeFormSubmit(){
         //calls new Cocktail construtor
         //pushes form values into Cocktail constructor
