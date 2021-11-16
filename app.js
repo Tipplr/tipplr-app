@@ -48,10 +48,17 @@ Ingredient.userInventory = []; // array of ingredient objects
     //display minimum birth date for 21 years old
     // "were you born before ___ or after?"
 //Base website (on load after age check)
-   function retriveLocalStorage() {
+   function getLocalStorage(key) {
        //for access to user-entered cocktails in userRecipes[] 
             //combine built-in cocktails with user cocktails into allCocktails []
         // get userInventory[]
+        if (key === 'cocktails'){
+            console.log('you entered key: cocktails');
+           return JSON.parse(localStorage.getItem('cocktails'));
+        } else if (key === 'ingredients'){
+            console.log('you entered key: ingredients');
+           return JSON.parse(localStorage.getItem('ingredients'));
+        }
         // STRETCH: get allTags[] 
     }       
     function renderThumbnails(array){
@@ -92,12 +99,13 @@ Ingredient.userInventory = []; // array of ingredient objects
     }
         
 //User story #2 input ingredients I own, and have the website track it
-    function getLocalStorage() { 
+
         // happens when user navs to/refreshes inventory page
         //get array of ingredient objects stored in the userInventory array
         //parse JSON
-    }
+    
     function renderIngrList() {
+        //call getLocalStorage('ingredients')
         //write to DOM a table of ingredients and type from userInventory
     }
     function changeInventoryEventListener() {
