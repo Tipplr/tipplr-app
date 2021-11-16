@@ -38,6 +38,7 @@ const Ingredient = function (name, type){
 
 Ingredient.all = [];
 Ingredient.userInventory = []; // array of ingredient objects
+Ingredient.missingIngredients = [];
 
 // Ingredients as inventory object
 // recipe item (Ingred instance with qty/unit values)
@@ -111,31 +112,28 @@ Ingredient.userInventory = []; // array of ingredient objects
     function filterDrinksPossible(tolerance) {  
         // tolerance of 0 if currently possible, tolerance of 1 for one-ingredient-away
         // perhaps default param of -1 or 100 for displaying cocktails regardless of inventory
-        // filter based on userInventory (see story #5)
         let inventoryNames = Ingredient.userInventory.map(element => element.name);
         let inventoryTypes = Ingredient.userInventory.map(element => element.type);
-        Cocktail.all.forEach(element => { // iterate through array of cocktail instances
-            let ingredients = element.ingr.slice(); // Copies this ingr array for safe handling
+        Cocktail.all.forEach(cocktail => { // iterate through array of cocktail instances
+                    let ingredients = cocktail.ingr.slice(); // Copies this ingr array for safe handling
             let numCompare = ingredients.length;
             let deltas = 0;
             // console.log(element.name, ingredients, numCompare);
 
-            ingredients.forEach(ingredient => { // for the ingredients in this recipe,
+            // for the ingredients in this recipe,
+            ingredients.forEach(ingredient => {
+                        let typeMatch = inventoryTypes.some(type => ingredient === type); // Boolean 
+                        let nameMatch = inventoryNames.some(name => ingredient === name); // Boolean
 
-                userInventory.forEach(item => { // an array of objects {name: , type: ,}
-                    if (item.name === ingredient || item.type === ingredient) {
-                        break; // continues to next ingredient
-                    } else
-                });
+                if (!typeMatch && !nameMatch) { // if this ingredient is NOT found in the inventory names or types
+                    deltas++;
+                    Ingredient.missingIngredients.push(ingredient); // ADDS TO ARRAY OF INGREDIENTS USER DOESN'T HAVE
+                }
+                }); // done comparing each drink ingredient against inventory
 
-                // ---- if userInventory contains this ingredient
-                // ------ break to ingredients.forEach
-                // ---- else, if not found, 
-                // ------ increment deltas
-                // ------ push this ingredient to missingIngredients[]
-            });
-
-            // if deltas < tolerance push this cocktail to  
+            if (deltas === 0) cocktail.possible = true;
+            if (deltas === tolerance) cocktail.almostPossible = true;
+            // if deltas === tolerance   
             // if deltas === 0
             // if deltas > tolerance  
 
