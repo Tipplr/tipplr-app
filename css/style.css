@@ -245,7 +245,7 @@ h2 {
     background-color: orange;
     height: 25px;
     grid-column: 2;
-    grid-row: 3;
+    grid-row: 5;
     width: 7rem;
     justify-self: right;
 }
