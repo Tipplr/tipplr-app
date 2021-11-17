@@ -14,7 +14,7 @@
 </head>
 
 <body id='body' class='body-grid-container'>
-    <header class='grid-item'>
+    <header>
         <h1><a href="index.html">Tipplr</a></h1>
         <nav>
             <ul class='nav-bar'>
@@ -25,15 +25,15 @@
         </nav>
     </header>
 
-    <form class="grid-item search-bar">
+    <form class="search-bar">
         <input type="text" placeholder="Search..">
         <button type="submit"><i class="fa fa-search"></i></button>
     </form>
 
-    <h2 class="grid-item spirit-filter-title">Filter Recipes by:</h2>
+    <h2 class="spirit-filter-title">Filter Recipes by:</h2>
 
-    <button id='clear-filter'>Clear Filter</button>
-    <section id="filter-buttons" class="grid-item spirit-filter1">
+    <button id='clear-filter'>Clear</button>
+    <section id="filter-buttons" class="spirit-filter1">
         <button id="filter-01" class="filter-sc">Current Inventory</button>
         <button id="filter-02" class="filter-sc">Gin Cocktails</button>
         <button id="filter-03" class="filter-sc">Whiskey Cocktails</button>
@@ -48,12 +48,12 @@
     <h2 class="recipe-list-title">Recipe List</h2>
 
     <!--when pushing grid items here, assign index to items, and use that index to determine column and row placement-->
-    <div class="grid-item" id="recipe-list-grid">
+    <div id="recipe-list-grid">
     </div>
 
-    <h2 class="grid-item slide-show-title">Suggested - Just one ingredient away!</h2>
+    <h2 class="slide-show-title">Suggested - Just one ingredient away!</h2>
 
-    <section class="grid-item slideshow-container">
+    <section class="slideshow-container">
         <!-- <div class="slides fade"></div>
         <div class="slides fade"></div>
         <div class="slides fade"></div> -->

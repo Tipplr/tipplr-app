@@ -31,13 +31,23 @@ renderThumbnails();
 function renderRecipeCard(event) {
     //change from hidden to shown
     //add event listener for nav left, right, return to list
+    let array;
+
+    // console.log(Cocktail.filtered);
+    if (Cocktail.filtered.length > 0) {
+        array = Cocktail.filtered;
+        // console.log(array);
+    } else {
+        array = Cocktail.all;
+        // console.log(array);
+    }
     let clicked = event.target.id;
 
     let recipeCard = document.getElementById('popup');
     let recipeCardbg = document.getElementById('popup-outline');
     let antiScroll = document.getElementById('body');
 
-    let tempRecipe = Cocktail.all[clicked];
+    let tempRecipe = array[clicked];
 
     if (tempRecipe) {
 
@@ -93,10 +103,11 @@ function renderRecipeCard(event) {
 const clearFilter = document.getElementById('clear-filter');
 clearFilter.addEventListener('click', clearFilterHandler);
 
-function clearFilterHandler(event) {
+function clearFilterHandler() {
     // event.preventDefault();
     clearChildren('recipe-list-grid');
     renderThumbnails(Cocktail.all);
+    Cocktail.filtered = [];
 }
 
 function filterHandler(event) {

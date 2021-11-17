@@ -1,8 +1,9 @@
-@import url('https://fonts.googleapis.com/css2?family=Martel:wght@600&family=Praise&family=Russo+One&family=Shippori+Antique&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Anton&family=Martel:wght@600&family=Praise&family=Russo+One&family=Shippori+Antique&display=swap');
 
 :root {
     --ff-primary: 'Martel', serif;
-    --ff-highlights: 'Praise', cursive;
+    --ff-highlights: 'Anton', sans-serif;
+    --ff-highlights-2: 'Praise', cursive;
     --ff-title: 'Russo One', sans-serif;
 }
 
@@ -13,7 +14,8 @@
 }
 
 html {
-    background-color: #81ADC8;
+    background-color: #352F37;
+    color: #FEECD8;
 }
 /* .grid-item {
      position: relative; 
@@ -34,6 +36,7 @@ html {
     grid-template-columns: 12.5% 70% 12.5%;
     grid-template-rows: 4rem 2rem .8rem 6rem 1.6rem auto .8rem 26rem;
     grid-gap: 2.5rem;
+    background-color: hsla(210, 12%, 29%, 1);
 }
 
 header {
@@ -47,16 +50,29 @@ header {
     grid-column: 2;
 }
 
-h1,
-h2 {
+header a {
+    color: aliceblue;
+    text-decoration: none;
     font-family: var(--ff-title);
 }
 
+body button {
+    background-color: #153243;
+    color: #FEECD8;
+    font-family: var(--ff-highlights);
+    font-size: 1.5rem;
+}
+h1,
+h2 {
+    font-family: var(--ff-highlights);
+}
+
 h1 {
-    font-size: 2rem;
+    font-size: 3.5rem;
 }
 h2 {
-    font-size: 1.4rem;
+    color: #DCAB6B;
+    font-size: 2rem;
 }
 .nav-bar {
     margin-top: .5rem;
@@ -87,12 +103,6 @@ h2 {
     grid-auto-flow: column;
 }
 
-.spirit-filter1 > div {
-    height: 2rem;
-    min-width: 2%;
-    border: 2px solid black;
-}
-
 .recipe-list-title {
     grid-column: 2;
     grid-row: 5;
@@ -103,19 +113,25 @@ h2 {
     grid-column: 2;
     grid-row: 6;
     display: grid;
-    grid-gap: 3px;
     grid-template-columns: 33.3% 33.3% 33.3%;
     grid-auto-rows: 6rem;
     grid-auto-flow: row;
 }
 
 .recipe-card {
-    height: 70%;
+    height: 85%;
     border: 2px solid black;
     margin: auto;
-    width: 80%;
+    width: 90%;
+    background-color: #153243;
+    color: #FEECD8;
 }
 
+.recipe-card > * {
+    position: relative;
+    top: 15px;
+    left: 8px;
+}
 .recipe-card > p {
     font-size: 1.2rem;
     position: relative;
@@ -146,6 +162,7 @@ h2 {
 .rendered-title {
     font-size: 3rem;
     margin: auto;
+    color: black;
 }
 .icon {
     grid-column: 2;
@@ -163,6 +180,7 @@ h2 {
 }
 .ingredients-list > li {
     padding: .3rem;
+    color: black;
 }
 .how-make {
     grid-column: 1 / 4;
@@ -191,7 +209,7 @@ h2 {
     grid-column: 2;
     grid-row: 8;
     z-index: 100;
-    font-family: var(--ff-highlights);
+    font-family: var(--ff-highlights-2);
     color: aliceblue;
     font-size: 2.5rem;
 }
@@ -241,7 +259,8 @@ h2 {
 }
 
 #clear-filter {
-    background-color: orange;
+    background-color: #B4184C;
+    font-size: 1rem;
     height: 25px;
     grid-column: 2;
     grid-row: 5;
