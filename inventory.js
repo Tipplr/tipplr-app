@@ -1,9 +1,28 @@
 'use strict'
 
-function renderIngrList() {
+function renderIngrTable() {
+    const tbodyEl = document.querySelector('tbody');
+
+    for(let i = 0; i < Ingredient.userInventory.length; i += 1){
+        const trEl = document.createElement('tr');
+        tbodyEl.appendChild(trEl);
+
+        const tdElemRemove = document.createElement('td')
+        trEl.appendChild(tdElemRemove);
+        tdElemRemove.id = `remove-${i}`;
+        tdElemRemove.textContent = "⛔";
+        
+        const tdElemName = document.createElement('td')
+        trEl.appendChild(tdElemName);
+        tdElemName.textContent = Ingredient.userInventory[i].name;
+        
+        const tdElemType = document.createElement('td')
+        trEl.appendChild(tdElemType);
+        tdElemType.textContent = Ingredient.userInventory[i].type;
+        }
+    }
     //call getLocalStorage('ingredients')
     //write to DOM a table of ingredients and type from userInventory
-}
 function changeInventoryEventListener() {
     //add an event listener to the add new + button and to the - button next to each ingredient in list
     document.getElementById('add-inventory').addEventListener("click", toggleFormDisplay);
@@ -30,6 +49,8 @@ function addIngredient(event) {
 
     Ingredient.userInventory.push(ingredient);
     saveToLocalStorage(Ingredient.userInventory);
+
+    renderIngrTable();
 
     //hides and clears form
     toggleFormDisplay();
