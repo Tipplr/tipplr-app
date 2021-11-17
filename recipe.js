@@ -86,7 +86,7 @@ function addRecipeHandler(event) {
     event.preventDefault();
     newRecipeFormSubmit();
     showNewRecipeForm();
-    // clearForm();
+    clearForm();
 }
 
 const form = document.getElementById('recipe-submit');
@@ -126,9 +126,10 @@ function newRecipeFormSubmit() {
 
     // name, base, ingr = [], amount = [], glassware, instructions = "", notes = ""
 
-    const newCocktail = new Cocktail(name, base, ingrArray, amntArray, instructions, notes);
+    const newCocktail = new Cocktail(name, base, ingrArray, amntArray, glassware, instructions, notes);
 
     console.log(newCocktail);
+    console.log('newCocktail Instructions: ' + newCocktail.instructions);
 
     Cocktail.userRecipes.push(newCocktail);
     saveToLocalStorage(Cocktail.userRecipes);
@@ -139,12 +140,6 @@ function newRecipeFormSubmit() {
 function clearForm() {
     //TODO: add base, ingr, qty, glassware, notes
     //clears all form fields
-    const nameField = document.getElementById('recipe-name');
-    const specsField = document.getElementById('specs');
-    const instructionsField = document.getElementById('instruct');
-
-    // may need refactor
-    nameField.value = '';
-    specsField.value = '';
-    instructionsField.value = '';
+    const form = document.getElementById('recipe-submit');
+    form.reset();
 }
