@@ -104,11 +104,11 @@ function loadRecipes(){
         
            Cocktail.userRecipes.push(cocktail); //pushes this cocktail back into userRecipes array
         }
-        alphabetize(Cocktail.all);
     } else {
         generateCocktails();
         console.log ('no user recipes');
     }
+    alphabetize(Cocktail.all);
 
 }
 // Viewing a recipe:
@@ -182,40 +182,49 @@ function renderRecipeCard(event) {
     // eventlistener on button click
     //    filters property of base spirt clicked as milestone to story #1
   // Below is mock data for testing function:
-//   Ingredient.userInventory = [{
-//           name: "Rittenhouse Rye",
-//           type: "whiskey",
-//       },
-//       {
-//           name: "Roku",
-//           type: "gin",
-//       },
-//       {
-//           name: "Lime",
-//           type: "basics",
-//       },
-//       {
-//           name: "Simple syrup",
-//           type: "basics",
-//       },
-//       {
-//           name: "Sweet vermouth",
-//           type: "vermouth",
-//       },
-//       {
-//           name: "Campari",
-//           type: "liqueur",
-//       },
-//       {
-//           name: "Angostura Bitters",
-//           type: "bitters",
-//       },
-//       {
-//           name: "Rum",
-//           type: "rum",
-//       },
-//   ];
-  generateCocktails();
+  /*
+  Ingredient.userInventory = [{
+          name: "Rittenhouse Rye",
+          type: "whiskey",
+      },
+      {
+          name: "Roku",
+          type: "gin",
+      },
+      {
+          name: "Lime",
+          type: "basics",
+      },
+      {
+          name: "Simple syrup",
+          type: "basics",
+      },
+      {
+          name: "Sweet vermouth",
+          type: "vermouth",
+      },
+      {
+          name: "Campari",
+          type: "liqueur",
+      },
+      {
+          name: "Angostura Bitters",
+          type: "bitters",
+      },
+      {
+          name: "Rum",
+          type: "rum",
+      },
+      {
+          name: "Dry Vermouth",
+          type: "dry vermouth"
+      },
+      {
+          name: "Tequila",
+          type: "tequila"
+      }
+  ];
+*/
     function filterDrinksPossible(tolerance) {  
         // tolerance of 0 if currently possible, tolerance of 1 for one-ingredient-away
         let inventoryNames = Ingredient.userInventory.map(element => element.name.toLowerCase());
@@ -243,10 +252,8 @@ function renderRecipeCard(event) {
                 Cocktail.filtered.push(cocktail);
             }
         });
-        console.log(Cocktail.filtered);
         return Cocktail.filtered;
     }
-    // filterDrinksPossible(0); // called here for testing
     function renderFiltered() {
         //update the displayed cocktails
     }
@@ -312,13 +319,13 @@ function saveAndRenderInv() {
 
 
 //User story #3 enter and store my own recipe
-function recipeEventListner() {
+function recipeEventListener() {
     //listens for button click to add a recipe
     const recipeSubmitBtn = document.getElementById('recipeSubmitBtn');
     recipeSubmitBtn.addEventListener('click', addRecipeHandler);
 }
 
-// recipeEventListner();
+// recipeEventListener();
 
     function showNewRecipeForm() {
         //changes CSS display styling to properly display the recipe card pop-up form
