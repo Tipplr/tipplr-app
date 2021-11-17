@@ -110,6 +110,10 @@ function loadObjects(){
     }
 
     if (storedIngredients){
+        Ingredient.all = [];
+        Ingredient.basic = [];
+        Ingredient.userInventory = [];
+        Ingredient.userPlusBasicIngr = [];
         basicIngredients()
         for(let i = 0; i < storedIngredients.length; i += 1){
             ingredient = new Ingredient(storedIngredients[i].name, storedIngredients[i].type);
