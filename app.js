@@ -54,27 +54,25 @@ function getLocalStorage(key) {
     //combine built-in cocktails with user cocktails into allCocktails []
     // get userInventory[]
     if (key === 'cocktails') {
-        console.log('you entered key: cocktails');
         return JSON.parse(localStorage.getItem('cocktails'));
     } else if (key === 'ingredients') {
-        console.log('you entered key: ingredients');
         return JSON.parse(localStorage.getItem('ingredients'));
     }
     // STRETCH: get allTags[] 
 }
-function renderThumbnails(array = Cocktail.all) {
-    //render array of allCocktails
-    //render specifically the name and base property of Cocktail object
-    array.forEach((e, index) => {
-        const recipeList = document.getElementById('recipe-list-grid');
-        let renderRecipe = document.createElement('div');
+// function renderThumbnails(array = Cocktail.all) {
+//     //render array of allCocktails
+//     //render specifically the name and base property of Cocktail object
+//     array.forEach((e, index) => {
+//         const recipeList = document.getElementById('recipe-list-grid');
+//         let renderRecipe = document.createElement('div');
 
-        recipeList.appendChild(renderRecipe);
-        renderRecipe.setAttribute('class', 'recipe-card');
-        renderRecipe.setAttribute('id', `${index}`);
-        renderRecipe.innerHTML = `${e.name} with a base of ${e.base}`;
-    })
-}
+//         recipeList.appendChild(renderRecipe);
+//         renderRecipe.setAttribute('class', 'recipe-card');
+//         renderRecipe.setAttribute('id', `${index}`);
+//         renderRecipe.innerHTML = `${e.name} with a base of ${e.base}`;
+//     })
+// }
 function alphabetize(array) {
     //pass in array of objects and alphabetize that array by name property
     array.sort((a, b) => {
@@ -106,78 +104,70 @@ function loadRecipes(){
         }
     } else {
         generateCocktails();
-        console.log ('no user recipes');
     }
     alphabetize(Cocktail.all);
-
 }
-// Viewing a recipe:
-const recipeListEventListener = document.getElementById('recipe-list-grid');
-recipeListEventListener.addEventListener('click', renderRecipeCard);
 
-function eventlistener() {
-    //to display recipe "card" 
-}
-function renderRecipeCard(event) {
-    //change from hidden to shown
-    //add event listener for nav left, right, return to list
-    let clicked = event.target.id;
+// function renderRecipeCard(event) {
+//     //change from hidden to shown
+//     //add event listener for nav left, right, return to list
+//     let clicked = event.target.id;
 
-    let recipeCard = document.getElementById('popup');
-    let recipeCardbg = document.getElementById('popup-outline');
-    let antiScroll = document.getElementById('body');
+//     let recipeCard = document.getElementById('popup');
+//     let recipeCardbg = document.getElementById('popup-outline');
+//     let antiScroll = document.getElementById('body');
 
-    let tempRecipe = Cocktail.all[clicked];
+//     let tempRecipe = Cocktail.all[clicked];
 
-    if (tempRecipe) {
+//     if (tempRecipe) {
 
-        antiScroll.classList.add('no-scroll');
-        recipeCard.classList.remove('hidden');
-        recipeCard.classList.add('recipe-grid');
-        recipeCardbg.classList.remove('hidden');
+//         antiScroll.classList.add('no-scroll');
+//         recipeCard.classList.remove('hidden');
+//         recipeCard.classList.add('recipe-grid');
+//         recipeCardbg.classList.remove('hidden');
 
-        let recipeName = document.createElement('h4');
-        recipeName.setAttribute('class', 'rendered-title');
-        recipeCard.append(recipeName);
-        recipeName.innerHTML = `${tempRecipe.name}`
+//         let recipeName = document.createElement('h4');
+//         recipeName.setAttribute('class', 'rendered-title');
+//         recipeCard.append(recipeName);
+//         recipeName.innerHTML = `${tempRecipe.name}`
 
-        let icon = document.createElement('div');
-        icon.setAttribute('class', 'icon');
-        recipeCard.append(icon);
+//         let icon = document.createElement('div');
+//         icon.setAttribute('class', 'icon');
+//         recipeCard.append(icon);
 
-        let ingrs = document.createElement('ul');
-        ingrs.setAttribute('class', 'ingredients-list');
-        recipeCard.append(ingrs);
+//         let ingrs = document.createElement('ul');
+//         ingrs.setAttribute('class', 'ingredients-list');
+//         recipeCard.append(ingrs);
 
-        for (let i = 0; i < tempRecipe.ingr.length; i += 1) {
-            let oneIng = document.createElement('li');
-            ingrs.append(oneIng);
-            oneIng.innerHTML = `${tempRecipe.ingr[i]} - ${tempRecipe.amount[i]}`
-        }
+//         for (let i = 0; i < tempRecipe.ingr.length; i += 1) {
+//             let oneIng = document.createElement('li');
+//             ingrs.append(oneIng);
+//             oneIng.innerHTML = `${tempRecipe.ingr[i]} - ${tempRecipe.amount[i]}`
+//         }
 
-        let howToMake = document.createElement('p');
-        howToMake.setAttribute('class', 'how-make');
-        recipeCard.append(howToMake);
-        howToMake.innerHTML = `How to make: ${tempRecipe.instructions}`
+//         let howToMake = document.createElement('p');
+//         howToMake.setAttribute('class', 'how-make');
+//         recipeCard.append(howToMake);
+//         howToMake.innerHTML = `How to make: ${tempRecipe.instructions}`
 
-        let notes = document.createElement('p');
-        notes.setAttribute('class', 'notes');
-        recipeCard.append(notes);
-        notes.innerHTML = `Notes: ${tempRecipe.notes}`
+//         let notes = document.createElement('p');
+//         notes.setAttribute('class', 'notes');
+//         recipeCard.append(notes);
+//         notes.innerHTML = `Notes: ${tempRecipe.notes}`
 
-        let cancel = document.createElement('button');
-        cancel.setAttribute('class', 'close-popup');
-        cancel.innerHTML = 'X'
-        cancel.addEventListener('click', function () {
-            recipeCard.innerHTML = '';
-            recipeCard.classList.remove('recipe-grid');
-            recipeCard.classList.add('hidden');
-            recipeCardbg.classList.add('hidden');
-            antiScroll.classList.remove('no-scroll');
-        })
-        recipeCard.append(cancel);
-    }
-}
+//         let cancel = document.createElement('button');
+//         cancel.setAttribute('class', 'close-popup');
+//         cancel.innerHTML = 'X'
+//         cancel.addEventListener('click', function () {
+//             recipeCard.innerHTML = '';
+//             recipeCard.classList.remove('recipe-grid');
+//             recipeCard.classList.add('hidden');
+//             recipeCardbg.classList.add('hidden');
+//             antiScroll.classList.remove('no-scroll');
+//         })
+//         recipeCard.append(cancel);
+//     }
+// }
 
 
 // User story #1: ability to filter the provided cocktail recipe list to view only the recipes possible with current inventory
@@ -330,7 +320,7 @@ function recipeEventListener() {
     recipeSubmitBtn.addEventListener('click', addRecipeHandler);
 }
 
-recipeEventListner();
+// recipeEventListner();
 
     function showNewRecipeForm() {
         //changes CSS display styling to properly display the recipe card pop-up form
@@ -443,8 +433,5 @@ function generateCocktails() {
 loadRecipes();
 
 const roku = new Ingredient('Roku', 'Gin');
-
-renderThumbnails();
-// TODO: package into function for index.html pageload event
 
 //const negroni = new Cocktail("Negroni", 'Gin', ['Gin', 'Campari', 'Sweet Vermouth'], ['1 oz', '1 oz', '1 oz'], 'Rocks');
