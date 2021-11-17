@@ -113,7 +113,7 @@ function loadRecipes(){
 }
 // Viewing a recipe:
 const recipeListEventListener = document.getElementById('recipe-list-grid');
-// recipeListEventListener.addEventListener('click', renderRecipeCard);
+recipeListEventListener.addEventListener('click', renderRecipeCard);
 
 function eventlistener() {
     //to display recipe "card" 
@@ -432,6 +432,6 @@ loadRecipes();
 
 const roku = new Ingredient('Roku', 'Gin');
 
-// renderThumbnails(Cocktail.all);
+renderThumbnails(Cocktail.all);
 
 //const negroni = new Cocktail("Negroni", 'Gin', ['Gin', 'Campari', 'Sweet Vermouth'], ['1 oz', '1 oz', '1 oz'], 'Rocks');
