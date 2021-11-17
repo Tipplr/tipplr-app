@@ -286,12 +286,12 @@ function addTagButton() {
 
 // const Cocktail = function(name, base, specs = [], glassware, instructions = "", notes = "", tags = [], possible, almostPossible)    
 function generateCocktails() {
-    new Cocktail("Manhattan", 'Whiskey', ['Whiskey', 'Sweet Vermouth', 'Angostura Bitters'], ['2 oz', '1 oz', '2 dashes'], 'Up');
-    new Cocktail("Bee's Knees", 'Gin', ['Gin', 'Lemon', 'Honey Syrup'], ['2 oz', '3/4 oz', '3/4 oz'], 'Up');
-    new Cocktail("Gimlet", 'Gin', ['Gin', 'Lime', 'Simple Syrup'], ['2 oz', '3/4 oz', '1/2 oz'], 'Up');
-    new Cocktail("Mojito", 'Rum', ['Rum', 'Lime', 'Simple Syrup'], ['2 oz', '3/4 oz', '1/2 oz'], 'Collins');
-    new Cocktail("Rosita", 'Tequila', ['Tequila', 'Sweet Vermouth', 'Dry Vermouth', 'Campari'], ['1 3/4 oz', '1/2 oz', '1/2 oz', '1/2 oz'], 'Rocks');
-    new Cocktail("Moscow Mule", 'Vodka', ['Vodka', 'Lime', 'Ginger Beer '], ['1 1/2 oz', '1/2 oz', 'Top'], 'Mule Mug');
+    const manhattan = new Cocktail("Manhattan", 'Whiskey', ['Whiskey', 'Sweet Vermouth', 'Angostura Bitters'], ['2 oz', '1 oz', '2 dashes'], 'Up');
+    const beesKnees = new Cocktail("Bee's Knees", 'Gin', ['Gin', 'Lemon', 'Honey Syrup'], ['2 oz', '3/4 oz', '3/4 oz'], 'Up');
+    const gimlet = new Cocktail("Gimlet", 'Gin', ['Gin', 'Lime', 'Simple Syrup'], ['2 oz', '3/4 oz', '1/2 oz'], 'Up');
+    const mojito = new Cocktail("Mojito", 'Rum', ['Rum', 'Lime', 'Simple Syrup'], ['2 oz', '3/4 oz', '1/2 oz'], 'Collins');
+    const rosita = new Cocktail("Rosita", 'Tequila', ['Tequila', 'Sweet Vermouth', 'Dry Vermouth', 'Campari'], ['1 3/4 oz', '1/2 oz', '1/2 oz', '1/2 oz'], 'Rocks');
+    const moscowMule = new Cocktail("Moscow Mule", 'Vodka', ['Vodka', 'Lime', 'Ginger Beer '], ['1 1/2 oz', '1/2 oz', 'Top'], 'Mule Mug');
 }
 
 
