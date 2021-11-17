@@ -37,7 +37,9 @@ const Ingredient = function (name, type) {
 }
 
 Ingredient.all = [];
-Ingredient.userInventory = []; // array of ingredient objects
+Ingredient.userInventory = []; // array of user ingredient objects
+Ingredient.basic = []; // array of basic ingredients
+Ingredient.userPlusBasicIngr = []; //array of basic and user ingredients
 Ingredient.missingIngredients = [];
 
 // Ingredients as inventory object
@@ -89,23 +91,42 @@ function alphabetize(array) {
     });
 }
 
-function loadRecipes(){
-    let storedUserRecipes = getLocalStorage('cocktails');
+function loadObjects(){
+    let storedCocktails = getLocalStorage('cocktails');
     let cocktail;
-    if (storedUserRecipes){
+
+    let storedIngredients = getLocalStorage('ingredients');
+    let ingredient;
+
+    if (storedCocktails){
         generateCocktails();
-        for(let i = 0; i < storedUserRecipes.length; i += 1){
-           cocktail = new Cocktail (`${storedUserRecipes[i].name}`,`${storedUserRecipes[i].base}`, [], [], `${storedUserRecipes[i].glassware}`, `${storedUserRecipes[i].instructions}`, `${storedUserRecipes[i].notes}`);
-           //template literal of array outputs a string...
-           cocktail.ingr = storedUserRecipes[i].ingr;
-           cocktail.amount = storedUserRecipes[i].amount;
+        for(let i = 0; i < storedCocktails.length; i += 1){
+           cocktail = new Cocktail (storedCocktails[i].name, storedCocktails[i].base, storedCocktails[i].ingr, storedCocktails[i].amount, storedCocktails[i].glassware, storedCocktails[i].instructions, storedCocktails[i].notes);
         
            Cocktail.userRecipes.push(cocktail); //pushes this cocktail back into userRecipes array
         }
     } else {
         generateCocktails();
     }
+
+    if (storedIngredients){
+        Ingredient.all = [];
+        Ingredient.basic = [];
+        Ingredient.userInventory = [];
+        Ingredient.userPlusBasicIngr = [];
+        basicIngredients()
+        for(let i = 0; i < storedIngredients.length; i += 1){
+            ingredient = new Ingredient(storedIngredients[i].name, storedIngredients[i].type);
+
+            Ingredient.userInventory.push(ingredient);
+            Ingredient.userPlusBasicIngr.push(ingredient);
+        }
+    } else{
+        basicIngredients();
+    }
+
     alphabetize(Cocktail.all);
+    alphabetize(Ingredient.userInventory);
 }
 
 // function renderRecipeCard(event) {
@@ -318,8 +339,27 @@ function generateCocktails() {
   builtInRecipeData.forEach(drink => new Cocktail(...drink));
 }
 
-loadRecipes();
 
-const roku = new Ingredient('Roku', 'Gin');
+function basicIngredients() {
+    let basic;
+    let basicArray = [
+        ["Rittenhouse Rye","Whiskey"],//TEST remove before deploy
+        ["Roku","Gin"],//TEST remove before deploy
+        ["Bacardi","Rum"],//TEST remove before deploy
+        ["Sweet Vermouth","Vermouth"],//TEST remove before deploy
+        ["Dry Vermouth","Vermouth"],//TEST remove before deploy
+        ["Campari","Liqueur"],//TEST remove before deploy
+        ["Angostura Bitters","Bitters"],//TEST remove before deploy
+        ["Simple Syrup","Basics"],
+        ["Lime","Basics"],
+        ["Lemon","Basics"]
+        ];
+    for (let i = 0; i < basicArray.length; i += 1){
+        basic = new Ingredient(basicArray[i][0], basicArray[i][1]);
+        Ingredient.basic.push(basic);
+        Ingredient.userPlusBasicIngr.push(basic);
+    }
+}
 
+loadObjects();
 //const negroni = new Cocktail("Negroni", 'Gin', ['Gin', 'Campari', 'Sweet Vermouth'], ['1 oz', '1 oz', '1 oz'], 'Rocks');

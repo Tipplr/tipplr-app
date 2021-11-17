@@ -145,54 +145,12 @@ function filterHandler(event) {
     clearChildren('recipe-list-grid');
     renderThumbnails(Cocktail.filtered);
 }
-//mock data for testing function:
-Ingredient.userInventory = [{
-        name: "Rittenhouse Rye",
-        type: "whiskey",
-    },
-    {
-        name: "Roku",
-        type: "gin",
-    },
-    {
-        name: "Lime",
-        type: "basics",
-    },
-    {
-        name: "Simple syrup",
-        type: "basics",
-    },
-    {
-        name: "Sweet vermouth",
-        type: "vermouth",
-    },
-    {
-        name: "Campari",
-        type: "liqueur",
-    },
-    {
-        name: "Angostura Bitters",
-        type: "bitters",
-    },
-    {
-        name: "Rum",
-        type: "rum",
-    },
-    {
-        name: "Dry Vermouth",
-        type: "dry vermouth"
-    },
-    {
-        name: "Lemon",
-        type: "basics"
-    }
-];
 
 function filterDrinksPossible(tolerance, array = Cocktail.all) {
     // tolerance of 0 if currently possible, tolerance of 1 for one-ingredient-away
     Cocktail.filtered = []; // STRETCH: Change the logic so mult. filters causes multiple passes of array through this function. Allow deselection or clearing of filters.
-    let inventoryNames = Ingredient.userInventory.map(element => element.name.toLowerCase());
-    let inventoryTypes = Ingredient.userInventory.map(element => element.type.toLowerCase());
+    let inventoryNames = Ingredient.userPlusBasicIngr.map(element => element.name.toLowerCase());
+    let inventoryTypes = Ingredient.userPlusBasicIngr.map(element => element.type.toLowerCase());
     array.forEach(cocktail => { // iterate through array of cocktail instances
         let ingredients = cocktail.ingr.slice(); // Copies this ingr array for safe handling
         let deltas = 0;
