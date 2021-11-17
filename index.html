@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="css/reset.css">
+    <link rel="stylesheet" href="css/style.css">
+    <script src="app.js" defer></script>
+    <script src="main.js" defer></script>
+    <title>Tipplr</title>
+</head>
+
+<body id='body' class='body-grid-container'>
+    <header>
+        <h1><a href="index.html">Tipplr</a></h1>
+        <nav>
+            <ul class='nav-bar'>
+                <li><a href="">Suggested</a></li>
+                <li><a href="inventory.html">My Inventory</a></li>
+                <li><a href="recipe.html">Recipes</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <form class="search-bar">
+        <input type="text" placeholder="Search..">
+        <button type="submit"><i class="fa fa-search"></i></button>
+    </form>
+
+    <h2 class="spirit-filter-title">Filter Recipes by:</h2>
+
+    <button id='clear-filter'>Clear</button>
+<section id="filter-buttons" class="spirit-filter">
+        <button id="filter-01" class="filter-sc">Current Inventory</button>
+        <button id="filter-02" class="filter-sc">Gin Cocktails</button>
+        <button id="filter-03" class="filter-sc">Whiskey Cocktails</button>
+        <button id="filter-04" class="filter-sc">Tequila Cocktails</button>
+        <button id="filter-05" class="filter-sc">Rum Cocktails</button>
+        <button id="filter-06" class="filter-sc">Vodka Cocktails</button>
+        <button id="filter-07" class="filter-sc">Brandy Cocktails</button>
+        <button id="filter-08" class="filter-sc">One Ingredient Away</button>
+        <button id="filter-09" class="filter-sc">Other Cocktails</button>
+    </section>
+
+    <h2 class="recipe-list-title">Recipe List</h2>
+
+    <!--when pushing grid items here, assign index to items, and use that index to determine column and row placement-->
+    <div id="recipe-list-grid">
+    </div>
+
+    <h2 class="slide-show-title">Suggested - Just one ingredient away!</h2>
+
+    <section class="slideshow-container">
+        <!-- <div class="slides fade"></div>
+        <div class="slides fade"></div>
+        <div class="slides fade"></div> -->
+        <div class="button-flexbox">
+            <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+            <a class="next" onclick="plusSlides(1)">&#10095;</a>
+        </div>
+    </section>
+    <div id='popup' class="hidden">
+    </div>
+    <div id='popup-outline' class="hidden">
+    </div>
+    <div class='left-margin'></div>
+    <div class='right-margin'></div>
+</body>
+
+</html>

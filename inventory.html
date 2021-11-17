@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="css/reset.css">
+    <link rel="stylesheet" href="css/inventory.css">
+    <script src="app.js" defer></script>
+    <script src="inventory.js" defer></script>
+
+    <title>Tipplr</title>
+</head>
+
+<body class='body-grid-container'>
+    <header class='grid-item'>
+        <h1><a href="index.html">Tipplr</a></h1>
+        <nav>
+            <ul class='nav-bar'>
+                <li><a href="">Suggested</a></li>
+                <li><a href="inventory.html">My Inventory</a></li>
+                <li><a href="recipe.html">Recipes</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <form class="grid-item search-bar">
+        <input type="text" placeholder="Search..">
+        <button type="submit"><i class="fa fa-search"></i></button>
+    </form>
+
+    <h2 class="grid-item inventory-list-title">Your Inventory</h2>
+
+    <button type="button" id="add-inventory" class="collapsible">Add Inventory</button>
+
+    <form class="grid-item inventory-form hidden">
+
+        <div>
+            <fieldset>
+                <label for="Bottle Name">Bottle Name</label>
+                <input type="text" name="bottleName" id="bottle-name" required>
+                <label for="Bottle Type">Bottle Type</label>
+                <input type="text" name="bottleType" id="bottle-type" required>
+                </fieldset>
+        </div>
+
+        <input type="submit" value="Submit">
+    </form>
+
+    <!--when pushing grid items here, assign index to items, and use that index to determine column and row placement-->
+    <section id="inventory-table" class="grid-item inventory-list-grid">
+        <table>
+            <thead>
+                <tr>
+                    <th>Remove</th>
+                    <th>Ingredient Name</th>
+                    <th>Ingredient Type</th>
+                </tr>
+            </thead>
+            <tbody></tbody>
+            <tfoot></tfoot>
+        </table>
+    </section>
+
+</body>
+
+</html>
