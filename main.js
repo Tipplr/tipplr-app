@@ -80,6 +80,15 @@ function renderRecipeCard(event) {
     }
 }
 //filters property of base spirt clicked as milestone to story #1
+const clearFilter = document.getElementById('clear-filter');
+clearFilter.addEventListener('click', clearFilterHandler);
+
+function clearFilterHandler(event) {
+    // event.preventDefault();
+    clearChildren('recipe-list-grid');
+    renderThumbnails(Cocktail.all);
+}
+
 function filterHandler(event) {
     switch (event.target.id) {
         case "filter-01":

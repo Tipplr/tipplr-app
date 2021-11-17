@@ -241,6 +241,15 @@ h2 {
     width: 100%;
 }
 
+#clear-filter {
+    background-color: orange;
+    height: 25px;
+    grid-column: 2;
+    grid-row: 3;
+    width: 7rem;
+    justify-self: right;
+}
+
 @media screen and (max-width: 950px) {
     .body-grid-container {
         grid-template-columns: 8.8% 80% 8.8%;
@@ -271,5 +280,10 @@ h2 {
     .recipe-grid > .icon {
         grid-column: 2;
         justify-self: right;
+    }
+    #clear-filter {
+        font-size: .8rem;
+        height: 20px;
+        width: 5rem;
     }
 }
