@@ -5,6 +5,14 @@
     --ff-highlights: 'Anton', sans-serif;
     --ff-highlights-2: 'Praise', cursive;
     --ff-title: 'Russo One', sans-serif;
+
+    --bg-primary:  hsla(210, 12%, 29%, 1);
+    --alert-red: #B4184C;
+    --bg-secondary: #352F37;
+    --fc-primary: #feecd8;
+    --fc-title: aliceblue;
+    --fc-title2: #DCAB6B;
+    --bg-accent: #153243;
 }
 
 *,
@@ -13,10 +21,6 @@
     box-sizing: border-box;
 }
 
-html {
-    background-color: #352F37;
-    color: #FEECD8;
-}
 /* .grid-item {
      position: relative; 
      font-size: 25px;
@@ -34,9 +38,9 @@ html {
 .body-grid-container {
     display: grid;
     grid-template-columns: 12.5% 70% 12.5%;
-    grid-template-rows: 4rem 2rem .8rem 6rem 1.6rem auto .8rem 26rem;
+    grid-template-rows: 4rem 2rem .8rem 7.5rem 1.6rem auto .8rem 26rem;
     grid-gap: 2.5rem;
-    background-color: hsla(210, 12%, 29%, 1);
+    background-color: var(--bg-primary);
 }
 
 header {
@@ -50,15 +54,19 @@ header {
     grid-column: 2;
 }
 
+body {
+    background-image: url('Bar-Background.png');
+    background-color: #cccccc;
+}
 header a {
-    color: aliceblue;
+    color: var(--fc-title);
     text-decoration: none;
     font-family: var(--ff-title);
 }
 
 body button {
-    background-color: #153243;
-    color: #FEECD8;
+    background-color: var(--bg-accent);
+    color: var(--fc-primary);
     font-family: var(--ff-highlights);
     font-size: 1.5rem;
 }
@@ -71,7 +79,7 @@ h1 {
     font-size: 3.5rem;
 }
 h2 {
-    color: #DCAB6B;
+    color: var(--fc-title2);
     font-size: 2rem;
 }
 .nav-bar {
@@ -97,12 +105,14 @@ h2 {
     grid-row: 4;
     display: grid;
     grid-auto-columns: 30%;
-    grid-template-rows: 37px 37px;
+    grid-template-rows: 40px 40px;
     grid-gap: 3px;
     overflow: auto;
     grid-auto-flow: column;
 }
-
+.filter-sc {
+    width: auto;
+}
 .recipe-list-title {
     grid-column: 2;
     grid-row: 5;
@@ -123,8 +133,8 @@ h2 {
     border: 2px solid black;
     margin: auto;
     width: 90%;
-    background-color: #153243;
-    color: #FEECD8;
+    background-color: var(--bg-accent);
+    color: var(--fc-primary);
 }
 
 .recipe-card > * {
@@ -144,10 +154,11 @@ h2 {
     position: fixed;
     left: 10%;
     top: 20%;
-    background-color: bisque;
+    background-color: var(--fc-primary);
     z-index: 1000;
     font-family: var(--ff-primary);
     font-size: 2rem;
+    font-weight: 900;
     padding-left: 1.5rem;
     display: grid;
     grid-template-columns: 40% 30% 30%;
@@ -162,7 +173,7 @@ h2 {
 .rendered-title {
     font-size: 3rem;
     margin: auto;
-    color: black;
+    color: var(--bg-accent);
 }
 .icon {
     grid-column: 2;
@@ -180,7 +191,6 @@ h2 {
 }
 .ingredients-list > li {
     padding: .3rem;
-    color: black;
 }
 .how-make {
     grid-column: 1 / 4;
@@ -199,11 +209,13 @@ h2 {
     z-index: 900;
 }
 .close-popup {
-    grid-column: 3;
-    grid-row: 1;
-    height: 2rem;
-    width: 2rem;
-    justify-self: right;
+    height: 2.3rem;
+    width: 2.3rem;
+    position: absolute;
+    left: 93%;
+    top: 1.8rem;
+    background-color: var(--alert-red);
+    line-height: 7px
 }
 .slide-show-title {
     grid-column: 2;
@@ -259,23 +271,42 @@ h2 {
 }
 
 #clear-filter {
-    background-color: #B4184C;
+    background-color: var(--alert-red);
     font-size: 1rem;
     height: 25px;
     grid-column: 2;
     grid-row: 5;
     width: 7rem;
     justify-self: right;
+    line-height: 20px;
 }
 
 @media screen and (max-width: 950px) {
     .body-grid-container {
-        grid-template-columns: 8.8% 80% 8.8%;
-        grid-gap: 1%;
+        grid-template-columns: 6.5% 80% 6.5%;
+        grid-template-rows: 4rem 2rem .8rem 12rem 1.6rem auto .8rem 26rem;
+        grid-gap: 3%;
     }
     header {
         grid-column: 1/4;
     }
+
+    .spirit-filter1 {
+        grid-column: 2;
+        grid-row: 4;
+        display: grid;
+        grid-auto-columns: 45%;
+        grid-template-rows: 5rem 5rem;
+        grid-gap: 3px;
+        overflow: auto;
+        grid-auto-flow: column;
+    }
+    .filter-sc {
+        font-size: 1rem;
+        height: 5rem;
+        width: auto;
+    }
+
     #recipe-list-grid {
         grid-template-columns: 50% 50%;
         grid-gap: .5rem;
@@ -302,8 +333,7 @@ h2 {
     }
     #clear-filter {
         font-size: .8rem;
-        height: 20px;
-        width: 5rem;
+        width: 4.5rem;
     }
     .recipe-card {
         height: 80%;
@@ -314,5 +344,10 @@ h2 {
     }
     .recipe-card > p {
         font-size: .9rem;
+    }
+    .close-popup {
+        position: absolute;
+        left: 81%;
+        top: 1rem;
     }
 }

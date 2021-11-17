@@ -33,13 +33,10 @@ function renderRecipeCard(event) {
     //add event listener for nav left, right, return to list
     let array;
 
-    // console.log(Cocktail.filtered);
     if (Cocktail.filtered.length > 0) {
         array = Cocktail.filtered;
-        // console.log(array);
     } else {
         array = Cocktail.all;
-        // console.log(array);
     }
     let clicked = event.target.id;
 
@@ -72,7 +69,7 @@ function renderRecipeCard(event) {
         for (let i = 0; i < tempRecipe.ingr.length; i += 1) {
             let oneIng = document.createElement('li');
             ingrs.append(oneIng);
-            oneIng.innerHTML = `${tempRecipe.ingr[i]} - ${tempRecipe.amount[i]}`
+            oneIng.innerHTML = `${i + 1}) ${tempRecipe.ingr[i]} - ${tempRecipe.amount[i]}`
         }
 
         let howToMake = document.createElement('p');
@@ -87,7 +84,7 @@ function renderRecipeCard(event) {
 
         let cancel = document.createElement('button');
         cancel.setAttribute('class', 'close-popup');
-        cancel.innerHTML = 'X'
+        cancel.innerHTML = '&#x2715'
         cancel.addEventListener('click', function () {
             recipeCard.innerHTML = '';
             recipeCard.classList.remove('recipe-grid');
@@ -215,7 +212,6 @@ function filterDrinksPossible(tolerance, array = Cocktail.all) {
             Cocktail.filtered.push(cocktail);
         }
     });
-    console.log(Cocktail.filtered);
     return Cocktail.filtered;
 }
 
@@ -226,7 +222,6 @@ function filterDrinksBySpirit(base, array = Cocktail.all) {
             Cocktail.filtered.push(cocktail);
         }
     });
-    console.log(Cocktail.filtered);
     return Cocktail.filtered;
 }
 
