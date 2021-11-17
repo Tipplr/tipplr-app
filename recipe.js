@@ -32,7 +32,6 @@ let addFunction = function (event) {
     const newSpecIngrInput = document.createElement('input');
     const newSpecAmntInput = document.createElement('input');
 
-
     // assign div class and id
     newSpecDiv.setAttribute('class', 'ingr-amnt-div');
     newSpecDiv.setAttribute('id', `ingr-amnt-div-${newSpecsIndex}`);
@@ -48,13 +47,11 @@ let addFunction = function (event) {
     newSpecIngrInput.setAttribute('id', `specs-ingr-${newSpecsIndex}`);
     newSpecIngrInput.setAttribute('placeholder', 'Ingredient...');
     newSpecIngrInput.required = 'true';
-    // console.log('newSpecIngrInput Id: ' + newSpecIngrInput.id);
 
     newSpecAmntInput.setAttribute('type', 'text');
     newSpecAmntInput.setAttribute('name', 'specs');
     newSpecAmntInput.setAttribute('id', `specs-amnt-${newSpecsIndex}`);
     newSpecAmntInput.setAttribute('placeholder', 'Amount...');
-    // console.log('newSpecAmntInput Id: ' + newSpecAmntInput.id);
 
     // append new div
     specForm.appendChild(newSpecDiv);
@@ -67,7 +64,6 @@ let addFunction = function (event) {
     newSpecsIndex += 1;
 
     console.log('newSpecsIndex count after increment: ' + newSpecsIndex);
-
 }
 
 add.addEventListener('click', addFunction)
@@ -87,18 +83,6 @@ let minusFunction = function (event) {
         newSpecsIndex -= 1;
     }
     console.log('newSpecsIndex current count: ' + newSpecsIndex);
-
-    // console.log('minusFunction newSpecsIndex current count: ' + newSpecsIndex);
-    // const newSpecDiv = document.getElementById(`ingr-amnt-div-${newSpecsIndex}`);
-    // console.log('newSpecDiv index: ' + newSpecsIndex);
-    // console.log('newSpecDiv type: ' + typeof (newSpecDiv));
-
-    // const newSpecQtyInput = document.getElementById(`ingr-amnt-div-${newSpecsIndex}`);
-
-
-    //specForm.removeChild(newSpecQtyInput);
-    // newSpecsIndex -= 1;
-    //index += 1;
 }
 
 minusBtn.addEventListener('click', minusFunction);
@@ -120,7 +104,6 @@ function addRecipeHandler(event) {
     event.preventDefault();
     newRecipeFormSubmit();
     showNewRecipeForm();
-    // addListenerToReset();
     clearForm();
 }
 
@@ -129,18 +112,14 @@ form.addEventListener('submit', addRecipeHandler);
 form.addEventListener('reset', handleResetClick);
 
 function newRecipeFormSubmit() {
-    //calls new Cocktail construtor
-    //pushes form values into Cocktail constructor
+    // calls new Cocktail construtor
+    // pushes form values into Cocktail constructor
     // grab field input
 
     const name = form.recipename.value;
-
     const base = form.base.value;
-
     const glassware = form.glassware.value;
-
     const instructions = form.instruct.value;
-
     const notes = form.notes.value;
 
     let ingrArray = [];
@@ -172,24 +151,19 @@ function clearForm() {
     //clears all form fields
     const recipeForm = document.getElementById('recipe-submit');
     recipeForm.reset();
-
 }
 
 function handleResetClick() {
-    // event.preventDefault();
     // grab recipe specs parent div
     specsForm = document.getElementById('inputSpecs');
-    console.log('divArray before reset click: ' + divArray.length);
-    // may have to iterate through array and delete each one
+    // iterate through array and delete each additional amount/ingredient field
     for (let i = 0; i < divArray.length; i += 1) {
         specsForm.lastChild.remove();
     }
+    // clear divArray
     divArray = [];
-    console.log('divArray afer reset click: ' + divArray.length);
     // reset specs index counter
     newSpecsIndex = 1;
-
-
 }
 
 function closeFormOnSubmit() {
