@@ -9,7 +9,6 @@
     <link rel="stylesheet" href="css/reset.css">
     <link rel="stylesheet" href="css/inventory.css">
     <script src="app.js" defer></script>
-    <script src="appCollapse.js" defer></script>
     <script src="inventory.js" defer></script>
 
     <title>Tipplr</title>
@@ -34,16 +33,16 @@
 
     <h2 class="grid-item inventory-list-title">Your Inventory</h2>
 
-    <button type="button" class="collapsible">Add Inventory</button>
+    <button type="button" id="add-inventory" class="collapsible">Add Inventory</button>
 
-    <form class="grid-item inventory-form">
+    <form class="grid-item inventory-form hidden">
 
         <div>
             <fieldset>
                 <label for="Bottle Name">Bottle Name</label>
-                <input type="text" name="bottleName" id="bottle-name">
+                <input type="text" name="bottleName" id="bottle-name" required>
                 <label for="Bottle Type">Bottle Type</label>
-                <input type="text" name="bottleType" id="bottle-type">
+                <input type="text" name="bottleType" id="bottle-type" required>
                 </fieldset>
         </div>
 
