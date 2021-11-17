@@ -103,6 +103,7 @@ h2 {
     grid-column: 2;
     grid-row: 6;
     display: grid;
+    grid-gap: 3px;
     grid-template-columns: 33.3% 33.3% 33.3%;
     grid-auto-rows: 6rem;
     grid-auto-flow: row;
@@ -258,6 +259,7 @@ h2 {
     }
     #recipe-list-grid {
         grid-template-columns: 50% 50%;
+        grid-gap: .5rem;
     }
 
     .recipe-grid {
@@ -286,6 +288,7 @@ h2 {
     }
     .recipe-card {
         height: 80%;
+        width: 100%;
     }
     .recipe-card > h2 {
         font-size: 1.1rem;
