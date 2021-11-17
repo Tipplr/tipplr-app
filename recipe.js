@@ -1,6 +1,7 @@
 let coll = document.getElementsByClassName('collapsible');
 let add = document.getElementById('plus');
 let minusBtn = document.getElementById('minus');
+let resetBtn = document.getElementById('recipeResetBtn');
 let i;
 // incrementor for new specs id
 // starts at 1 because initial field is 0
@@ -19,33 +20,50 @@ for (i = 0; i < coll.length; i += 1) {
     coll[i].addEventListener("click", collapsingFunction)
 }
 
-let newSpecsId = 1;
+let newSpecsIndex = 1;
+
+let divArray = [];
 
 let addFunction = function (event) {
+
     event.preventDefault()
     const specForm = document.getElementById('inputSpecs');
+    const newSpecDiv = document.createElement('div');
     const newSpecIngrInput = document.createElement('input');
     const newSpecAmntInput = document.createElement('input');
-    // need to update so each new field has a unique id
+
+    // assign div class and id
+    newSpecDiv.setAttribute('class', 'ingr-amnt-div');
+    newSpecDiv.setAttribute('id', `ingr-amnt-div-${newSpecsIndex}`);
+
+    // append ingr and amnt fields to new div
+    newSpecDiv.appendChild(newSpecAmntInput);
+    newSpecDiv.appendChild(newSpecIngrInput);
+
+    // set attributes for ingr and amnt fields
+    // may not need id's, left in for now
     newSpecIngrInput.setAttribute('type', 'text');
     newSpecIngrInput.setAttribute('name', 'specs');
-    newSpecIngrInput.setAttribute('id', `specs-ingr-${newSpecsId}`);
+    newSpecIngrInput.setAttribute('id', `specs-ingr-${newSpecsIndex}`);
     newSpecIngrInput.setAttribute('placeholder', 'Ingredient...');
     newSpecIngrInput.required = 'true';
-    // console.log('newSpecIngrInput Id: ' + newSpecIngrInput.id);
 
     newSpecAmntInput.setAttribute('type', 'text');
     newSpecAmntInput.setAttribute('name', 'specs');
-    newSpecAmntInput.setAttribute('id', `specs-amnt-${newSpecsId}`);
+    newSpecAmntInput.setAttribute('id', `specs-amnt-${newSpecsIndex}`);
     newSpecAmntInput.setAttribute('placeholder', 'Amount...');
-    newSpecAmntInput.required = 'true';
-    // console.log('newSpecAmntInput Id: ' + newSpecAmntInput.id);
 
-    specForm.append(newSpecIngrInput);
-    specForm.append(newSpecAmntInput);
+    // append new div
+    specForm.appendChild(newSpecDiv);
 
-    newSpecsId += 1;
+    divArray.push(newSpecDiv);
 
+    console.log('newSpecDiv Id: ' + newSpecDiv);
+    console.log('newSpecsIndex count before increment: ' + newSpecsIndex);
+
+    newSpecsIndex += 1;
+
+    console.log('newSpecsIndex count after increment: ' + newSpecsIndex);
 }
 
 add.addEventListener('click', addFunction)
@@ -53,21 +71,21 @@ add.addEventListener('click', addFunction)
 let index = 0;
 
 let minusFunction = function (event) {
+
     event.preventDefault();
     const specForm = document.getElementById('inputSpecs');
+    console.log('specForm.lastChild: ' + specForm.lastChild.id)
     // will throw error if no new spec fields created
-    const newSpecIngrInput = document.getElementById(`specs-ingr-${index}`);
-    const newSpecQtyInput = document.getElementById(`specs-amnt-${index}`);
-    specForm.removeChild(newSpecIngrInput);
-    specForm.removeChild(newSpecQtyInput);
-    index += 1;
+    console.log('divArray before pop(): ' + divArray);
+    if (divArray.length > 0) {
+        divArray.pop();
+        specForm.lastChild.remove();
+        newSpecsIndex -= 1;
+    }
+    console.log('newSpecsIndex current count: ' + newSpecsIndex);
 }
 
 minusBtn.addEventListener('click', minusFunction);
-
-function getNewSpecsCount() {
-
-}
 
 // function recipeEventListener() {
 //     //listens for button click to add a recipe
@@ -86,31 +104,23 @@ function addRecipeHandler(event) {
     event.preventDefault();
     newRecipeFormSubmit();
     showNewRecipeForm();
-    // clearForm();
+    clearForm();
 }
 
 const form = document.getElementById('recipe-submit');
 form.addEventListener('submit', addRecipeHandler);
+form.addEventListener('reset', handleResetClick);
 
 function newRecipeFormSubmit() {
-    //calls new Cocktail construtor
-    //pushes form values into Cocktail constructor
+    // calls new Cocktail construtor
+    // pushes form values into Cocktail constructor
     // grab field input
 
     const name = form.recipename.value;
-    console.log('recipe name Input: ' + name);
-
     const base = form.base.value;
-    console.log('base Input: ' + base);
-
     const glassware = form.glassware.value;
-    console.log('glassware Input: ' + glassware);
-
     const instructions = form.instruct.value;
-    console.log('instructions input: ' + instructions);
-
     const notes = form.notes.value;
-    console.log('notes input: ' + notes);
 
     let ingrArray = [];
     let amntArray = [];
@@ -126,9 +136,10 @@ function newRecipeFormSubmit() {
 
     // name, base, ingr = [], amount = [], glassware, instructions = "", notes = ""
 
-    const newCocktail = new Cocktail(name, base, ingrArray, amntArray, instructions, notes);
+    const newCocktail = new Cocktail(name, base, ingrArray, amntArray, glassware, instructions, notes);
 
     console.log(newCocktail);
+    console.log('newCocktail Instructions: ' + newCocktail.instructions);
 
     Cocktail.userRecipes.push(newCocktail);
     saveToLocalStorage(Cocktail.userRecipes);
@@ -137,14 +148,24 @@ function newRecipeFormSubmit() {
     //STRETCH: call renderFiltered() re-renders page so if new recipe meets requirements is now displayed on the page
 }
 function clearForm() {
-    //TODO: add base, ingr, qty, glassware, notes
     //clears all form fields
-    const nameField = document.getElementById('recipe-name');
-    const specsField = document.getElementById('specs');
-    const instructionsField = document.getElementById('instruct');
+    const recipeForm = document.getElementById('recipe-submit');
+    recipeForm.reset();
+}
 
-    // may need refactor
-    nameField.value = '';
-    specsField.value = '';
-    instructionsField.value = '';
+function handleResetClick() {
+    // grab recipe specs parent div
+    specsForm = document.getElementById('inputSpecs');
+    // iterate through array and delete each additional amount/ingredient field
+    for (let i = 0; i < divArray.length; i += 1) {
+        specsForm.lastChild.remove();
+    }
+    // clear divArray
+    divArray = [];
+    // reset specs index counter
+    newSpecsIndex = 1;
+}
+
+function closeFormOnSubmit() {
+
 }

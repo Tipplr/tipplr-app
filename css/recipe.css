@@ -161,3 +161,7 @@ h1 {
     }
 }
 
+.ingr-amnt-div {
+    display: flex;
+}
+
