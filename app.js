@@ -37,7 +37,9 @@ const Ingredient = function (name, type) {
 }
 
 Ingredient.all = [];
-Ingredient.userInventory = []; // array of ingredient objects
+Ingredient.userInventory = []; // array of user ingredient objects
+Ingredient.basic = []; // array of basic ingredients
+Ingredient.userPlusBasicIngr = []; //array of basic and user ingredients
 Ingredient.missingIngredients = [];
 
 // Ingredients as inventory object
@@ -291,20 +293,24 @@ function generateCocktails() {
 
 
 function basicIngredients() {
-    new Ingredient("Rittenhouse Rye","Whiskey"); //TEST remove before deploy
-    new Ingredient("Roku","Gin"); //TEST remove before deploy
-    new Ingredient("Bacardi","Rum"); //TEST remove before deploy
-    new Ingredient("Sweet Vermouth","Vermouth"); //TEST remove before deploy
-    new Ingredient("Dry Vermouth","Vermouth"); //TEST remove before deploy
-    new Ingredient("Campari","Liqueur"); //TEST remove before deploy
-    new Ingredient("Angostura Bitters","Bitters"); //TEST remove before deploy
-    new Ingredient("Simple Syrup","Basics"); //TEST remove before deploy
-    new Ingredient("Lime","Basics");
-    new Ingredient("Lemon","Basics");
+    let basic;
+    let basicArray = [
+        ["Rittenhouse Rye","Whiskey"],//TEST remove before deploy
+        ["Roku","Gin"],//TEST remove before deploy
+        ["Bacardi","Rum"],//TEST remove before deploy
+        ["Sweet Vermouth","Vermouth"],//TEST remove before deploy
+        ["Dry Vermouth","Vermouth"],//TEST remove before deploy
+        ["Campari","Liqueur"],//TEST remove before deploy
+        ["Angostura Bitters","Bitters"],//TEST remove before deploy
+        ["Simple Syrup","Basics"],
+        ["Lime","Basics"],
+        ["Lemon","Basics"]
+        ];
+    for (let i = 0; i < basicArray.length; i += 1){
+        basic = new Ingredient(basicArray[i].name, basicArray[i].type);
+        Ingredient.basic.push(basic);
+    }
 }
 
 loadObjects();
-
-const roku = new Ingredient('Roku', 'Gin');
-
 //const negroni = new Cocktail("Negroni", 'Gin', ['Gin', 'Campari', 'Sweet Vermouth'], ['1 oz', '1 oz', '1 oz'], 'Rocks');
