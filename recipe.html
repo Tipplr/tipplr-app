@@ -8,8 +8,8 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="css/reset.css">
     <link rel="stylesheet" href="css/recipe.css">
-    <script src="app.js" defer></script>
     <script src="appCollapse.js" defer></script>
+    <script src="app.js" defer></script>
     <script src="recipe.js" defer></script>
     <title>Tipplr Recipes</title>
 </head>
@@ -36,8 +36,13 @@
     <form class="grid-item recipe-form">
 
         <div>
-            <label for="Recipe Name">Recipe Name</label>
+            <label for="recipe-name">Recipe Name</label>
             <input type="text" name="recipename" id="recipe-name">
+        </div>
+
+        <div>
+            <label for="base">Base</label>
+            <input type="text" name="base" id="base">
         </div>
 
         <div id='inputSpecs'>
@@ -46,12 +51,22 @@
                 <button id="plus">+</button>
                 <button id="minus">-</button>
             </div>
-            <input type="text" name="specs" id="specs">
+            <input type="text" name="specs" id="specs-ingr-0" class="specs-ingr-field" placeholder="Ingredient...">
+            <input type="text" name="specs-ingr-amnt" id="specs-amnt-0" class="specs-ingr-field" placeholder="Amount...">
+            </div>
+            
+            <div>
+            <label for="glassware">Glassware</label>
+            <input type="text" name="glassware" id="glassware">
         </div>
-
+        
         <div>
-            <label for="Instructions">Instructions</label>
+            <label for="instructions">Instructions</label>
             <input type="text" name="instruct" id="instruct">
+        </div>
+        <div>
+            <label for="notes">Notes</label>
+            <input type="text" name="notes" id="notes">
         </div>
 
         <input type="submit" value="Submit" id="recipeSubmitBtn">

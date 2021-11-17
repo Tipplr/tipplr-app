@@ -330,7 +330,7 @@ function recipeEventListener() {
     recipeSubmitBtn.addEventListener('click', addRecipeHandler);
 }
 
-// recipeEventListener();
+recipeEventListner();
 
     function showNewRecipeForm() {
         //changes CSS display styling to properly display the recipe card pop-up form
@@ -348,15 +348,35 @@ function recipeEventListener() {
         //calls new Cocktail construtor
         //pushes form values into Cocktail constructor
         // grab field input
-        const name = document.getElementById('recipe-name').value; // change to camelCase
-        console.log('reciepName Input: ' + name);
 
-        const specs = document.getElementById('specs').value;
-        console.log('specs Input: ' + specs);
+        console.log('newSpecsId Count: ' + newSpecsId);
+
+        const name = document.getElementById('recipe-name').value;
+        console.log('recipe name Input: ' + name);
+
+        const base = document.getElementById('base').value;
+        console.log('base Input: ' + base);
+
+        const glassware = document.getElementById('glassware').value;
+        console.log('glassware Input: ' + glassware);
+
         const instructions = document.getElementById('instruct').value;
         console.log('instructions input: ' + instructions);
+        let ingrArray = [];
+        let amntArray = [];
+        // put ingr and amount into arrays
+        for (let i = 0; i < newSpecsId; i += 1) {
+            const ingr = document.getElementById(`specs-ingr-${i}`).value;
+            ingrArray.push(ingr);
+            console.log('ingrArray: ' + ingrArray);
+            const amnt = document.getElementById(`specs-amnt-${i}`).value;
+            amntArray.push(amnt);
+            console.log('amntArray: ' + amntArray);
+        }
 
-        const newCocktail = new Cocktail(name, instructions);
+        // name, base, ingr = [], amount = [], glassware, instructions = "", notes = ""
+
+        const newCocktail = new Cocktail(name, base, ingrArray, amntArray, instructions, notes);
 
         console.log(newCocktail);
 
@@ -364,6 +384,7 @@ function recipeEventListener() {
         //STRETCH: call renderFiltered() re-renders page so if new recipe meets requirements is now displayed on the page
     }
     function clearForm(){
+        //TODO: add base, ingr, qty, glassware, notes
         //clears all form fields
         const nameField = document.getElementById('recipe-name');
         const specsField = document.getElementById('specs');
