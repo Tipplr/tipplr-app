@@ -47,11 +47,17 @@ header {
     grid-column: 2;
 }
 
-h1 {
+h1,
+h2 {
     font-family: var(--ff-title);
-    font-size: 2rem;
 }
 
+h1 {
+    font-size: 2rem;
+}
+h2 {
+    font-size: 1.4rem;
+}
 .nav-bar {
     margin-top: .5rem;
 }

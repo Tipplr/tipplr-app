@@ -1,6 +1,9 @@
 const recipeListEventListener = document.getElementById('recipe-list-grid');
 recipeListEventListener.addEventListener('click', renderRecipeCard);
 
+const filterButtons = document.getElementById('filter-buttons');
+filterButtons.addEventListener('click', filterHandler);
+
 function renderThumbnails(array = Cocktail.all) {
     //render array of allCocktails
     //render specifically the name and base property of Cocktail object
@@ -11,7 +14,7 @@ function renderThumbnails(array = Cocktail.all) {
         recipeList.appendChild(renderRecipe);
         renderRecipe.setAttribute('class', 'recipe-card');
         renderRecipe.setAttribute('id', `${index}`);
-        renderRecipe.innerHTML = `${e.name} with a base of ${e.base}`;
+        renderRecipe.innerHTML = `<h2>${e.name}</h2> <br>Base: ${e.base}`;
     })
 }
 
@@ -77,8 +80,6 @@ function renderRecipeCard(event) {
         recipeCard.append(cancel);
     }
 }
-const filterButtons = document.getElementById('filter-buttons');
-filterButtons.addEventListener('click', filterHandler);
 //filters property of base spirt clicked as milestone to story #1
 function filterHandler(event) {
     switch (event.target.id) {
