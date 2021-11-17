@@ -4,7 +4,6 @@ let minusBtn = document.getElementById('minus');
 let i;
 // incrementor for new specs id
 // starts at 1 because initial field is 0
-let newSpecsId = 0;
 
 let collapsingFunction = function () {
     this.classList.toggle('active');
@@ -19,6 +18,8 @@ let collapsingFunction = function () {
 for (i = 0; i < coll.length; i += 1) {
     coll[i].addEventListener("click", collapsingFunction)
 }
+
+let newSpecsId = 1;
 
 let addFunction = function (event) {
     event.preventDefault()
@@ -48,6 +49,7 @@ let addFunction = function (event) {
 add.addEventListener('click', addFunction)
 
 let index = 0;
+
 let minusFunction = function (event) {
     event.preventDefault();
     const specForm = document.getElementById('inputSpecs');
@@ -56,9 +58,7 @@ let minusFunction = function (event) {
     const newSpecQtyInput = document.getElementById(`specs-amnt-${index}`);
     specForm.removeChild(newSpecIngrInput);
     specForm.removeChild(newSpecQtyInput);
-    console.log(index);
     index += 1;
-    console.log(index);
 }
 
 minusBtn.addEventListener('click', minusFunction);
@@ -67,13 +67,13 @@ function getNewSpecsCount() {
 
 }
 
-function recipeEventListener() {
-    //listens for button click to add a recipe
-    const recipeSubmitBtn = document.getElementById('recipeSubmitBtn');
-    recipeSubmitBtn.addEventListener('click', addRecipeHandler);
-}
+// function recipeEventListener() {
+//     //listens for button click to add a recipe
+//     const recipeSubmitBtn = document.getElementById('recipeSubmitBtn');
+//     recipeSubmitBtn.addEventListener('click', addRecipeHandler);
+// }
 
-// recipeEventListner();
+// recipeEventListener();
 
 function showNewRecipeForm() {
     //changes CSS display styling to properly display the recipe card pop-up form
@@ -84,27 +84,32 @@ function addRecipeHandler(event) {
     event.preventDefault();
     newRecipeFormSubmit();
     showNewRecipeForm();
-    clearForm();
+    // clearForm();
 }
+
+const form = document.getElementById('recipe-submit');
+form.addEventListener('submit', addRecipeHandler);
 
 function newRecipeFormSubmit() {
     //calls new Cocktail construtor
     //pushes form values into Cocktail constructor
     // grab field input
 
-    console.log('newSpecsId Count: ' + newSpecsId);
-
-    const name = document.getElementById('recipe-name').value;
+    const name = form.recipename.value;
     console.log('recipe name Input: ' + name);
 
-    const base = document.getElementById('base').value;
+    const base = form.base.value;
     console.log('base Input: ' + base);
 
-    const glassware = document.getElementById('glassware').value;
+    const glassware = form.glassware.value;
     console.log('glassware Input: ' + glassware);
 
-    const instructions = document.getElementById('instruct').value;
+    const instructions = form.instruct.value;
     console.log('instructions input: ' + instructions);
+
+    const notes = form.notes.value;
+    console.log('notes input: ' + notes);
+
     let ingrArray = [];
     let amntArray = [];
     // put ingr and amount into arrays
@@ -122,6 +127,9 @@ function newRecipeFormSubmit() {
     const newCocktail = new Cocktail(name, base, ingrArray, amntArray, instructions, notes);
 
     console.log(newCocktail);
+
+    Cocktail.userRecipes.push(newCocktail);
+    saveToLocalStorage(Cocktail.userRecipes);
 
     //STRETCH: call filterFunction() if applicable new recipe will now show in filtered array
     //STRETCH: call renderFiltered() re-renders page so if new recipe meets requirements is now displayed on the page
