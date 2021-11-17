@@ -282,6 +282,14 @@ function filterDrinksPossible(tolerance, array = Cocktail.all) {
 }
 
 function filterDrinksBySpirit(base, array = Cocktail.all) {
+    Cocktail.filtered = [];
+    Cocktail.all.forEach(cocktail => {
+        if (cocktail.base.toLowerCase() === base) {
+            Cocktail.filtered.push(cocktail);
+        }
+    });
+    console.log(Cocktail.filtered);
+    return Cocktail.filtered;
 }
 function renderFiltered() {
     //update the displayed cocktails
