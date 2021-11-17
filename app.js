@@ -125,16 +125,16 @@ function renderRecipeCard(event) {
 
     let recipeCard = document.getElementById('popup');
     let recipeCardbg = document.getElementById('popup-outline');
+    let antiScroll = document.getElementById('body');
 
     let tempRecipe = Cocktail.all[clicked];
 
     if (tempRecipe) {
 
+        antiScroll.classList.add('no-scroll');
         recipeCard.classList.remove('hidden');
         recipeCard.classList.add('recipe-grid');
         recipeCardbg.classList.remove('hidden');
-        // let writeRecipe = document.createElement('div');
-        // recipeCard.append(writeRecipe);
 
         let recipeName = document.createElement('h4');
         recipeName.setAttribute('class', 'rendered-title');
@@ -173,6 +173,7 @@ function renderRecipeCard(event) {
             recipeCard.classList.remove('recipe-grid');
             recipeCard.classList.add('hidden');
             recipeCardbg.classList.add('hidden');
+            antiScroll.classList.remove('no-scroll');
         })
         recipeCard.append(cancel);
     }
