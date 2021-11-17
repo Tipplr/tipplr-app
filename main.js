@@ -98,6 +98,7 @@ function renderRecipeCard(event) {
         recipeCard.append(cancel);
     }
 }
+
 //filters property of base spirt clicked as milestone to story #1
 const clearFilter = document.getElementById('clear-filter');
 clearFilter.addEventListener('click', clearFilterHandler);
