@@ -10,11 +10,20 @@ function renderThumbnails(array = Cocktail.all) {
     array.forEach((e, index) => {
         const recipeList = document.getElementById('recipe-list-grid');
         let renderRecipe = document.createElement('div');
+        let recipeTitle = document.createElement('h2');
+        let recipeBase = document.createElement('p');
 
         recipeList.appendChild(renderRecipe);
         renderRecipe.setAttribute('class', 'recipe-card');
         renderRecipe.setAttribute('id', `${index}`);
-        renderRecipe.innerHTML = `<h2>${e.name}</h2> <br>Base: ${e.base}`;
+
+        renderRecipe.appendChild(recipeTitle);
+        recipeTitle.setAttribute('id', `${index}`);
+        recipeTitle.innerHTML = `${e.name}`;
+        // renderRecipe.innerHTML = `<h2>${e.name}</h2> <br>Base: ${e.base}`;
+        renderRecipe.appendChild(recipeBase);
+        recipeBase.setAttribute('id', `${index}`);
+        recipeBase.innerHTML = `Base: ${e.base}`;
     })
 }
 renderThumbnails();
@@ -80,6 +89,15 @@ function renderRecipeCard(event) {
     }
 }
 //filters property of base spirt clicked as milestone to story #1
+const clearFilter = document.getElementById('clear-filter');
+clearFilter.addEventListener('click', clearFilterHandler);
+
+function clearFilterHandler(event) {
+    // event.preventDefault();
+    clearChildren('recipe-list-grid');
+    renderThumbnails(Cocktail.all);
+}
+
 function filterHandler(event) {
     switch (event.target.id) {
         case "filter-01":

@@ -32,7 +32,7 @@ html {
 .body-grid-container {
     display: grid;
     grid-template-columns: 12.5% 70% 12.5%;
-    grid-template-rows: 4rem 2rem .8rem 6rem .8rem auto .8rem 26rem;
+    grid-template-rows: 4rem 2rem .8rem 6rem 1.6rem auto .8rem 26rem;
     grid-gap: 2.5rem;
 }
 
@@ -96,31 +96,30 @@ h2 {
 .recipe-list-title {
     grid-column: 2;
     grid-row: 5;
+    width: 10rem;
 }
 
 #recipe-list-grid {
     grid-column: 2;
     grid-row: 6;
     display: grid;
+    grid-gap: 3px;
     grid-template-columns: 33.3% 33.3% 33.3%;
     grid-auto-rows: 6rem;
     grid-auto-flow: row;
 }
 
-#recipe-list-grid > div {
-    height: 60%;
-    width: 20%;
+.recipe-card {
+    height: 70%;
     border: 2px solid black;
     margin: auto;
     width: 80%;
 }
 
-.recipe-card {
-    height: auto;
-    width: 20%;
-    border: 2px solid black;
-    margin: auto;
-    width: 80%;
+.recipe-card > p {
+    font-size: 1.2rem;
+    position: relative;
+    top: 20%;
 }
 
 .recipe-grid {
@@ -241,6 +240,15 @@ h2 {
     width: 100%;
 }
 
+#clear-filter {
+    background-color: orange;
+    height: 25px;
+    grid-column: 2;
+    grid-row: 5;
+    width: 7rem;
+    justify-self: right;
+}
+
 @media screen and (max-width: 950px) {
     .body-grid-container {
         grid-template-columns: 8.8% 80% 8.8%;
@@ -251,6 +259,7 @@ h2 {
     }
     #recipe-list-grid {
         grid-template-columns: 50% 50%;
+        grid-gap: .5rem;
     }
 
     .recipe-grid {
@@ -271,5 +280,20 @@ h2 {
     .recipe-grid > .icon {
         grid-column: 2;
         justify-self: right;
+    }
+    #clear-filter {
+        font-size: .8rem;
+        height: 20px;
+        width: 5rem;
+    }
+    .recipe-card {
+        height: 80%;
+        width: 100%;
+    }
+    .recipe-card > h2 {
+        font-size: 1.1rem;
+    }
+    .recipe-card > p {
+        font-size: .9rem;
     }
 }
