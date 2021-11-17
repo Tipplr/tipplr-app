@@ -115,6 +115,7 @@ function loadObjects(){
             ingredient = new Ingredient(storedIngredients[i].name, storedIngredients[i].type);
 
             Ingredient.userInventory.push(ingredient);
+            Ingredient.userPlusBasicIngr.push(ingredient);
         }
     }
 
@@ -307,8 +308,9 @@ function basicIngredients() {
         ["Lemon","Basics"]
         ];
     for (let i = 0; i < basicArray.length; i += 1){
-        basic = new Ingredient(basicArray[i].name, basicArray[i].type);
+        basic = new Ingredient(basicArray[i][0], basicArray[i][1]);
         Ingredient.basic.push(basic);
+        Ingredient.userPlusBasicIngr.push(basic);
     }
 }
 
