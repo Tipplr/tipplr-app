@@ -34,11 +34,23 @@
 /* .grid-item:nth-child(odd) {
     background-color: #5bbdfa;
 } */
-
+.left-margin {
+    grid-column: 1;
+    grid-row: 1 / -1;
+}
+.right-margin {
+    grid-column: 3;
+    grid-row: 1 / -1;
+}
+.left-margin,
+.right-margin {
+    background-color: var(--bg-secondary);
+    width: auto;
+}
 .body-grid-container {
     display: grid;
-    grid-template-columns: 12.5% 70% 12.5%;
-    grid-template-rows: 4rem 2rem .8rem 7.5rem 1.6rem auto .8rem 26rem;
+    grid-template-columns: 12.8% 70% 12.8%;
+    grid-template-rows: 4rem 2rem .8rem 9.5rem 1.6rem minmax(39rem, auto) .8rem 26rem;
     grid-gap: 2.5rem;
     background-color: var(--bg-primary);
 }
@@ -54,10 +66,6 @@ header {
     grid-column: 2;
 }
 
-body {
-    background-image: url('Bar-Background.png');
-    background-color: #cccccc;
-}
 header a {
     color: var(--fc-title);
     text-decoration: none;
@@ -70,6 +78,15 @@ body button {
     font-family: var(--ff-highlights);
     font-size: 1.5rem;
 }
+
+button:active {
+    border: 1px solid #B4184C;
+}
+
+button:hover {
+    background-color: #352F37;
+}
+
 h1,
 h2 {
     font-family: var(--ff-highlights);
@@ -100,7 +117,9 @@ h2 {
     grid-row: 3;
 }
 
-.spirit-filter1 {
+.spirit-filter {
+    background-image: url(../assets/filter-background.jpg);
+    border: 2px solid black;
     grid-column: 2;
     grid-row: 4;
     display: grid;
@@ -109,10 +128,12 @@ h2 {
     grid-gap: 3px;
     overflow: auto;
     grid-auto-flow: column;
+    padding-top: 1.8rem;
 }
 .filter-sc {
     width: auto;
 }
+
 .recipe-list-title {
     grid-column: 2;
     grid-row: 5;
@@ -120,6 +141,8 @@ h2 {
 }
 
 #recipe-list-grid {
+    background-image: url(../assets/Bar-Background.png);
+    border: 2px solid black;
     grid-column: 2;
     grid-row: 6;
     display: grid;
@@ -284,14 +307,25 @@ h2 {
 @media screen and (max-width: 950px) {
     .body-grid-container {
         grid-template-columns: 6.5% 80% 6.5%;
-        grid-template-rows: 4rem 2rem .8rem 12rem 1.6rem auto .8rem 26rem;
+        grid-template-rows: 4rem 2rem .8rem 13.5rem 1.6rem minmax(39rem, auto) .8rem 26rem;
         grid-gap: 3%;
+    }
+    .left-margin {
+        display: none;
+    }
+    .right-margin {
+        display: none;
+    }
+    .left-margin,
+    .right-margin {
+        background-color: var(--bg-secondary);
+        width: auto;
     }
     header {
         grid-column: 1/4;
     }
 
-    .spirit-filter1 {
+    .spirit-filter {
         grid-column: 2;
         grid-row: 4;
         display: grid;
@@ -308,7 +342,8 @@ h2 {
     }
 
     #recipe-list-grid {
-        grid-template-columns: 50% 50%;
+        justify-content: center;
+        grid-template-columns: 48.5% 48.5%;
         grid-gap: .5rem;
     }
 
