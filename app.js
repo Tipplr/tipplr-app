@@ -181,8 +181,32 @@ function renderRecipeCard(event) {
 
 // User story #1: ability to filter the provided cocktail recipe list to view only the recipes possible with current inventory
 // eventlistener on button click
+const filterButtons = document.getElementById('filter-buttons');
+filterButtons.addEventListener('click', filterHandler);
 //filters property of base spirt clicked as milestone to story #1
-
+function filterHandler(event) {
+    switch (event.target.id) {
+        case "filter-01":
+            filterDrinksPossible(0);
+            break;
+        case "filter-02":
+            break;
+        case "filter-03":
+            break;
+        case "filter-04":
+            break;
+        case "filter-05":
+            break;
+        case "filter-06":
+            break;
+        case "filter-07":
+            break;
+        case "filter-08":
+            filterDrinksPossible(1);
+            break;
+    }
+    console.log(event.target.id);
+}
 //mock data for testing function:
   Ingredient.userInventory = [{
           name: "Rittenhouse Rye",
@@ -234,26 +258,27 @@ function filterDrinksPossible(tolerance, array = Cocktail.all) {
                 let ingredients = cocktail.ingr.slice(); // Copies this ingr array for safe handling
                 let deltas = 0;
 
-ingredients.forEach(ingredient => { // for ingredients in this recipe
+        ingredients.forEach(ingredient => { // for ingredients in this recipe
             ingredient = ingredient.toLowerCase();
             let typeMatch = inventoryTypes.some(type => ingredient === type); // Boolean 
             let nameMatch = inventoryNames.some(name => ingredient === name); // Boolean
 
-if (!typeMatch && !nameMatch) { // if this ingredient is NOT found in the inventory names or types
-    deltas++;
-    Ingredient.missingIngredients.push(ingredient); // ADDS TO ARRAY OF INGREDIENTS USER DOESN'T HAVE
-}
-});
-// done comparing each drink ingredient against inventory
-if (deltas === 0) { // delta/tolerance possibilities: [ 0/0, 0/1, 0/2, 1/0/, 1/1, 1,2, 2/0, 2/1, 2/2]
-    cocktail.possible = true;
-    if (tolerance === 0) Cocktail.filtered.push(cocktail);
-} else if (deltas === tolerance) {
-    cocktail.almostPossible = true;
-    Cocktail.filtered.push(cocktail);
-}
-});
-return Cocktail.filtered;
+            if (!typeMatch && !nameMatch) { // if this ingredient is NOT found in the inventory names or types
+                deltas++;
+                Ingredient.missingIngredients.push(ingredient); // ADDS TO ARRAY OF INGREDIENTS USER DOESN'T HAVE
+            }
+            });
+            // done comparing each drink ingredient against inventory
+            if (deltas === 0) { // delta/tolerance possibilities: [ 0/0, 0/1, 0/2, 1/0/, 1/1, 1,2, 2/0, 2/1, 2/2]
+                cocktail.possible = true;
+                if (tolerance === 0) Cocktail.filtered.push(cocktail);
+            } else if (deltas === tolerance) {
+                cocktail.almostPossible = true;
+                Cocktail.filtered.push(cocktail);
+            }
+            });
+    console.log(Cocktail.filtered);
+    return Cocktail.filtered;
 }
 
 function renderFiltered() {
@@ -388,7 +413,7 @@ function addTagButton() {
 // User story #5 which ingredient would most broaden the drinks possible 
 
     // Call vvv
-    // let almostPossible = filterDrinksPossible(1); //argument of tolerance = 1. Uses userInventory, allCocktails. Outputs array to almostPossible
+    // let almostPossible = filterDrinks(1); //argument of tolerance = 1. Uses userInventory, allCocktails. Outputs array to almostPossible
             // (# userInventory IN this.specs) === specs.length-1) 
             // an array of cocktails for which all ingredients except one can be found in userInventory[]
             // this COULD be the same function as the filter for "is possible", with an argument of 1 passed as the "tolerance". When the function gets used for "is possible", we would pass an argument of 0. 
