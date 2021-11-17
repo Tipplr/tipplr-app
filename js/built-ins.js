@@ -1,4 +1,4 @@
-let builtInRecipes = [
+let builtInRecipeData = [
   // ["name", "base", ingr[], amt[], "glass", "instr", "notes"],
   // TEMPLATE to add more:
   // ["", "", [], [], "", "", ""],
@@ -43,3 +43,4 @@ let builtInRecipes = [
     [2, .75, .75, "1 barspoon"], "Coupe", "Shake, dbl strain--> Chilled coupe with sugar rim", "TIP: rim half the glass to make it optional"
   ],
 ]
+let builtInCocktails = builtInRecipeData.forEach(drink => new Cocktail(...drink));
