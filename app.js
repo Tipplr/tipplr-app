@@ -89,23 +89,35 @@ function alphabetize(array) {
     });
 }
 
-function loadRecipes(){
-    let storedUserRecipes = getLocalStorage('cocktails');
+function loadObjects(){
+    let storedCocktails = getLocalStorage('cocktails');
     let cocktail;
-    if (storedUserRecipes){
+
+    let storedIngredients = getLocalStorage('ingredients');
+    let ingredient;
+
+    if (storedCocktails){
         generateCocktails();
-        for(let i = 0; i < storedUserRecipes.length; i += 1){
-           cocktail = new Cocktail (`${storedUserRecipes[i].name}`,`${storedUserRecipes[i].base}`, [], [], `${storedUserRecipes[i].glassware}`, `${storedUserRecipes[i].instructions}`, `${storedUserRecipes[i].notes}`);
-           //template literal of array outputs a string...
-           cocktail.ingr = storedUserRecipes[i].ingr;
-           cocktail.amount = storedUserRecipes[i].amount;
+        for(let i = 0; i < storedCocktails.length; i += 1){
+           cocktail = new Cocktail (storedCocktails[i].name, storedCocktails[i].base, storedCocktails[i].ingr, storedCocktails[i].amount, storedCocktails[i].glassware, storedCocktails[i].instructions, storedCocktails[i].notes);
         
            Cocktail.userRecipes.push(cocktail); //pushes this cocktail back into userRecipes array
         }
     } else {
         generateCocktails();
     }
+
+    if (storedIngredients){
+        basicIngredients()
+        for(let i = 0; i < storedIngredients.length; i += 1){
+            ingredient = new Ingredient(storedIngredients[i].name, storedIngredients[i].type);
+
+            Ingredient.userInventory.push(ingredient);
+        }
+    }
+
     alphabetize(Cocktail.all);
+    alphabetize(Ingredient.userInventory);
 }
 
 // function renderRecipeCard(event) {
@@ -269,15 +281,29 @@ function addTagButton() {
 
 // const Cocktail = function(name, base, specs = [], glassware, instructions = "", notes = "", tags = [], possible, almostPossible)    
 function generateCocktails() {
-    const manhattan = new Cocktail("Manhattan", 'Whiskey', ['Whiskey', 'Sweet Vermouth', 'Angostura Bitters'], ['2 oz', '1 oz', '2 dashes'], 'Up');
-    const beesKnees = new Cocktail("Bee's Knees", 'Gin', ['Gin', 'Lemon', 'Honey Syrup'], ['2 oz', '3/4 oz', '3/4 oz'], 'Up');
-    const gimlet = new Cocktail("Gimlet", 'Gin', ['Gin', 'Lime', 'Simple Syrup'], ['2 oz', '3/4 oz', '1/2 oz'], 'Up');
-    const mojito = new Cocktail("Mojito", 'Rum', ['Rum', 'Lime', 'Simple Syrup'], ['2 oz', '3/4 oz', '1/2 oz'], 'Collins');
-    const rosita = new Cocktail("Rosita", 'Tequila', ['Tequila', 'Sweet Vermouth', 'Dry Vermouth', 'Campari'], ['1 3/4 oz', '1/2 oz', '1/2 oz', '1/2 oz'], 'Rocks');
-    const moscowMule = new Cocktail("Moscow Mule", 'Vodka', ['Vodka', 'Lime', 'Ginger Beer '], ['1 1/2 oz', '1/2 oz', 'Top'], 'Mule Mug');
+    new Cocktail("Manhattan", 'Whiskey', ['Whiskey', 'Sweet Vermouth', 'Angostura Bitters'], ['2 oz', '1 oz', '2 dashes'], 'Up');
+    new Cocktail("Bee's Knees", 'Gin', ['Gin', 'Lemon', 'Honey Syrup'], ['2 oz', '3/4 oz', '3/4 oz'], 'Up');
+    new Cocktail("Gimlet", 'Gin', ['Gin', 'Lime', 'Simple Syrup'], ['2 oz', '3/4 oz', '1/2 oz'], 'Up');
+    new Cocktail("Mojito", 'Rum', ['Rum', 'Lime', 'Simple Syrup'], ['2 oz', '3/4 oz', '1/2 oz'], 'Collins');
+    new Cocktail("Rosita", 'Tequila', ['Tequila', 'Sweet Vermouth', 'Dry Vermouth', 'Campari'], ['1 3/4 oz', '1/2 oz', '1/2 oz', '1/2 oz'], 'Rocks');
+    new Cocktail("Moscow Mule", 'Vodka', ['Vodka', 'Lime', 'Ginger Beer '], ['1 1/2 oz', '1/2 oz', 'Top'], 'Mule Mug');
 }
 
-loadRecipes();
+
+function basicIngredients() {
+    new Ingredient("Rittenhouse Rye","Whiskey"); //TEST remove before deploy
+    new Ingredient("Roku","Gin"); //TEST remove before deploy
+    new Ingredient("Bacardi","Rum"); //TEST remove before deploy
+    new Ingredient("Sweet Vermouth","Vermouth"); //TEST remove before deploy
+    new Ingredient("Dry Vermouth","Vermouth"); //TEST remove before deploy
+    new Ingredient("Campari","Liqueur"); //TEST remove before deploy
+    new Ingredient("Angostura Bitters","Bitters"); //TEST remove before deploy
+    new Ingredient("Simple Syrup","Basics"); //TEST remove before deploy
+    new Ingredient("Lime","Basics");
+    new Ingredient("Lemon","Basics");
+}
+
+loadObjects();
 
 const roku = new Ingredient('Roku', 'Gin');
 
