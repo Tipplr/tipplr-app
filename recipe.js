@@ -19,32 +19,54 @@ for (i = 0; i < coll.length; i += 1) {
     coll[i].addEventListener("click", collapsingFunction)
 }
 
-let newSpecsId = 1;
+let newSpecsIndex = 1;
+
+let divArray = [];
 
 let addFunction = function (event) {
+
     event.preventDefault()
     const specForm = document.getElementById('inputSpecs');
+    const newSpecDiv = document.createElement('div');
     const newSpecIngrInput = document.createElement('input');
     const newSpecAmntInput = document.createElement('input');
-    // need to update so each new field has a unique id
+
+
+    // assign div class and id
+    newSpecDiv.setAttribute('class', 'ingr-amnt-div');
+    newSpecDiv.setAttribute('id', `ingr-amnt-div-${newSpecsIndex}`);
+
+    // append ingr and amnt fields to new div
+    newSpecDiv.appendChild(newSpecAmntInput);
+    newSpecDiv.appendChild(newSpecIngrInput);
+
+    // set attributes for ingr and amnt fields
+    // may not need id's, left in for now
     newSpecIngrInput.setAttribute('type', 'text');
     newSpecIngrInput.setAttribute('name', 'specs');
-    newSpecIngrInput.setAttribute('id', `specs-ingr-${newSpecsId}`);
+    newSpecIngrInput.setAttribute('id', `specs-ingr-${newSpecsIndex}`);
     newSpecIngrInput.setAttribute('placeholder', 'Ingredient...');
     newSpecIngrInput.required = 'true';
     // console.log('newSpecIngrInput Id: ' + newSpecIngrInput.id);
 
     newSpecAmntInput.setAttribute('type', 'text');
     newSpecAmntInput.setAttribute('name', 'specs');
-    newSpecAmntInput.setAttribute('id', `specs-amnt-${newSpecsId}`);
+    newSpecAmntInput.setAttribute('id', `specs-amnt-${newSpecsIndex}`);
     newSpecAmntInput.setAttribute('placeholder', 'Amount...');
-    newSpecAmntInput.required = 'true';
     // console.log('newSpecAmntInput Id: ' + newSpecAmntInput.id);
 
-    specForm.append(newSpecIngrInput);
-    specForm.append(newSpecAmntInput);
+    // append new div
+    specForm.appendChild(newSpecDiv);
 
-    newSpecsId += 1;
+    divArray.push(newSpecDiv);
+
+    console.log('newSpecDiv Id: ' + newSpecDiv);
+    console.log('newSpecsIndex count before increment: ' + newSpecsIndex);
+
+    newSpecsIndex += 1;
+
+    console.log('newSpecsIndex count after increment: ' + newSpecsIndex);
+
 
 }
 
@@ -53,14 +75,30 @@ add.addEventListener('click', addFunction)
 let index = 0;
 
 let minusFunction = function (event) {
+
     event.preventDefault();
     const specForm = document.getElementById('inputSpecs');
+    console.log('specForm.lastChild: ' + specForm.lastChild.id)
     // will throw error if no new spec fields created
-    const newSpecIngrInput = document.getElementById(`specs-ingr-${index}`);
-    const newSpecQtyInput = document.getElementById(`specs-amnt-${index}`);
-    specForm.removeChild(newSpecIngrInput);
-    specForm.removeChild(newSpecQtyInput);
-    index += 1;
+    console.log('divArray before pop(): ' + divArray);
+    if (divArray.length > 0) {
+        divArray.pop();
+        specForm.lastChild.remove();
+        newSpecsIndex -= 1;
+    }
+    console.log('newSpecsIndex current count: ' + newSpecsIndex);
+
+    // console.log('minusFunction newSpecsIndex current count: ' + newSpecsIndex);
+    // const newSpecDiv = document.getElementById(`ingr-amnt-div-${newSpecsIndex}`);
+    // console.log('newSpecDiv index: ' + newSpecsIndex);
+    // console.log('newSpecDiv type: ' + typeof (newSpecDiv));
+
+    // const newSpecQtyInput = document.getElementById(`ingr-amnt-div-${newSpecsIndex}`);
+
+
+    //specForm.removeChild(newSpecQtyInput);
+    // newSpecsIndex -= 1;
+    //index += 1;
 }
 
 minusBtn.addEventListener('click', minusFunction);
@@ -142,4 +180,12 @@ function clearForm() {
     //clears all form fields
     const form = document.getElementById('recipe-submit');
     form.reset();
+    // for (i = 0; i < coll.length; i += 1) {
+    //     coll.style.display = 'none';
+    // }
+
+}
+
+function closeFormOnSubmit() {
+
 }
