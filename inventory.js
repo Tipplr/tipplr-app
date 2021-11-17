@@ -72,5 +72,7 @@ function removeIngredient() {
     //saveAndRenderInv() 
 }
 
-//Function Execution START:
-changeInventoryEventListener()
+//Function Execution Order:
+loadObjects();
+renderIngrTable();
+changeInventoryEventListener();
