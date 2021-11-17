@@ -62,7 +62,7 @@ function getLocalStorage(key) {
     }
     // STRETCH: get allTags[] 
 }
-function renderThumbnails(array) {
+function renderThumbnails(array = Cocktail.all) {
     //render array of allCocktails
     //render specifically the name and base property of Cocktail object
     array.forEach((e, index) => {
@@ -104,11 +104,11 @@ function loadRecipes(){
         
            Cocktail.userRecipes.push(cocktail); //pushes this cocktail back into userRecipes array
         }
-        alphabetize(Cocktail.all);
     } else {
         generateCocktails();
         console.log ('no user recipes');
     }
+    alphabetize(Cocktail.all);
 
 }
 // Viewing a recipe:
@@ -124,15 +124,17 @@ function renderRecipeCard(event) {
     let clicked = event.target.id;
 
     let recipeCard = document.getElementById('popup');
+    let recipeCardbg = document.getElementById('popup-outline');
+    let antiScroll = document.getElementById('body');
+
     let tempRecipe = Cocktail.all[clicked];
 
     if (tempRecipe) {
 
+        antiScroll.classList.add('no-scroll');
         recipeCard.classList.remove('hidden');
         recipeCard.classList.add('recipe-grid');
-
-        // let writeRecipe = document.createElement('div');
-        // recipeCard.append(writeRecipe);
+        recipeCardbg.classList.remove('hidden');
 
         let recipeName = document.createElement('h4');
         recipeName.setAttribute('class', 'rendered-title');
@@ -170,6 +172,8 @@ function renderRecipeCard(event) {
             recipeCard.innerHTML = '';
             recipeCard.classList.remove('recipe-grid');
             recipeCard.classList.add('hidden');
+            recipeCardbg.classList.add('hidden');
+            antiScroll.classList.remove('no-scroll');
         })
         recipeCard.append(cancel);
     }
@@ -177,86 +181,94 @@ function renderRecipeCard(event) {
 
 
 // User story #1: ability to filter the provided cocktail recipe list to view only the recipes possible with current inventory
+// eventlistener on button click
+//filters property of base spirt clicked as milestone to story #1
+
+//mock data for testing function:
+
+  /*
+  Ingredient.userInventory = [{
+          name: "Rittenhouse Rye",
+          type: "whiskey",
+      },
+      {
+          name: "Roku",
+          type: "gin",
+      },
+      {
+          name: "Lime",
+          type: "basics",
+      },
+      {
+          name: "Simple syrup",
+          type: "basics",
+      },
+      {
+          name: "Sweet vermouth",
+          type: "vermouth",
+      },
+      {
+          name: "Campari",
+          type: "liqueur",
+      },
+      {
+          name: "Angostura Bitters",
+          type: "bitters",
+      },
+      {
+          name: "Rum",
+          type: "rum",
+      },
+      {
+          name: "Dry Vermouth",
+          type: "dry vermouth"
+      },
+      {
+          name: "Tequila",
+          type: "tequila"
+      }
+  ];
+*/
+function filterDrinksPossible(tolerance) {
+    // tolerance of 0 if currently possible, tolerance of 1 for one-ingredient-away
+    let inventoryNames = Ingredient.userInventory.map(element => element.name.toLowerCase());
+    let inventoryTypes = Ingredient.userInventory.map(element => element.type.toLowerCase());
+    Cocktail.all.forEach(cocktail => { // iterate through array of cocktail instances
+                let ingredients = cocktail.ingr.slice(); // Copies this ingr array for safe handling
+                let deltas = 0;
+
+ingredients.forEach(ingredient => { // for ingredients in this recipe
+            ingredient = ingredient.toLowerCase();
+            let typeMatch = inventoryTypes.some(type => ingredient === type); // Boolean 
+            let nameMatch = inventoryNames.some(name => ingredient === name); // Boolean
+
+if (!typeMatch && !nameMatch) { // if this ingredient is NOT found in the inventory names or types
+    deltas++;
+    Ingredient.missingIngredients.push(ingredient); // ADDS TO ARRAY OF INGREDIENTS USER DOESN'T HAVE
+}
+});
+// done comparing each drink ingredient against inventory
+if (deltas === 0) { // delta/tolerance possibilities: [ 0/0, 0/1, 0/2, 1/0/, 1/1, 1,2, 2/0, 2/1, 2/2]
+    cocktail.possible = true;
+    if (tolerance === 0) Cocktail.filtered.push(cocktail);
+} else if (deltas === tolerance) {
+    cocktail.almostPossible = true;
+    Cocktail.filtered.push(cocktail);
+}
+});
+return Cocktail.filtered;
+}
+
+function renderFiltered() {
+    //update the displayed cocktails
+}
 
 
-    // eventlistener on button click
-    //    filters property of base spirt clicked as milestone to story #1
-  // Below is mock data for testing function:
-//   Ingredient.userInventory = [{
-//           name: "Rittenhouse Rye",
-//           type: "whiskey",
-//       },
-//       {
-//           name: "Roku",
-//           type: "gin",
-//       },
-//       {
-//           name: "Lime",
-//           type: "basics",
-//       },
-//       {
-//           name: "Simple syrup",
-//           type: "basics",
-//       },
-//       {
-//           name: "Sweet vermouth",
-//           type: "vermouth",
-//       },
-//       {
-//           name: "Campari",
-//           type: "liqueur",
-//       },
-//       {
-//           name: "Angostura Bitters",
-//           type: "bitters",
-//       },
-//       {
-//           name: "Rum",
-//           type: "rum",
-//       },
-//   ];
-  generateCocktails();
-    function filterDrinksPossible(tolerance) {  
-        // tolerance of 0 if currently possible, tolerance of 1 for one-ingredient-away
-        let inventoryNames = Ingredient.userInventory.map(element => element.name.toLowerCase());
-        let inventoryTypes = Ingredient.userInventory.map(element => element.type.toLowerCase());
-        Cocktail.all.forEach(cocktail => { // iterate through array of cocktail instances
-            let ingredients = cocktail.ingr.slice(); // Copies this ingr array for safe handling
-            let deltas = 0;
+function searchBar() { // STRETCH
+    //updates displayFiltered based on cocktail name entered (returns 1 cocktail or more if smart)
+    //call renderFiltered()
+}
 
-            ingredients.forEach(ingredient => { // for the ingredients in this recipe,
-                        ingredient = ingredient.toLowerCase();
-                        let typeMatch = inventoryTypes.some(type => ingredient === type); // Boolean 
-                        let nameMatch = inventoryNames.some(name => ingredient === name); // Boolean
-
-                if (!typeMatch && !nameMatch) { // if this ingredient is NOT found in the inventory names or types
-                    deltas++;
-                    Ingredient.missingIngredients.push(ingredient); // ADDS TO ARRAY OF INGREDIENTS USER DOESN'T HAVE
-                }
-            });
-            // done comparing each drink ingredient against inventory
-            if (deltas === 0) { // delta/tolerance possibilities: [ 0/0, 0/1, 0/2, 1/0/, 1/1, 1,2, 2/0, 2/1, 2/2]
-                cocktail.possible = true;
-                if (tolerance === 0) Cocktail.filtered.push(cocktail);
-            } else if (deltas === tolerance) {
-                cocktail.almostPossible = true;
-                Cocktail.filtered.push(cocktail);
-            }
-        });
-        console.log(Cocktail.filtered);
-        return Cocktail.filtered;
-    }
-    // filterDrinksPossible(0); // called here for testing
-    function renderFiltered() {
-        //update the displayed cocktails
-    }
-        
-    
-    function searchBar() { // STRETCH
-        //updates displayFiltered based on cocktail name entered (returns 1 cocktail or more if smart)
-        //call renderFiltered()
-    }
-        
 
 //User story #2 input ingredients I own, and have the website track it
 
@@ -312,7 +324,7 @@ function saveAndRenderInv() {
 
 
 //User story #3 enter and store my own recipe
-function recipeEventListner() {
+function recipeEventListener() {
     //listens for button click to add a recipe
     const recipeSubmitBtn = document.getElementById('recipeSubmitBtn');
     recipeSubmitBtn.addEventListener('click', addRecipeHandler);
@@ -432,6 +444,7 @@ loadRecipes();
 
 const roku = new Ingredient('Roku', 'Gin');
 
-renderThumbnails(Cocktail.all);
+renderThumbnails();
+// TODO: package into function for index.html pageload event
 
 //const negroni = new Cocktail("Negroni", 'Gin', ['Gin', 'Campari', 'Sweet Vermouth'], ['1 oz', '1 oz', '1 oz'], 'Rocks');

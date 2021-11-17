@@ -39,24 +39,30 @@
     <form class="grid-item inventory-form">
 
         <div>
-            <label for="Bottle Name">Bottle Name</label>
-            <input type="text" name="bottleName" id="bottle-name">
+            <fieldset>
+                <label for="Bottle Name">Bottle Name</label>
+                <input type="text" name="bottleName" id="bottle-name">
+                <label for="Bottle Type">Bottle Type</label>
+                <input type="text" name="bottleType" id="bottle-type">
+                </fieldset>
         </div>
 
         <input type="submit" value="Submit">
     </form>
 
     <!--when pushing grid items here, assign index to items, and use that index to determine column and row placement-->
-    <section class="grid-item inventory-list-grid">
-        <div></div>
-        <div></div>
-        <div></div>
-        <div></div>
-        <div></div>
-        <div></div>
-        <div></div>
-        <div></div>
-        <div></div>
+    <section id="inventory-table" class="grid-item inventory-list-grid">
+        <table>
+            <thead>
+                <tr>
+                    <th>Remove</th>
+                    <th>Ingredient Name</th>
+                    <th>Ingredient Type</th>
+                </tr>
+            </thead>
+            <tbody></tbody>
+            <tfoot></tfoot>
+        </table>
     </section>
 
 </body>

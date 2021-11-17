@@ -168,6 +168,13 @@ h1 {
     grid-column: 1 / 4;
     grid-row: 4;
 }
+#popup-outline {
+    position: fixed;
+    width: 100.65%;
+    height: 100%;
+    background-color:rgba(0, 0, 0, 0.65);
+    z-index: 900;
+}
 .close-popup {
     grid-column: 3;
     grid-row: 1;
@@ -221,6 +228,11 @@ h1 {
 
 .mySlides {
     display: none;
+}
+
+.no-scroll {
+    position: fixed; 
+    width: 100%;
 }
 
 @media screen and (max-width: 950px) {

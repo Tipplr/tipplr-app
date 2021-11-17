@@ -12,7 +12,7 @@
     <title>Tipplr</title>
 </head>
 
-<body class='body-grid-container'>
+<body id='body' class='body-grid-container'>
     <header class='grid-item'>
         <h1><a href="index.html">Tipplr</a></h1>
         <nav>
@@ -29,17 +29,17 @@
         <button type="submit"><i class="fa fa-search"></i></button>
     </form>
 
-    <h2 class="grid-item spirit-filter-title">Recipe By Base Spirit</h2>
+    <h2 class="grid-item spirit-filter-title">Filter Recipes by:</h2>
 
     <section class="grid-item spirit-filter1">
-        <div></div>
-        <div></div>
-        <div></div>
-        <div></div>
-        <div></div>
-        <div></div>
-        <div></div>
-        <div></div>
+        <button id="filter-01" class="filter-sc">Current Inventory</button>
+        <button id="filter-02" class="filter-sc">Gin Cocktails</button>
+        <button id="filter-03" class="filter-sc">Whiskey Cocktails</button>
+        <button id="filter-04" class="filter-sc">Tequila Cocktails</button>
+        <button id="filter-05" class="filter-sc">Rum Cocktails</button>
+        <button id="filter-06" class="filter-sc">Vodka Cocktails</button>
+        <button id="filter-07" class="filter-sc">Brandy Cocktails</button>
+        <button id="filter-08" class="filter-sc">One Ingredient Away</button>
     </section>
 
     <h2 class="grid-item recipe-list-title">Recipe List</h2>
@@ -60,6 +60,8 @@
         </div>
     </section>
     <div id='popup' class="hidden">
+    </div>
+    <div id='popup-outline' class="hidden">
     </div>
 </body>
 
