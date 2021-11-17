@@ -315,20 +315,24 @@ h2 {
 @media screen and (max-width: 950px) {
     .body-grid-container {
         grid-template-columns: 6.5% 80% 6.5%;
-        grid-template-rows: 4rem 2rem .8rem 13.5rem 1.6rem minmax(39rem, auto) .8rem 26rem;
+        grid-template-rows: 4rem 2rem .8rem 13.5rem 1.6rem auto .8rem 26rem;
         grid-gap: 3%;
     }
+
     .left-margin {
         display: none;
     }
+
     .right-margin {
         display: none;
     }
+
     .left-margin,
     .right-margin {
         background-color: var(--bg-secondary);
         width: auto;
     }
+
     header {
         grid-column: 1/4;
     }
@@ -353,6 +357,7 @@ h2 {
         justify-content: center;
         grid-template-columns: 48.5% 48.5%;
         grid-gap: .5rem;
+        background-size: contain;
     }
 
     .recipe-grid {
