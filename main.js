@@ -17,7 +17,6 @@ function renderThumbnails(array = Cocktail.all) {
         renderRecipe.innerHTML = `<h2>${e.name}</h2> <br>Base: ${e.base}`;
     })
 }
-
 renderThumbnails();
 
 function renderRecipeCard(event) {
@@ -110,8 +109,11 @@ function filterHandler(event) {
         case "filter-09":
             filterDrinksBySpirit('other');
             break;
+        default:
+        return; // If user clicks elsewhere, do nothing
     }
-    console.log("clicked on: ", event.target.id);
+    clearChildren('recipe-list-grid');
+    renderThumbnails(Cocktail.filtered);
 }
 //mock data for testing function:
 Ingredient.userInventory = [{

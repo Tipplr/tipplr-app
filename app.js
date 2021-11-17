@@ -220,6 +220,10 @@ function saveToLocalStorage(object) {
 function clearTable() {
     //erases rows in table
 }
+function clearChildren(id) {
+    const parentElem = document.getElementById(id);
+    parentElem.replaceChildren();
+}
 function saveAndRenderInv() {
     //call saveToLocalStorage()
     //call clearTable()
