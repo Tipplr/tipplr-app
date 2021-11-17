@@ -16,22 +16,27 @@ function inventoryHandler() {
 function toggleFormDisplay() {
     const form = document.querySelector(".inventory-form");
     form.classList.toggle('hidden');
+    form.addEventListener('submit', addIngredient);
 }
 
-const form = document.querySelector(".inventory-form");
-form.addEventListener('submit', addIngredient);
+
 
 function addIngredient(event) {
     event.preventDefault();
-    //function called on form submit
+
     let name = document.querySelector('#bottle-name').value
     let type = document.querySelector('#bottle-type').value
     let ingredient = new Ingredient(name, type);
-    //pushes ingredient into userInventory array
+
     Ingredient.userInventory.push(ingredient);
-    //call saveAndRenderInv()
     saveToLocalStorage(Ingredient.userInventory);
+
+    //hides and clears form
+    toggleFormDisplay();
+    document.querySelector('#bottle-name').value = '';
+    document.querySelector('#bottle-type').value = '';
 }
+
 function removeIngredient() {
     //remove clicked ingredient from the userInventory array
     //saveAndRenderInv() 
