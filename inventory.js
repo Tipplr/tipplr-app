@@ -21,6 +21,14 @@ function renderIngrTable() {
         tdElemType.textContent = Ingredient.userInventory[i].type;
         }
     }
+
+function clearIngrTable() {
+    const tbodyEl = document.querySelector('tbody');
+
+    while(tbodyEl.firstChild){
+        tbodyEl.removeChild(tbodyEl.firstChild);
+    }
+}
     //call getLocalStorage('ingredients')
     //write to DOM a table of ingredients and type from userInventory
 function changeInventoryEventListener() {
@@ -50,6 +58,7 @@ function addIngredient(event) {
     Ingredient.userInventory.push(ingredient);
     saveToLocalStorage(Ingredient.userInventory);
 
+    clearIngrTable();
     renderIngrTable();
 
     //hides and clears form
