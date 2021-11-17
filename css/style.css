@@ -162,6 +162,7 @@ h2 {
 .rendered-title {
     font-size: 3rem;
     margin: auto;
+    color: black;
 }
 .icon {
     grid-column: 2;
@@ -179,6 +180,7 @@ h2 {
 }
 .ingredients-list > li {
     padding: .3rem;
+    color: black;
 }
 .how-make {
     grid-column: 1 / 4;
