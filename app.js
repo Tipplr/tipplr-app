@@ -190,22 +190,31 @@ function filterHandler(event) {
             filterDrinksPossible(0);
             break;
         case "filter-02":
+            filterDrinksBySpirit('gin');
             break;
         case "filter-03":
+            filterDrinksBySpirit('whiskey');
             break;
         case "filter-04":
+            filterDrinksBySpirit('tequila');
             break;
         case "filter-05":
+            filterDrinksBySpirit('rum');
             break;
         case "filter-06":
+            filterDrinksBySpirit('vodka');
             break;
         case "filter-07":
+            filterDrinksBySpirit('brandy');
             break;
         case "filter-08":
             filterDrinksPossible(1);
             break;
-    }
-    console.log(event.target.id);
+            case "filter-09":
+            filterDrinksBySpirit('other');
+            break;
+        }
+    console.log("clicked on: ", event.target.id);
 }
 //mock data for testing function:
   Ingredient.userInventory = [{
@@ -280,7 +289,9 @@ function filterDrinksPossible(tolerance, array = Cocktail.all) {
     console.log(Cocktail.filtered);
     return Cocktail.filtered;
 }
-
+function filterDrinksBySpirit(base) {
+    console.log('you selected ', base);
+}
 function renderFiltered() {
     //update the displayed cocktails
 }
