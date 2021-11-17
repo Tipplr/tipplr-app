@@ -117,6 +117,8 @@ function loadObjects(){
             Ingredient.userInventory.push(ingredient);
             Ingredient.userPlusBasicIngr.push(ingredient);
         }
+    } else{
+        basicIngredients();
     }
 
     alphabetize(Cocktail.all);
