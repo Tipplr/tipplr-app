@@ -74,11 +74,13 @@ h1 {
 
 .inventory-form {
     display: none;
-    overflow: hidden;
-    position: absolute;
+    padding: 30px;
+    background-color: antiquewhite;
+    position: fixed;
     left: 15%;
-    top: 17.3%;
+    top: 40%;
     width: 70%;
+    height: 20%;
 }
 
 #inputSpecs > div{ 
