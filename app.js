@@ -184,8 +184,6 @@ function renderRecipeCard(event) {
 //filters property of base spirt clicked as milestone to story #1
 
 //mock data for testing function:
-
-  /*
   Ingredient.userInventory = [{
           name: "Rittenhouse Rye",
           type: "whiskey",
@@ -223,16 +221,15 @@ function renderRecipeCard(event) {
           type: "dry vermouth"
       },
       {
-          name: "Tequila",
-          type: "tequila"
+          name: "Lemon",
+              type: "basics"
       }
   ];
-*/
-function filterDrinksPossible(tolerance) {
+function filterDrinksPossible(tolerance, array = Cocktail.all) {
     // tolerance of 0 if currently possible, tolerance of 1 for one-ingredient-away
     let inventoryNames = Ingredient.userInventory.map(element => element.name.toLowerCase());
     let inventoryTypes = Ingredient.userInventory.map(element => element.type.toLowerCase());
-    Cocktail.all.forEach(cocktail => { // iterate through array of cocktail instances
+    array.forEach(cocktail => { // iterate through array of cocktail instances
                 let ingredients = cocktail.ingr.slice(); // Copies this ingr array for safe handling
                 let deltas = 0;
 
@@ -411,7 +408,7 @@ function addTagButton() {
 // const Cocktail = function(name, base, specs = [], glassware, instructions = "", notes = "", tags = [], possible, almostPossible)    
 function generateCocktails() {
     const manhattan = new Cocktail("Manhattan", 'Whiskey', ['Whiskey', 'Sweet Vermouth', 'Angostura Bitters'], ['2 oz', '1 oz', '2 dashes'], 'Up');
-    const beesKnees = new Cocktail("Bee's Knees", 'Gin', ['Gin', 'Lemon', 'Honey Syrup', 'Honey', 'Gin', 'Lemon', 'Honey Syrup', 'Honey', 'Gin', 'Lemon', 'Honey Syrup', 'Honey'], ['2 oz', '3/4 oz', '3/4 oz'], 'Up');
+    const beesKnees = new Cocktail("Bee's Knees", 'Gin', ['Gin', 'Lemon', 'Honey Syrup'], ['2 oz', '3/4 oz', '3/4 oz'], 'Up');
     const gimlet = new Cocktail("Gimlet", 'Gin', ['Gin', 'Lime', 'Simple Syrup'], ['2 oz', '3/4 oz', '1/2 oz'], 'Up');
     const mojito = new Cocktail("Mojito", 'Rum', ['Rum', 'Lime', 'Simple Syrup'], ['2 oz', '3/4 oz', '1/2 oz'], 'Collins');
     const rosita = new Cocktail("Rosita", 'Tequila', ['Tequila', 'Sweet Vermouth', 'Dry Vermouth', 'Campari'], ['1 3/4 oz', '1/2 oz', '1/2 oz', '1/2 oz'], 'Rocks');
