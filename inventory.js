@@ -56,6 +56,8 @@ function addIngredient(event) {
     let ingredient = new Ingredient(name, type);
 
     Ingredient.userInventory.push(ingredient);
+    Ingredient.userPlusBasicIngr.push(ingredient);
+    alphabetize(Ingredient.userInventory);
     saveToLocalStorage(Ingredient.userInventory);
 
     clearIngrTable();
