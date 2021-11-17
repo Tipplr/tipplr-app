@@ -1,6 +1,7 @@
 let coll = document.getElementsByClassName('collapsible');
 let add = document.getElementById('plus');
 let minusBtn = document.getElementById('minus');
+let resetBtn = document.getElementById('recipeResetBtn');
 let i;
 // incrementor for new specs id
 // starts at 1 because initial field is 0
@@ -67,7 +68,6 @@ let addFunction = function (event) {
 
     console.log('newSpecsIndex count after increment: ' + newSpecsIndex);
 
-
 }
 
 add.addEventListener('click', addFunction)
@@ -103,10 +103,6 @@ let minusFunction = function (event) {
 
 minusBtn.addEventListener('click', minusFunction);
 
-function getNewSpecsCount() {
-
-}
-
 // function recipeEventListener() {
 //     //listens for button click to add a recipe
 //     const recipeSubmitBtn = document.getElementById('recipeSubmitBtn');
@@ -124,11 +120,13 @@ function addRecipeHandler(event) {
     event.preventDefault();
     newRecipeFormSubmit();
     showNewRecipeForm();
+    // addListenerToReset();
     clearForm();
 }
 
 const form = document.getElementById('recipe-submit');
 form.addEventListener('submit', addRecipeHandler);
+form.addEventListener('reset', handleResetClick);
 
 function newRecipeFormSubmit() {
     //calls new Cocktail construtor
@@ -136,19 +134,14 @@ function newRecipeFormSubmit() {
     // grab field input
 
     const name = form.recipename.value;
-    console.log('recipe name Input: ' + name);
 
     const base = form.base.value;
-    console.log('base Input: ' + base);
 
     const glassware = form.glassware.value;
-    console.log('glassware Input: ' + glassware);
 
     const instructions = form.instruct.value;
-    console.log('instructions input: ' + instructions);
 
     const notes = form.notes.value;
-    console.log('notes input: ' + notes);
 
     let ingrArray = [];
     let amntArray = [];
@@ -176,13 +169,26 @@ function newRecipeFormSubmit() {
     //STRETCH: call renderFiltered() re-renders page so if new recipe meets requirements is now displayed on the page
 }
 function clearForm() {
-    //TODO: add base, ingr, qty, glassware, notes
     //clears all form fields
-    const form = document.getElementById('recipe-submit');
-    form.reset();
-    // for (i = 0; i < coll.length; i += 1) {
-    //     coll.style.display = 'none';
-    // }
+    const recipeForm = document.getElementById('recipe-submit');
+    recipeForm.reset();
+
+}
+
+function handleResetClick() {
+    // event.preventDefault();
+    // grab recipe specs parent div
+    specsForm = document.getElementById('inputSpecs');
+    console.log('divArray before reset click: ' + divArray.length);
+    // may have to iterate through array and delete each one
+    for (let i = 0; i < divArray.length; i += 1) {
+        specsForm.lastChild.remove();
+    }
+    divArray = [];
+    console.log('divArray afer reset click: ' + divArray.length);
+    // reset specs index counter
+    newSpecsIndex = 1;
+
 
 }
 
