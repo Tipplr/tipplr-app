@@ -2,6 +2,9 @@ let coll = document.getElementsByClassName('collapsible');
 let add = document.getElementById('plus');
 let minusBtn = document.getElementById('minus');
 let i;
+// incrementor for new specs id
+// starts at 1 because initial field is 0
+let newSpecsId = 1;
 
 let collapsingFunction = function () {
     this.classList.toggle('active');
@@ -21,20 +24,25 @@ let addFunction = function (event) {
     event.preventDefault()
     const specForm = document.getElementById('inputSpecs');
     const newSpecIngrInput = document.createElement('input');
-    const newSpecQtyInput = document.createElement('input');
+    const newSpecAmntInput = document.createElement('input');
     // need to update so each new field has a unique id
     newSpecIngrInput.setAttribute('type', 'text');
     newSpecIngrInput.setAttribute('name', 'specs');
-    newSpecIngrInput.setAttribute('id', 'specs-ingr-new');
+    newSpecIngrInput.setAttribute('id', `specs-ingr-${newSpecsId}`);
     newSpecIngrInput.setAttribute('placeholder', 'Ingredient...');
+    console.log('newSpecIngrInput Id: ' + newSpecIngrInput.id);
 
-    newSpecQtyInput.setAttribute('type', 'text');
-    newSpecQtyInput.setAttribute('name', 'specs');
-    newSpecQtyInput.setAttribute('id', 'specs-qty-new');
-    newSpecQtyInput.setAttribute('placeholder', 'Quantity...');
+    newSpecAmntInput.setAttribute('type', 'text');
+    newSpecAmntInput.setAttribute('name', 'specs');
+    newSpecAmntInput.setAttribute('id', `specs-amnt-${newSpecsId}`);
+    newSpecAmntInput.setAttribute('placeholder', 'Amount...');
+    console.log('newSpecAmntInput Id: ' + newSpecAmntInput.id);
 
     specForm.append(newSpecIngrInput);
-    specForm.append(newSpecQtyInput);
+    specForm.append(newSpecAmntInput);
+
+    newSpecsId += 1;
+
 }
 
 add.addEventListener('click', addFunction)
@@ -44,9 +52,13 @@ let minusFunction = function (event) {
     const specForm = document.getElementById('inputSpecs');
     // will throw error if no new spec fields created
     const newSpecIngrInput = document.getElementById('specs-ingr-new');
-    const newSpecQtyInput = document.getElementById('specs-qty-new');
+    const newSpecQtyInput = document.getElementById('specs-amnt-new');
     specForm.removeChild(newSpecIngrInput);
     specForm.removeChild(newSpecQtyInput);
 }
 
 minusBtn.addEventListener('click', minusFunction);
+
+function getNewSpecsCount() {
+
+}
