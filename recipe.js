@@ -31,12 +31,14 @@ let addFunction = function (event) {
     newSpecIngrInput.setAttribute('name', 'specs');
     newSpecIngrInput.setAttribute('id', `specs-ingr-${newSpecsId}`);
     newSpecIngrInput.setAttribute('placeholder', 'Ingredient...');
+    newSpecIngrInput.required = 'true';
     // console.log('newSpecIngrInput Id: ' + newSpecIngrInput.id);
 
     newSpecAmntInput.setAttribute('type', 'text');
     newSpecAmntInput.setAttribute('name', 'specs');
     newSpecAmntInput.setAttribute('id', `specs-amnt-${newSpecsId}`);
     newSpecAmntInput.setAttribute('placeholder', 'Amount...');
+    newSpecAmntInput.required = 'true';
     // console.log('newSpecAmntInput Id: ' + newSpecAmntInput.id);
 
     specForm.append(newSpecIngrInput);
