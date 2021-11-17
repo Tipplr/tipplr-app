@@ -172,11 +172,42 @@ function loadRecipes(){
 
 // User story #1: ability to filter the provided cocktail recipe list to view only the recipes possible with current inventory
 // eventlistener on button click
+const filterButtons = document.getElementById('filter-buttons');
+filterButtons.addEventListener('click', filterHandler);
 //filters property of base spirt clicked as milestone to story #1
-
+function filterHandler(event) {
+    switch (event.target.id) {
+        case "filter-01":
+            filterDrinksPossible(0);
+            break;
+        case "filter-02":
+            filterDrinksBySpirit('gin');
+            break;
+        case "filter-03":
+            filterDrinksBySpirit('whiskey');
+            break;
+        case "filter-04":
+            filterDrinksBySpirit('tequila');
+            break;
+        case "filter-05":
+            filterDrinksBySpirit('rum');
+            break;
+        case "filter-06":
+            filterDrinksBySpirit('vodka');
+            break;
+        case "filter-07":
+            filterDrinksBySpirit('brandy');
+            break;
+        case "filter-08":
+            filterDrinksPossible(1);
+            break;
+            case "filter-09":
+            filterDrinksBySpirit('other');
+            break;
+        }
+    console.log("clicked on: ", event.target.id);
+}
 //mock data for testing function:
-
-  /*
   Ingredient.userInventory = [{
           name: "Rittenhouse Rye",
           type: "whiskey",
@@ -214,41 +245,44 @@ function loadRecipes(){
           type: "dry vermouth"
       },
       {
-          name: "Tequila",
-          type: "tequila"
+          name: "Lemon",
+              type: "basics"
       }
   ];
-*/
-function filterDrinksPossible(tolerance) {
+function filterDrinksPossible(tolerance, array = Cocktail.all) {
     // tolerance of 0 if currently possible, tolerance of 1 for one-ingredient-away
+    Cocktail.filtered = []; // STRETCH: Change the logic so mult. filters causes multiple passes of array through this function. Allow deselection or clearing of filters.
     let inventoryNames = Ingredient.userInventory.map(element => element.name.toLowerCase());
     let inventoryTypes = Ingredient.userInventory.map(element => element.type.toLowerCase());
-    Cocktail.all.forEach(cocktail => { // iterate through array of cocktail instances
+    array.forEach(cocktail => { // iterate through array of cocktail instances
                 let ingredients = cocktail.ingr.slice(); // Copies this ingr array for safe handling
                 let deltas = 0;
 
-ingredients.forEach(ingredient => { // for ingredients in this recipe
+        ingredients.forEach(ingredient => { // for ingredients in this recipe
             ingredient = ingredient.toLowerCase();
             let typeMatch = inventoryTypes.some(type => ingredient === type); // Boolean 
             let nameMatch = inventoryNames.some(name => ingredient === name); // Boolean
 
-if (!typeMatch && !nameMatch) { // if this ingredient is NOT found in the inventory names or types
-    deltas++;
-    Ingredient.missingIngredients.push(ingredient); // ADDS TO ARRAY OF INGREDIENTS USER DOESN'T HAVE
-}
-});
-// done comparing each drink ingredient against inventory
-if (deltas === 0) { // delta/tolerance possibilities: [ 0/0, 0/1, 0/2, 1/0/, 1/1, 1,2, 2/0, 2/1, 2/2]
-    cocktail.possible = true;
-    if (tolerance === 0) Cocktail.filtered.push(cocktail);
-} else if (deltas === tolerance) {
-    cocktail.almostPossible = true;
-    Cocktail.filtered.push(cocktail);
-}
-});
-return Cocktail.filtered;
+            if (!typeMatch && !nameMatch) { // if this ingredient is NOT found in the inventory names or types
+                deltas++;
+                Ingredient.missingIngredients.push(ingredient); // ADDS TO ARRAY OF INGREDIENTS USER DOESN'T HAVE
+            }
+            });
+            // done comparing each drink ingredient against inventory
+            if (deltas === 0) { // delta/tolerance possibilities: [ 0/0, 0/1, 0/2, 1/0/, 1/1, 1,2, 2/0, 2/1, 2/2]
+                cocktail.possible = true;
+                if (tolerance === 0) Cocktail.filtered.push(cocktail);
+            } else if (deltas === tolerance) {
+                cocktail.almostPossible = true;
+                Cocktail.filtered.push(cocktail);
+            }
+            });
+    console.log(Cocktail.filtered);
+    return Cocktail.filtered;
 }
 
+function filterDrinksBySpirit(base, array = Cocktail.all) {
+}
 function renderFiltered() {
     //update the displayed cocktails
 }
@@ -331,7 +365,7 @@ function addTagButton() {
 // User story #5 which ingredient would most broaden the drinks possible 
 
     // Call vvv
-    // let almostPossible = filterDrinksPossible(1); //argument of tolerance = 1. Uses userInventory, allCocktails. Outputs array to almostPossible
+    // let almostPossible = filterDrinks(1); //argument of tolerance = 1. Uses userInventory, allCocktails. Outputs array to almostPossible
             // (# userInventory IN this.specs) === specs.length-1) 
             // an array of cocktails for which all ingredients except one can be found in userInventory[]
             // this COULD be the same function as the filter for "is possible", with an argument of 1 passed as the "tolerance". When the function gets used for "is possible", we would pass an argument of 0. 
@@ -352,7 +386,7 @@ function addTagButton() {
 // const Cocktail = function(name, base, specs = [], glassware, instructions = "", notes = "", tags = [], possible, almostPossible)    
 function generateCocktails() {
     const manhattan = new Cocktail("Manhattan", 'Whiskey', ['Whiskey', 'Sweet Vermouth', 'Angostura Bitters'], ['2 oz', '1 oz', '2 dashes'], 'Up');
-    const beesKnees = new Cocktail("Bee's Knees", 'Gin', ['Gin', 'Lemon', 'Honey Syrup', 'Honey', 'Gin', 'Lemon', 'Honey Syrup', 'Honey', 'Gin', 'Lemon', 'Honey Syrup', 'Honey'], ['2 oz', '3/4 oz', '3/4 oz'], 'Up');
+    const beesKnees = new Cocktail("Bee's Knees", 'Gin', ['Gin', 'Lemon', 'Honey Syrup'], ['2 oz', '3/4 oz', '3/4 oz'], 'Up');
     const gimlet = new Cocktail("Gimlet", 'Gin', ['Gin', 'Lime', 'Simple Syrup'], ['2 oz', '3/4 oz', '1/2 oz'], 'Up');
     const mojito = new Cocktail("Mojito", 'Rum', ['Rum', 'Lime', 'Simple Syrup'], ['2 oz', '3/4 oz', '1/2 oz'], 'Collins');
     const rosita = new Cocktail("Rosita", 'Tequila', ['Tequila', 'Sweet Vermouth', 'Dry Vermouth', 'Campari'], ['1 3/4 oz', '1/2 oz', '1/2 oz', '1/2 oz'], 'Rocks');
