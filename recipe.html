@@ -46,12 +46,23 @@
                 <button id="plus">+</button>
                 <button id="minus">-</button>
             </div>
-            <input type="text" name="specs" id="specs">
+            <!-- <input type="text" name="specs" id="specs"> -->
+            <input type="text" name="specs" id="specs-ingr" class="specs-ingr-field" placeholder="Ingredient...">
+            <input type="text" name="specs-ingr-qty" id="specs-ingr-qty" class="specs-ingr-field" placeholder="Quantity...">
+            </div>
+            
+            <div>
+                <label for="base">Base</label>
+                <input type="text" name="base" id="base">
         </div>
 
         <div>
             <label for="Instructions">Instructions</label>
             <input type="text" name="instruct" id="instruct">
+        </div>
+        <div>
+            <label for="notes">Notes</label>
+            <input type="text" name="notes" id="notes">
         </div>
 
         <input type="submit" value="Submit" id="recipeSubmitBtn">

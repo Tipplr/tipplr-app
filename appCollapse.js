@@ -20,13 +20,21 @@ for (i = 0; i < coll.length; i += 1) {
 let addFunction = function (event) {
     event.preventDefault()
     const specForm = document.getElementById('inputSpecs');
-    const newSpecInput = document.createElement('input');
+    const newSpecIngrInput = document.createElement('input');
+    const newSpecQtyInput = document.createElement('input');
+    // need to update so each new field has a unique id
+    newSpecIngrInput.setAttribute('type', 'text');
+    newSpecIngrInput.setAttribute('name', 'specs');
+    newSpecIngrInput.setAttribute('id', 'specs-ingr-new');
+    newSpecIngrInput.setAttribute('placeholder', 'Ingredient...');
 
-    newSpecInput.setAttribute('type', 'text');
-    newSpecInput.setAttribute('name', 'specs');
-    newSpecInput.setAttribute('id', 'specs-new');
+    newSpecQtyInput.setAttribute('type', 'text');
+    newSpecQtyInput.setAttribute('name', 'specs');
+    newSpecQtyInput.setAttribute('id', 'specs-qty-new');
+    newSpecQtyInput.setAttribute('placeholder', 'Quantity...');
 
-    specForm.append(newSpecInput);
+    specForm.append(newSpecIngrInput);
+    specForm.append(newSpecQtyInput);
 }
 
 add.addEventListener('click', addFunction)
@@ -35,8 +43,10 @@ let minusFunction = function (event) {
     event.preventDefault();
     const specForm = document.getElementById('inputSpecs');
     // will throw error if no new spec fields created
-    const newSpecInput = document.getElementById('specs-new');
-    specForm.removeChild(newSpecInput);
+    const newSpecIngrInput = document.getElementById('specs-ingr-new');
+    const newSpecQtyInput = document.getElementById('specs-qty-new');
+    specForm.removeChild(newSpecIngrInput);
+    specForm.removeChild(newSpecQtyInput);
 }
 
 minusBtn.addEventListener('click', minusFunction);
