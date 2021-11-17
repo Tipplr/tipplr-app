@@ -289,6 +289,7 @@ function filterDrinksPossible(tolerance, array = Cocktail.all) {
     console.log(Cocktail.filtered);
     return Cocktail.filtered;
 }
+
 function filterDrinksBySpirit(base, array = Cocktail.all) {
 }
 function renderFiltered() {
