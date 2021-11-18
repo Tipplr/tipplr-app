@@ -139,37 +139,37 @@ function generateCocktails() {
         // ["", "", [], [], "", "", ""],
 
         ["Manhattan", 'Whiskey', ['Whiskey', 'Sweet Vermouth', 'Angostura Bitters'],
-            ['2 oz', '1 oz', '2 dashes'], 'nicknora'
+            ['2 oz', '1 oz', '2 dashes'], 'nicknora', "Stir with plenty of ice for about 30 seconds, strain--> chilled glass, cherry", ""
         ],
         ["Bee's Knees", 'Gin', ['Gin', 'Lemon', 'Honey Syrup'],
-            ['2 oz', '3/4 oz', '3/4 oz'], 'coupe'
+            ['2 oz', '3/4 oz', '3/4 oz'], 'coupe', "Shake hard with plenty of ice for about 15 seconds and strain --> chilled glass, lemon wheel or twist", ""
         ],
         ["Gimlet", 'Gin', ['Gin', 'Lime', 'Simple Syrup'],
-            ['2 oz', '3/4 oz', '1/2 oz'], 'nicknora'
+            ['2 oz', '3/4 oz', '1/2 oz'], 'nicknora', "Shake hard with plenty of ice for about 15 seconds and strain --> chilled glass, lime wedge", ""
         ],
-        ["Mojito", 'Rum', ['Rum', 'Lime', 'Simple Syrup'],
-            ['2 oz', '3/4 oz', '1/2 oz'], 'collins'
+        ["Mojito", 'Rum', ['Rum', 'Lime', 'Simple Syrup', 'Mint', 'Soda'],
+          ['2 oz', '3/4 oz', '1/2 oz', 'handful'], 'collins', "Add all ingredients to shaker except mint leaves and shake hard with several pieces of ice for a few seconds. Add mint leaves to tin and shake again for about 10 seconds in a circular motion to avoid pulverizing the mint. Single strain into collins and fill with crushed ice. Add a splash of soda water, and garnish with a bouquet of mint sprigs.", "TIP: Bruising the mint too much through muddling or shaking releases bitter flavors, which is why this recipe does it a little differently.", ""
         ],
         ["Rosita", 'Tequila', ['Tequila', 'Sweet Vermouth', 'Dry Vermouth', 'Campari'],
-            ['1 3/4 oz', '1/2 oz', '1/2 oz', '1/2 oz'], 'dblof'
+            ['1 3/4 oz', '1/2 oz', '1/2 oz', '1/2 oz'], 'dblof', "Build in double-Old Fashioned glass on a big cube (if available). Stir 5-6 times, garnish with a lemon twist", ""
         ],
         ["Moscow Mule", 'Vodka', ['Vodka', 'Lime', 'Ginger Beer '],
-            ['1 1/2 oz', '1/2 oz', 'Top'], 'mule'
+            ['1 1/2 oz', '1/2 oz', 'Top'], 'mule', "Build in a mule mug, add ice, and top with about 3 oz ginger beer. Garnish with a fat lime wedge.", "TIP: Change out the base spirit to gin for a London Mule, tequila for a Mexican Mule, bourbon for a Kentucky Mule, etc."
         ],
         ["Cosmopolitan", "Vodka", ["Vodka", "Triple Sec", "Lime", "Cranberry"],
             [2, .75, .75, .5], "martini", "Shake and strain --> chilled glass, lime twist", ""
         ],
         ["Corpse Reviver #2", "Gin", ["Gin", "Cocchi Americano", "Triple Sec", "Lemon", "Absinthe"],
-            [.75, .75, .75, .75, "rinse"], "coupe", "Shake and strain --> chilled glass, no garnish", ""
+            [.75, .75, .75, .75, "rinse"], "coupe", "Shake and strain --> chilled glass rinsed or sprayed with absinthe, no garnish", ""
         ],
         ["Gold Rush", "Whiskey", ["Bourbon", "Lemon", "Honey Syrup"],
-            [2, .75, .75], "dblof", "Short shake and strain--> Rocks glass with ice, lemon wheel", ""
+            [2, .75, .75], "dblof", "Short shake and strain--> Rocks glass with ice, lemon wheel", "To make honey syrup: Mix 1 part warm water with 2 parts honey. Keep refrigerated."
         ],
         ["French 75", "Gin", ["Gin", "Lemon", "Simple Syrup", "Sparkling Wine"],
             [1, .5, .5, "top"], "flute", "Shake and strain into flute, top with sparkling wine. Spiral-cut lemon twist", ""
         ],
         ["Little Italy", "Whiskey", ["Rye", "Cynar", "Sweet Vermouth"],
-            [2, .5, .75], "nicknora", "Stir, strain--> chilled glass, cherry", ""
+            [2, .5, .75], "nicknora", "Stir with plenty of ice for about 30 seconds, strain--> chilled glass, cherry", ""
         ],
         ["Mai Tai", "Rum", ["Rum", "Lime", "Triple Sec", "Orgeat", "Demerara Syrup"],
             [1.75, 1, .5, .25, .25], "dblof", "Whip shake with one cube, dump into rocks glass and top with crushed or pellet ice. Garnish with mint bouquet, a drizzle of dark rum, and grated nutmeg", ""
