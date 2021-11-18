@@ -13,8 +13,8 @@
     <title>Tipplr Recipes</title>
 </head>
 
-<body class='body-grid-container'>
-    <header class='grid-item'>
+<body id='body' class='body-grid-container'>
+    <header>
         <h1><a href="index.html">Tipplr</a></h1>
         <nav>
             <ul class='nav-bar'>
@@ -24,9 +24,9 @@
         </nav>
     </header>
 
-    <h2 class="grid-item recipe-list-title">My Recipes</h2>
+    <h2 class="recipe-list-title">My Recipes</h2>
 
-    <form class="grid-item recipe-form" id="recipe-submit">
+    <form class="recipe-form" id="recipe-submit">
 
         <div>
             <label for="recipe-name">Recipe Name</label>
@@ -80,9 +80,14 @@
 
     
     <!--when pushing grid items here, assign index to items, and use that index to determine column and row placement-->
-    <section class="grid-item recipe-list-grid">
+    <section id="recipe-list-grid">
     </section>
 
+    <div id='popup' class="hidden">
+    </div>
+    
+    <div id='popup-outline' class="hidden">
+    </div>
     <div class='left-margin'></div>
     <div class='right-margin'></div>
 </body>
