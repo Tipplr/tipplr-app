@@ -31,11 +31,15 @@ function clearIngrTable() {
 }
     //call getLocalStorage('ingredients')
     //write to DOM a table of ingredients and type from userInventory
-function changeInventoryEventListener() {
+function inventoryEventListeners() {
     //add an event listener to the add new + button and to the - button next to each ingredient in list
     document.getElementById('add-inventory').addEventListener("click", toggleFormDisplay);
+    document.getElementById('inventory-table').addEventListener('click', inventoryHandler);
 }
-function inventoryHandler() {
+function inventoryHandler(event) {
+    removeIngredient(event);
+    clearIngrTable();
+    renderIngrTable();
     //if + button is clicked, call showForm()
     //if - button is clicked call removeIngredient()
     //this should alert the user to confirm
@@ -69,12 +73,19 @@ function addIngredient(event) {
     document.querySelector('#bottle-type').value = '';
 }
 
-function removeIngredient() {
+function removeIngredient(event) {
     //remove clicked ingredient from the userInventory array
-    //saveAndRenderInv() 
+    //saveAndRenderInv()
+    let id = event.target.id;
+
+    if(id.slice(0, 6) === 'remove'){
+        Ingredient.userInventory.splice(id.slice(-1), 1);
+        saveToLocalStorage(Ingredient.userInventory);
+    }
+
 }
 
 //Function Execution Order:
 loadObjects();
 renderIngrTable();
-changeInventoryEventListener();
+inventoryEventListeners();
