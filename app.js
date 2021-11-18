@@ -1,7 +1,17 @@
 'use strict';
 let allTags = []; //holds all tags 
-let glasswareIcons = []; // holds filepaths for images
-// "drink" as shorthand for "Cocktail object instance"
+const glasswareIcons = {
+  collins: "assets/icons/collins.png",
+  coupe: "assets/icons/coupe.png",
+  dblof: "assets/icons/dbl-of.png",
+  flute: "assets/icons/flute.png",
+  martini: "assets/icons/martini.png",
+  mule: "assets/icons/mule.png",
+  nicknora: "assets/icons/nick-nora.png",
+  nosing: "assets/icons/nosing.png",
+  shot: "assets/icons/shot.png",
+  wine: "assets/icons/wine.png",
+}; // holds filepaths for images
 
 const Cocktail = function (name, base, ingr = [], amount = [], glassware, instructions = "", notes = "") { // user-gen or from API, also template for mock dataset
     this.name = name;
@@ -38,43 +48,21 @@ const Ingredient = function (name, type) {
 
 Ingredient.all = [];
 Ingredient.userInventory = []; // array of user ingredient objects
-Ingredient.basic = []; // array of basic ingredients
 Ingredient.userPlusBasicIngr = []; //array of basic and user ingredients
+Ingredient.basic = []; // array of basic ingredients
 Ingredient.missingIngredients = [];
 
-// Ingredients as inventory object
-// recipe item (Ingred instance with qty/unit values)
-// Specs instance would be constructed of mult. recipe items
+let isOnRecipePage = false;
 
-//Functions List
-//Enter website (age verification)
-//display minimum birth date for 21 years old
-// "were you born before ___ or after?"
-//Base website (on load after age check)
 function getLocalStorage(key) {
-    //for access to user-entered cocktails in userRecipes[]
-    //combine built-in cocktails with user cocktails into allCocktails []
     // get userInventory[]
     if (key === 'cocktails') {
         return JSON.parse(localStorage.getItem('cocktails'));
     } else if (key === 'ingredients') {
         return JSON.parse(localStorage.getItem('ingredients'));
     }
-    // STRETCH: get allTags[] 
 }
-// function renderThumbnails(array = Cocktail.all) {
-//     //render array of allCocktails
-//     //render specifically the name and base property of Cocktail object
-//     array.forEach((e, index) => {
-//         const recipeList = document.getElementById('recipe-list-grid');
-//         let renderRecipe = document.createElement('div');
 
-//         recipeList.appendChild(renderRecipe);
-//         renderRecipe.setAttribute('class', 'recipe-card');
-//         renderRecipe.setAttribute('id', `${index}`);
-//         renderRecipe.innerHTML = `${e.name} with a base of ${e.base}`;
-//     })
-// }
 function alphabetize(array) {
     //pass in array of objects and alphabetize that array by name property
     array.sort((a, b) => {
@@ -98,7 +86,11 @@ function loadObjects(){
     let storedIngredients = getLocalStorage('ingredients');
     let ingredient;
 
-    if (storedCocktails){
+
+    if (storedCocktails) {
+        Cocktail.all = [];
+        Cocktail.userRecipes = [];
+
         generateCocktails();
         for(let i = 0; i < storedCocktails.length; i += 1){
            cocktail = new Cocktail (storedCocktails[i].name, storedCocktails[i].base, storedCocktails[i].ingr, storedCocktails[i].amount, storedCocktails[i].glassware, storedCocktails[i].instructions, storedCocktails[i].notes);
@@ -129,106 +121,11 @@ function loadObjects(){
     alphabetize(Ingredient.userInventory);
 }
 
-// function renderRecipeCard(event) {
-//     //change from hidden to shown
-//     //add event listener for nav left, right, return to list
-//     let clicked = event.target.id;
-
-//     let recipeCard = document.getElementById('popup');
-//     let recipeCardbg = document.getElementById('popup-outline');
-//     let antiScroll = document.getElementById('body');
-
-//     let tempRecipe = Cocktail.all[clicked];
-
-//     if (tempRecipe) {
-
-//         antiScroll.classList.add('no-scroll');
-//         recipeCard.classList.remove('hidden');
-//         recipeCard.classList.add('recipe-grid');
-//         recipeCardbg.classList.remove('hidden');
-
-//         let recipeName = document.createElement('h4');
-//         recipeName.setAttribute('class', 'rendered-title');
-//         recipeCard.append(recipeName);
-//         recipeName.innerHTML = `${tempRecipe.name}`
-
-//         let icon = document.createElement('div');
-//         icon.setAttribute('class', 'icon');
-//         recipeCard.append(icon);
-
-//         let ingrs = document.createElement('ul');
-//         ingrs.setAttribute('class', 'ingredients-list');
-//         recipeCard.append(ingrs);
-
-//         for (let i = 0; i < tempRecipe.ingr.length; i += 1) {
-//             let oneIng = document.createElement('li');
-//             ingrs.append(oneIng);
-//             oneIng.innerHTML = `${tempRecipe.ingr[i]} - ${tempRecipe.amount[i]}`
-//         }
-
-//         let howToMake = document.createElement('p');
-//         howToMake.setAttribute('class', 'how-make');
-//         recipeCard.append(howToMake);
-//         howToMake.innerHTML = `How to make: ${tempRecipe.instructions}`
-
-//         let notes = document.createElement('p');
-//         notes.setAttribute('class', 'notes');
-//         recipeCard.append(notes);
-//         notes.innerHTML = `Notes: ${tempRecipe.notes}`
-
-//         let cancel = document.createElement('button');
-//         cancel.setAttribute('class', 'close-popup');
-//         cancel.innerHTML = 'X'
-//         cancel.addEventListener('click', function () {
-//             recipeCard.innerHTML = '';
-//             recipeCard.classList.remove('recipe-grid');
-//             recipeCard.classList.add('hidden');
-//             recipeCardbg.classList.add('hidden');
-//             antiScroll.classList.remove('no-scroll');
-//         })
-//         recipeCard.append(cancel);
-//     }
-// }
 
 
-// User story #1: ability to filter the provided cocktail recipe list to view only the recipes possible with current inventory
-// eventlistener on button click
 
+function saveToLocalStorage(objectNameString) {
 
-//User story #2 input ingredients I own, and have the website track it
-
-// happens when user navs to/refreshes inventory page
-//get array of ingredient objects stored in the userInventory array
-//parse JSON
-
-function renderIngrList() {
-    //call getLocalStorage('ingredients')
-    //write to DOM a table of ingredients and type from userInventory
-}
-function changeInventoryEventListener() {
-    //add an event listener to the add new + button and to the - button next to each ingredient in list
-}
-function inventoryHandler() {
-    //if + button is clicked, call showForm()
-    //if - button is clicked call removeIngredient()
-    //this should alert the user to confirm
-}
-function showForm() {
-    //makes form fields visible to the user on the inventory page
-    //name, type 
-    //submit
-}
-function addIngredient() {
-    //function called on form submit
-    //pushes ingredient into userInventory array
-    //call saveAndRenderInv()
-}
-function removeIngredient() {
-    //remove clicked ingredient from the userInventory array
-    //saveAndRenderInv() 
-}
-function saveToLocalStorage(object) {
-    // DONE saves userInventory to local Storage
     //checks if the ingredient being uploaded is a Cocktail object or an Ingredient Object
     const objectName = object[0].constructor.name
 
@@ -238,123 +135,86 @@ function saveToLocalStorage(object) {
         localStorage.setItem('ingredients', JSON.stringify(object));
     }
 }
-function clearTable() {
-    //erases rows in table
-}
+
 function clearChildren(id) {
     const parentElem = document.getElementById(id);
     parentElem.replaceChildren();
 }
-function saveAndRenderInv() {
-    //call saveToLocalStorage()
-    //call clearTable()
-    //call renderIngrList()
-}
 
-
-//User story #3 enter and store my own recipe
-
-//User story #4 save drinks my friends like, and filter by them
-//within the recipe card...
-function tagEventListener() {
-    //listens for event
-}
-function displayField() {
-    //displays friend field and 'add' button
-}
-function addTagButton() {
-    //pushes friend name to this.tags array
-    //save allTags to local storage
-}
-
-// User story #5 which ingredient would most broaden the drinks possible 
-
-    // Call vvv
-    // let almostPossible = filterDrinks(1); //argument of tolerance = 1. Uses userInventory, allCocktails. Outputs array to almostPossible
-            // (# userInventory IN this.specs) === specs.length-1) 
-            // an array of cocktails for which all ingredients except one can be found in userInventory[]
-            // this COULD be the same function as the filter for "is possible", with an argument of 1 passed as the "tolerance". When the function gets used for "is possible", we would pass an argument of 0. 
-    // get highYieldBottle and corresponding newBottleRecipes[]    
-        // from almostPossible[] or at the same time, create array of one-off missing ingredients
-        // .reduce() oneOff[] to get total additional cocktails possible per missing ingredient
-        // .sort() to get highYieldBottle, the highest number of new possible drinks 
-        // use highYieldBottle to .filter() through specs in almostPossible[] to produce newBottleRecipes[]
-    // render highYieldBottle and highYieldRecipes[]
-    
-        
-
-// User story #6 quick access to the app’s cocktail recipes and search feature with minimal clicks/prompts
-// primarily HTML/CSS driven
-// User story #7 alert notifying me that site users must be at least 21 years old
-//this is accomplished at the page load
-
-// const Cocktail = function(name, base, specs = [], glassware, instructions = "", notes = "", tags = [], possible, almostPossible)    
 function generateCocktails() {
-  let builtInRecipeData = [
-    // ["name", "base", ingr[], amt[], "glass", "instr", "notes"],
-    // TEMPLATE to add more:
-    // ["", "", [], [], "", "", ""],
+    let builtInRecipeData = [
+        // ["name", "base", ingr[], amt[], "glass", "instr", "notes"],
+        // TEMPLATE to add more:
+        // ["", "", [], [], "", "", ""],
 
-    ["Manhattan", 'Whiskey', ['Whiskey', 'Sweet Vermouth', 'Angostura Bitters'],
-      ['2 oz', '1 oz', '2 dashes'], 'Up'
-    ],
-    ["Bee's Knees", 'Gin', ['Gin', 'Lemon', 'Honey Syrup'],
-      ['2 oz', '3/4 oz', '3/4 oz'], 'Up'
-    ],
-    ["Gimlet", 'Gin', ['Gin', 'Lime', 'Simple Syrup'],
-      ['2 oz', '3/4 oz', '1/2 oz'], 'Up'
-    ],
-    ["Mojito", 'Rum', ['Rum', 'Lime', 'Simple Syrup'],
-      ['2 oz', '3/4 oz', '1/2 oz'], 'Collins'
-    ],
-    ["Rosita", 'Tequila', ['Tequila', 'Sweet Vermouth', 'Dry Vermouth', 'Campari'],
-      ['1 3/4 oz', '1/2 oz', '1/2 oz', '1/2 oz'], 'Rocks'
-    ],
-    ["Moscow Mule", 'Vodka', ['Vodka', 'Lime', 'Ginger Beer '],
-      ['1 1/2 oz', '1/2 oz', 'Top'], 'Mule Mug'
-    ],
-    ["Cosmopolitan", "Vodka", ["Vodka", "Triple Sec", "Lime", "Cranberry"],
-      [2, .75, .75, .5], "Coupe", "Shake and strain --> chilled glass, lime twist", ""
-    ],
-    ["Corpse Reviver #2", "Gin", ["Gin", "Cocchi Americano", "Triple Sec", "Lemon", "Absinthe"],
-      [.75, .75, .75, .75, "rinse"], "Coupe", "Shake and strain --> chilled glass, no garnish", ""
-    ],
-    ["Gold Rush", "Whiskey", ["Bourbon", "Lemon", "Honey Syrup"],
-      [2, .75, .75], "Rocks", "Short shake and strain--> Rocks glass with ice, lemon wheel", ""
-    ],
-    ["French 75", "Gin", ["Gin", "Lemon", "Simple Syrup", "Sparkling Wine"],
-      [1, .5, .5, "top"], "Flute", "Shake and strain into flute, top with sparkling wine. Spiral-cut lemon twist", ""
-    ],
-    ["Little Italy", "Whiskey", ["Rye", "Cynar", "Sweet Vermouth"],
-      [2, .5, .75], "Nick & Nora", "Stir, strain--> chilled glass, cherry", ""
-    ],
-    ["Mai Tai", "Rum", ["Rum", "Lime", "Triple Sec", "Orgeat", "Demerara Syrup"],
-      [1.75, 1, .5, .25, .25], "Rocks", "Whip shake with one cube, dump into rocks glass and top with crushed or pellet ice. Garnish with mint bouquet, a drizzle of dark rum, and grated nutmeg", ""
-    ],
-    ["Sidecar", "Brandy", ["Cognac", "Dry Curacao", "Lemon", "Demerara Syrup"],
-      [2, .75, .75, "1 barspoon"], "Coupe", "Shake, dbl strain--> Chilled coupe with sugar rim", "TIP: rim half the glass to make it optional"
-    ],
-  ]
+        ["Manhattan", 'Whiskey', ['Whiskey', 'Sweet Vermouth', 'Angostura Bitters'],
+            ['2 oz', '1 oz', '2 dashes'], 'nicknora', "Stir with plenty of ice for about 30 seconds, strain--> chilled glass, cherry", ""
+        ],
+        ["Bee's Knees", 'Gin', ['Gin', 'Lemon', 'Honey Syrup'],
+            ['2 oz', '3/4 oz', '3/4 oz'], 'coupe', "Shake hard with plenty of ice for about 15 seconds and strain --> chilled glass, lemon wheel or twist", ""
+        ],
+        ["Gimlet", 'Gin', ['Gin', 'Lime', 'Simple Syrup'],
+            ['2 oz', '3/4 oz', '1/2 oz'], 'nicknora', "Shake hard with plenty of ice for about 15 seconds and strain --> chilled glass, lime wedge", ""
+        ],
+        ["Mojito", 'Rum', ['Rum', 'Lime', 'Simple Syrup', 'Mint', 'Soda'],
+          ['2 oz', '3/4 oz', '1/2 oz', 'handful'], 'collins', "Add all ingredients to shaker except mint leaves and shake hard with several pieces of ice for a few seconds. Add mint leaves to tin and shake again for about 10 seconds in a circular motion to avoid pulverizing the mint. Single strain into collins and fill with crushed ice. Add a splash of soda water, and garnish with a bouquet of mint sprigs.", "TIP: Bruising the mint too much through muddling or shaking releases bitter flavors, which is why this recipe does it a little differently.", ""
+        ],
+        ["Rosita", 'Tequila', ['Tequila', 'Sweet Vermouth', 'Dry Vermouth', 'Campari'],
+            ['1 3/4 oz', '1/2 oz', '1/2 oz', '1/2 oz'], 'dblof', "Build in double-Old Fashioned glass on a big cube (if available). Stir 5-6 times, garnish with a lemon twist", ""
+        ],
+        ["Moscow Mule", 'Vodka', ['Vodka', 'Lime', 'Ginger Beer '],
+            ['1 1/2 oz', '1/2 oz', 'Top'], 'mule', "Build in a mule mug, add ice, and top with about 3 oz ginger beer. Garnish with a fat lime wedge.", "TIP: Change out the base spirit to gin for a London Mule, tequila for a Mexican Mule, bourbon for a Kentucky Mule, etc."
+        ],
+        ["Cosmopolitan", "Vodka", ["Vodka", "Triple Sec", "Lime", "Cranberry"],
+            [2, .75, .75, .5], "martini", "Shake and strain --> chilled glass, lime twist", ""
+        ],
+        ["Corpse Reviver #2", "Gin", ["Gin", "Cocchi Americano", "Triple Sec", "Lemon", "Absinthe"],
+            [.75, .75, .75, .75, "rinse"], "coupe", "Shake and strain --> chilled glass rinsed or sprayed with absinthe, no garnish", ""
+        ],
+        ["Gold Rush", "Whiskey", ["Bourbon", "Lemon", "Honey Syrup"],
+            [2, .75, .75], "dblof", "Short shake and strain--> Rocks glass with ice, lemon wheel", "To make honey syrup: Mix 1 part warm water with 2 parts honey. Keep refrigerated."
+        ],
+        ["French 75", "Gin", ["Gin", "Lemon", "Simple Syrup", "Sparkling Wine"],
+            [1, .5, .5, "top"], "flute", "Shake and strain into flute, top with sparkling wine. Spiral-cut lemon twist", ""
+        ],
+        ["Little Italy", "Whiskey", ["Rye", "Cynar", "Sweet Vermouth"],
+            [2, .5, .75], "nicknora", "Stir with plenty of ice for about 30 seconds, strain--> chilled glass, cherry", ""
+        ],
+        ["Mai Tai", "Rum", ["Rum", "Lime", "Triple Sec", "Orgeat", "Demerara Syrup"],
+            [1.75, 1, .5, .25, .25], "dblof", "Whip shake with one cube, dump into rocks glass and top with crushed or pellet ice. Garnish with mint bouquet, a drizzle of dark rum, and grated nutmeg", ""
+        ],
+        ["Sidecar", "Brandy", ["Cognac", "Dry Curacao", "Lemon", "Demerara Syrup"],
+            [2, .75, .75, "1 barspoon"], "coupe", "Shake, dbl strain--> Chilled coupe with sugar rim", "TIP: rim half the glass to make it optional"
+        ],
+    ]
 
-  builtInRecipeData.forEach(drink => new Cocktail(...drink));
+    builtInRecipeData.forEach(drink => new Cocktail(...drink));
+
 }
-
 
 function basicIngredients() {
     let basic;
     let basicArray = [
-        ["Rittenhouse Rye","Whiskey"],//TEST remove before deploy
-        ["Roku","Gin"],//TEST remove before deploy
-        ["Bacardi","Rum"],//TEST remove before deploy
-        ["Sweet Vermouth","Vermouth"],//TEST remove before deploy
-        ["Dry Vermouth","Vermouth"],//TEST remove before deploy
-        ["Campari","Liqueur"],//TEST remove before deploy
-        ["Angostura Bitters","Bitters"],//TEST remove before deploy
-        ["Simple Syrup","Basics"],
-        ["Lime","Basics"],
-        ["Lemon","Basics"]
-        ];
-    for (let i = 0; i < basicArray.length; i += 1){
+
+        ["Rittenhouse Rye", "Whiskey"],//TEST remove before deploy
+        ["Roku", "Gin"],//TEST remove before deploy
+        ["Bacardi", "Rum"],//TEST remove before deploy
+        ["Sweet Vermouth", "Vermouth"],//TEST remove before deploy
+        ["Dry Vermouth", "Vermouth"],//TEST remove before deploy
+        ["Campari", "Liqueur"],//TEST remove before deploy
+        ["Angostura Bitters", "Bitters"],//TEST remove before deploy
+        ["Simple Syrup", "Syrup/Sweetener"],
+        ["Demerara Syrup", "Syrup/Sweetener"],
+        ["Lime", "Juice"],
+        ["Lemon", "Juice"],
+        ["Orange", "Juice"],
+        ["Cranberry", "Juice"],
+        ["Pineapple", "Juice"],
+        ["Grapefruit", "Juice"],
+        ["Olive Brine", "Juice"]
+    ];
+    for (let i = 0; i < basicArray.length; i += 1) {
+
         basic = new Ingredient(basicArray[i][0], basicArray[i][1]);
         Ingredient.basic.push(basic);
         Ingredient.userPlusBasicIngr.push(basic);
@@ -362,4 +222,162 @@ function basicIngredients() {
 }
 
 loadObjects();
-//const negroni = new Cocktail("Negroni", 'Gin', ['Gin', 'Campari', 'Sweet Vermouth'], ['1 oz', '1 oz', '1 oz'], 'Rocks');
+
+function mostValueIngr() {
+// determine which ingredient would most broaden the drinks possible
+
+
+    let tempArray = []; // stores all ingredients for safe handling 
+    let numberArray = []; // makes an array of 0's, for each element in tempArray
+    let combinedArray = []; // array to hold outputs of tempArray and numberArray
+
+    Cocktail.filtered.forEach(cocktailArray => {
+        cocktailArray.ingr.forEach(i => {
+            tempArray.push(i.toLowerCase()); // stores ingredients in massive array of all ingredients for all recipes
+        })
+    })
+    tempArray.forEach(singleIngr => {
+        let tempValue = 0;
+        numberArray.push(tempValue); // generates array of 0's with length equal to tempArray length
+    })
+    tempArray.forEach(ingredient => {
+        let tempIngr = ingredient
+        tempArray.forEach((i, index) => {
+            if (tempArray[index] === tempIngr) {
+                numberArray[index] += 1; // inscreases value based on how many times an ingredient shows up in tempArray
+            }
+        })
+    })
+    tempArray.forEach((e, index) => {
+        combinedArray.push([`${numberArray[index]}`, `${tempArray[index]}`])
+    }) // combines tempArray and numberArray based on indices of both, to assign numbers to ingredients
+    // the higher the number, the more often in shows up in current recipes
+    let newArray = new Set(combinedArray.map(JSON.stringify));
+    let finalArray = Array.from(newArray).map(JSON.parse); // gets rid of duplicates and creates finalArray
+    // finalArray will be used to compare to Ingredients.missingIngredients array
+    finalArray.sort(function (a, b) {
+        return b[0] - a[0];
+    });
+    // sorts finalArray from most needed ingredient to least needed ingredient, based on numerical value
+    let stopper = 0;
+    finalArray.forEach(e => {
+        if (Ingredient.missingIngredients.includes(e[1]) && stopper === 0) {
+            let appendHere = document.getElementById('recipe-list-title');
+            let missingAlert = document.createElement('p');
+            missingAlert.setAttribute('id', 'ingredient-alert');
+            appendHere.appendChild(missingAlert);
+
+            missingAlert.innerHTML = `Adding ${e[1]} to your inventory will allow you to make ${e[0]} more cocktail(s)`
+            stopper += 1;
+        }
+    })
+}
+// mostValueIngr();
+
+function removeMostValueIngr() {
+    let appendHere = document.getElementById('recipe-list-title');
+    let missingAlert = document.getElementById('ingredient-alert');
+    if (missingAlert) {
+        appendHere.removeChild(missingAlert);
+    }
+}
+
+function renderThumbnails(array = Cocktail.all) {
+    //render array of allCocktails
+    //render specifically the name and base property of Cocktail object
+    array.forEach((e, index) => {
+        const recipeList = document.getElementById('recipe-list-grid');
+        let renderRecipe = document.createElement('div');
+        let recipeTitle = document.createElement('h2');
+        let recipeBase = document.createElement('p');
+
+        recipeList.appendChild(renderRecipe);
+        renderRecipe.setAttribute('class', 'recipe-card');
+        renderRecipe.setAttribute('id', `${index}`);
+
+        renderRecipe.appendChild(recipeTitle);
+        recipeTitle.setAttribute('id', `${index}`);
+        recipeTitle.innerHTML = `${e.name}`;
+        // renderRecipe.innerHTML = `<h2>${e.name}</h2> <br>Base: ${e.base}`;
+        renderRecipe.appendChild(recipeBase);
+        recipeBase.setAttribute('id', `${index}`);
+        recipeBase.innerHTML = `Base: ${e.base}`;
+    })
+}
+
+function renderRecipeCard(event) {
+    console.log('inside renderRecipeCard funct', isOnRecipePage);
+    //change from hidden to shown
+    // TODO add event listener for nav left, right, return to list
+    let array;
+
+    if (isOnRecipePage === true) {
+        array = Cocktail.userRecipes;
+
+    } else if (Cocktail.filtered.length > 0) {
+        array = Cocktail.filtered;
+
+    } else {
+        array = Cocktail.all;
+    }
+
+    let clicked = event.target.id;
+
+    let recipeCard = document.getElementById('popup');
+    let recipeCardbg = document.getElementById('popup-outline');
+    let antiScroll = document.getElementById('body');
+
+    let tempRecipe = array[clicked];
+
+    if (tempRecipe) {
+
+        antiScroll.classList.add('no-scroll');
+        recipeCard.classList.remove('hidden');
+        recipeCard.classList.add('recipe-grid');
+        recipeCardbg.classList.remove('hidden');
+
+        let recipeName = document.createElement('h4');
+        recipeName.setAttribute('class', 'rendered-title');
+        recipeCard.append(recipeName);
+        recipeName.innerHTML = `${tempRecipe.name}`
+
+        let icon = document.createElement('img');
+        icon.setAttribute('class', 'icon');
+        icon.src = glasswareIcons[tempRecipe.glassware];
+        icon.alt = tempRecipe.glassware;
+        recipeCard.append(icon);
+
+        let ingrs = document.createElement('ul');
+        ingrs.setAttribute('class', 'ingredients-list');
+        recipeCard.append(ingrs);
+
+        for (let i = 0; i < tempRecipe.ingr.length; i += 1) {
+            let oneIng = document.createElement('li');
+            ingrs.append(oneIng);
+            oneIng.innerHTML = `${tempRecipe.amount[i]} - ${tempRecipe.ingr[i]}`
+        }
+
+        let howToMake = document.createElement('p');
+        howToMake.setAttribute('class', 'how-make');
+        recipeCard.append(howToMake);
+        howToMake.innerHTML = `How to make: ${tempRecipe.instructions}`
+
+        let notes = document.createElement('p');
+        notes.setAttribute('class', 'notes');
+        recipeCard.append(notes);
+        notes.innerHTML = `Notes: ${tempRecipe.notes}`
+
+        let cancel = document.createElement('button');
+        cancel.setAttribute('class', 'close-popup');
+        cancel.innerHTML = '&#x2715'
+        cancel.addEventListener('click', function () {
+            recipeCard.innerHTML = '';
+            recipeCard.classList.remove('recipe-grid');
+            recipeCard.classList.add('hidden');
+            recipeCardbg.classList.add('hidden');
+            antiScroll.classList.remove('no-scroll');
+        })
+        recipeCard.append(cancel);
+    }
+}
+

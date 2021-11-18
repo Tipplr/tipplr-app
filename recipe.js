@@ -24,6 +24,15 @@ let newSpecsIndex = 1;
 
 let divArray = [];
 
+isOnRecipePage = true;
+console.log(isOnRecipePage);
+
+const recipeListEventListener = document.getElementById('recipe-list-grid');
+recipeListEventListener.addEventListener('click', renderRecipeCard);
+
+
+renderThumbnails(Cocktail.userRecipes);
+
 let addFunction = function (event) {
 
     event.preventDefault()
@@ -87,24 +96,19 @@ let minusFunction = function (event) {
 
 minusBtn.addEventListener('click', minusFunction);
 
-// function recipeEventListener() {
-//     //listens for button click to add a recipe
-//     const recipeSubmitBtn = document.getElementById('recipeSubmitBtn');
-//     recipeSubmitBtn.addEventListener('click', addRecipeHandler);
-// }
 
-// recipeEventListener();
+const form = document.getElementById('recipe-submit');
+form.addEventListener('submit', addRecipeHandler);
+form.addEventListener('reset', handleResetClick);
 
-function showNewRecipeForm() {
-    //changes CSS display styling to properly display the recipe card pop-up form
-    // show pop-up card form
-}
 function addRecipeHandler(event) {
     //call showNewRecipeForm()
-    event.preventDefault();
+    // event.preventDefault();
     newRecipeFormSubmit();
     showNewRecipeForm();
     clearForm();
+    clearChildren('recipe-list-grid');
+    renderThumbnails(Cocktail.userRecipes);
 }
 
 const form = document.getElementById('recipe-submit');
@@ -134,8 +138,6 @@ function newRecipeFormSubmit() {
         console.log('amntArray: ' + amntArray);
     }
 
-    // name, base, ingr = [], amount = [], glassware, instructions = "", notes = ""
-
     const newCocktail = new Cocktail(name, base, ingrArray, amntArray, glassware, instructions, notes);
 
     console.log(newCocktail);
@@ -146,7 +148,9 @@ function newRecipeFormSubmit() {
 
     //STRETCH: call filterFunction() if applicable new recipe will now show in filtered array
     //STRETCH: call renderFiltered() re-renders page so if new recipe meets requirements is now displayed on the page
+
 }
+
 function clearForm() {
     //clears all form fields
     const recipeForm = document.getElementById('recipe-submit');
@@ -164,8 +168,4 @@ function handleResetClick() {
     divArray = [];
     // reset specs index counter
     newSpecsIndex = 1;
-}
-
-function closeFormOnSubmit() {
-
 }

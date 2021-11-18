@@ -34,6 +34,7 @@ function clearIngrTable() {
 function changeInventoryEventListener() {
     //add an event listener to the add new + button and to the - button next to each ingredient in list
     document.getElementById('add-inventory').addEventListener("click", toggleFormDisplay);
+    document.getElementById('inventory-table').addEventListener('click', confirmRemove);
 }
 function inventoryHandler() {
     //if + button is clicked, call showForm()
