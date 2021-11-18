@@ -356,7 +356,12 @@ function mvb() {
     let stopper = 0;
     finalArray.forEach(e => {
         if (Ingredient.missingIngredients.includes(e[1]) && stopper === 0) {
-            console.log(`wow, ${e[1]} will allow you to make ${e[0]} more cocktails`);
+            let appendHere = document.getElementById('recipe-list-title');
+            let missingAlert = document.createElement('p');
+            missingAlert.setAttribute('id', 'ingredient-alert');
+            appendHere.appendChild(missingAlert);
+
+            missingAlert.innerHTML = `wow, ${e[1]} will allow you to make ${e[0]} more cocktails`
             stopper += 1;
         }
     })
