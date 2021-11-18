@@ -112,31 +112,39 @@ function filterHandler(event) {
     switch (event.target.id) {
         case "filter-01":
             filterDrinksPossible(0);
+            removeMostValueIngr();
             break;
         case "filter-02":
             filterDrinksBySpirit('gin');
+            removeMostValueIngr();
             break;
         case "filter-03":
             filterDrinksBySpirit('whiskey');
+            removeMostValueIngr();
             break;
         case "filter-04":
             filterDrinksBySpirit('tequila');
+            removeMostValueIngr();
             break;
         case "filter-05":
             filterDrinksBySpirit('rum');
+            removeMostValueIngr();
             break;
         case "filter-06":
             filterDrinksBySpirit('vodka');
+            removeMostValueIngr();
             break;
         case "filter-07":
             filterDrinksBySpirit('brandy');
+            removeMostValueIngr();
             break;
         case "filter-08":
             filterDrinksPossible(1);
-            mvb();
+            mostValueIngr();
             break;
         case "filter-09":
             filterDrinksBySpirit('other');
+            removeMostValueIngr();
             break;
         default:
         return; // If user clicks elsewhere, do nothing

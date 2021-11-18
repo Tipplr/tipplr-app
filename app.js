@@ -302,7 +302,7 @@ loadObjects();
 //const negroni = new Cocktail("Negroni", 'Gin', ['Gin', 'Campari', 'Sweet Vermouth'], ['1 oz', '1 oz', '1 oz'], 'Rocks');
 // User story #5 which ingredient would most broaden the drinks possible 
 
-function mvb() {
+function mostValueIngr() {
 
     let tempArray = []; // stores all ingredients for safe handling 
     let numberArray = []; // makes an array of 0's, for each element in tempArray
@@ -355,4 +355,10 @@ function mvb() {
         }
     })
 }
-mvb();
+// mostValueIngr();
+
+function removeMostValueIngr() {
+    let appendHere = document.getElementById('recipe-list-title');
+    let missingAlert = document.getElementById('ingredient-alert');
+    appendHere.removeChild(missingAlert);
+}
