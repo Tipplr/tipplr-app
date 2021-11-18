@@ -206,8 +206,9 @@ function basicIngredients() {
 
 loadObjects();
 
+function mostValueIngr() {
 // determine which ingredient would most broaden the drinks possible
-function mvb() {
+
 
     let tempArray = []; // stores all ingredients for safe handling 
     let numberArray = []; // makes an array of 0's, for each element in tempArray
@@ -218,12 +219,10 @@ function mvb() {
             tempArray.push(i.toLowerCase()); // stores ingredients in massive array of all ingredients for all recipes
         })
     })
-    // console.log(tempArray);
     tempArray.forEach(singleIngr => {
         let tempValue = 0;
         numberArray.push(tempValue); // generates array of 0's with length equal to tempArray length
     })
-    // console.log(numberArray);
     tempArray.forEach(ingredient => {
         let tempIngr = ingredient
         tempArray.forEach((i, index) => {
@@ -236,7 +235,6 @@ function mvb() {
         combinedArray.push([`${numberArray[index]}`, `${tempArray[index]}`])
     }) // combines tempArray and numberArray based on indices of both, to assign numbers to ingredients
     // the higher the number, the more often in shows up in current recipes
-    console.log(combinedArray);
     let newArray = new Set(combinedArray.map(JSON.stringify));
     let finalArray = Array.from(newArray).map(JSON.parse); // gets rid of duplicates and creates finalArray
     // finalArray will be used to compare to Ingredients.missingIngredients array
@@ -252,9 +250,18 @@ function mvb() {
             missingAlert.setAttribute('id', 'ingredient-alert');
             appendHere.appendChild(missingAlert);
 
-            missingAlert.innerHTML = `wow, ${e[1]} will allow you to make ${e[0]} more cocktails`
+            missingAlert.innerHTML = `Adding ${e[1]} to your inventory will allow you to make ${e[0]} more cocktail(s)`
             stopper += 1;
         }
     })
 }
-mvb();
+// mostValueIngr();
+
+function removeMostValueIngr() {
+    let appendHere = document.getElementById('recipe-list-title');
+    let missingAlert = document.getElementById('ingredient-alert');
+    if (missingAlert) {
+        appendHere.removeChild(missingAlert);
+    }
+}
+

@@ -128,12 +128,10 @@ button:hover {
 #recipe-list-title {
     grid-column: 2;
     grid-row: 4;
-    width: 10rem;
+    width: 50rem;
 }
 
 #ingredient-alert {
-    display: block;
-    width: 400%;
     font-size: 1.5rem;
     color: var(--fc-primary);
     padding-top: .2rem;
