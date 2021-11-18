@@ -38,6 +38,7 @@ function inventoryEventListeners() {
     document.getElementById('add-inventory').addEventListener("click", toggleFormDisplay);
     document.getElementById('inventory-table').addEventListener('click', inventoryHandler);
 }
+
 function inventoryHandler(event) {
     confirmRemove(event);
     clearIngrTable();
@@ -46,13 +47,12 @@ function inventoryHandler(event) {
     //if - button is clicked call removeIngredient()
     //this should alert the user to confirm
 }
+
 function toggleFormDisplay() {
     const form = document.querySelector(".inventory-form");
     form.classList.toggle('hidden');
     form.addEventListener('submit', addIngredient);
 }
-
-
 
 function addIngredient(event) {
     event.preventDefault();
