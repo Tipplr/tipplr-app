@@ -30,7 +30,7 @@ renderThumbnails();
 
 function renderRecipeCard(event) {
     //change from hidden to shown
-    //add event listener for nav left, right, return to list
+    // TODO add event listener for nav left, right, return to list
     let array;
 
     if (Cocktail.filtered.length > 0) {
@@ -58,8 +58,10 @@ function renderRecipeCard(event) {
         recipeCard.append(recipeName);
         recipeName.innerHTML = `${tempRecipe.name}`
 
-        let icon = document.createElement('div');
+        let icon = document.createElement('img');
         icon.setAttribute('class', 'icon');
+        icon.src = glasswareIcons[tempRecipe.glassware];
+        icon.alt = tempRecipe.glassware;
         recipeCard.append(icon);
 
         let ingrs = document.createElement('ul');
@@ -69,7 +71,7 @@ function renderRecipeCard(event) {
         for (let i = 0; i < tempRecipe.ingr.length; i += 1) {
             let oneIng = document.createElement('li');
             ingrs.append(oneIng);
-            oneIng.innerHTML = `${i + 1}) ${tempRecipe.ingr[i]} - ${tempRecipe.amount[i]}`
+            oneIng.innerHTML = `${tempRecipe.amount[i]} - ${tempRecipe.ingr[i]}`
         }
 
         let howToMake = document.createElement('p');
@@ -95,8 +97,6 @@ function renderRecipeCard(event) {
         recipeCard.append(cancel);
     }
 }
-
-//filters property of base spirt clicked as milestone to story #1
 const clearFilter = document.getElementById('clear-filter');
 clearFilter.addEventListener('click', clearFilterHandler);
 
@@ -105,37 +105,47 @@ function clearFilterHandler() {
     clearChildren('recipe-list-grid');
     renderThumbnails(Cocktail.all);
     Cocktail.filtered = [];
-    // filterDrinksPossible(0);
+    removeMostValueIngr();
 }
 
 function filterHandler(event) {
     switch (event.target.id) {
         case "filter-01":
             filterDrinksPossible(0);
+            removeMostValueIngr();
             break;
         case "filter-02":
             filterDrinksBySpirit('gin');
+            removeMostValueIngr();
             break;
         case "filter-03":
             filterDrinksBySpirit('whiskey');
+            removeMostValueIngr();
             break;
         case "filter-04":
             filterDrinksBySpirit('tequila');
+            removeMostValueIngr();
             break;
         case "filter-05":
             filterDrinksBySpirit('rum');
+            removeMostValueIngr();
             break;
         case "filter-06":
             filterDrinksBySpirit('vodka');
+            removeMostValueIngr();
             break;
         case "filter-07":
             filterDrinksBySpirit('brandy');
+            removeMostValueIngr();
             break;
         case "filter-08":
             filterDrinksPossible(1);
+            removeMostValueIngr();
+            mostValueIngr();
             break;
         case "filter-09":
             filterDrinksBySpirit('other');
+            removeMostValueIngr();
             break;
         default:
         return; // If user clicks elsewhere, do nothing
@@ -146,7 +156,7 @@ function filterHandler(event) {
 
 function filterDrinksPossible(tolerance, array = Cocktail.all) {
     // tolerance of 0 if currently possible, tolerance of 1 for one-ingredient-away
-    Cocktail.filtered = []; // STRETCH: Change the logic so mult. filters causes multiple passes of array through this function. Allow deselection or clearing of filters.
+    Cocktail.filtered = [];
     Ingredient.missingIngredients = [];
     let inventoryNames = Ingredient.userPlusBasicIngr.map(element => element.name.toLowerCase());
     let inventoryTypes = Ingredient.userPlusBasicIngr.map(element => element.type.toLowerCase());
@@ -184,16 +194,6 @@ function filterDrinksBySpirit(base, array = Cocktail.all) {
         }
     });
     return Cocktail.filtered;
-}
-
-function renderFiltered() {
-    //update the displayed cocktails
-}
-
-
-function searchBar() { // STRETCH
-    //updates displayFiltered based on cocktail name entered (returns 1 cocktail or more if smart)
-    //call renderFiltered()
 }
 
 
