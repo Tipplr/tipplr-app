@@ -30,7 +30,7 @@ renderThumbnails();
 
 function renderRecipeCard(event) {
     //change from hidden to shown
-    //add event listener for nav left, right, return to list
+    // TODO add event listener for nav left, right, return to list
     let array;
 
     if (Cocktail.filtered.length > 0) {
@@ -58,8 +58,10 @@ function renderRecipeCard(event) {
         recipeCard.append(recipeName);
         recipeName.innerHTML = `${tempRecipe.name}`
 
-        let icon = document.createElement('div');
+        let icon = document.createElement('img');
         icon.setAttribute('class', 'icon');
+        icon.src = glasswareIcons[tempRecipe.glassware];
+        icon.alt = tempRecipe.glassware;
         recipeCard.append(icon);
 
         let ingrs = document.createElement('ul');
@@ -95,8 +97,6 @@ function renderRecipeCard(event) {
         recipeCard.append(cancel);
     }
 }
-
-//filters property of base spirt clicked as milestone to story #1
 const clearFilter = document.getElementById('clear-filter');
 clearFilter.addEventListener('click', clearFilterHandler);
 
