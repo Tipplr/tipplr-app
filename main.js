@@ -105,7 +105,6 @@ function clearFilterHandler() {
     clearChildren('recipe-list-grid');
     renderThumbnails(Cocktail.all);
     Cocktail.filtered = [];
-    // filterDrinksPossible(0);
 }
 
 function filterHandler(event) {
@@ -147,7 +146,6 @@ function filterHandler(event) {
 function filterDrinksPossible(tolerance, array = Cocktail.all) {
     // tolerance of 0 if currently possible, tolerance of 1 for one-ingredient-away
     Cocktail.filtered = []; // STRETCH: Change the logic so mult. filters causes multiple passes of array through this function. Allow deselection or clearing of filters.
-    Ingredient.missingIngredients = [];
     let inventoryNames = Ingredient.userPlusBasicIngr.map(element => element.name.toLowerCase());
     let inventoryTypes = Ingredient.userPlusBasicIngr.map(element => element.type.toLowerCase());
     array.forEach(cocktail => { // iterate through array of cocktail instances
