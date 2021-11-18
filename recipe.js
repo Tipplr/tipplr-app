@@ -5,8 +5,12 @@ let i;
 let newSpecsIndex = 1;
 let divArray = [];
 
+isOnRecipePage = true;
+console.log(isOnRecipePage);
+
 const recipeListEventListener = document.getElementById('recipe-list-grid');
 recipeListEventListener.addEventListener('click', renderRecipeCard);
+
 
 renderThumbnails(Cocktail.userRecipes);
 
