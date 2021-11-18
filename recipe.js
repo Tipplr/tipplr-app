@@ -57,20 +57,6 @@ let minusFunction = function (event) {
 add.addEventListener('click', addFunction)
 minusBtn.addEventListener('click', minusFunction);
 
-// function recipeEventListener() {
-//     //listens for button click to add a recipe
-//     const recipeSubmitBtn = document.getElementById('recipeSubmitBtn');
-//     recipeSubmitBtn.addEventListener('click', addRecipeHandler);
-// }
-
-// recipeEventListener();
-
-function showNewRecipeForm() {
-    //changes CSS display styling to properly display the recipe card pop-up form
-    // show pop-up card form
-}
-
-// Refactor to switch statement with one listener on recipe form
 const form = document.getElementById('recipe-submit');
 form.addEventListener('submit', addRecipeHandler);
 form.addEventListener('reset', handleResetClick);
@@ -104,8 +90,6 @@ function newRecipeFormSubmit() {
         console.log('amntArray: ' + amntArray);
     }
 
-    // name, base, ingr = [], amount = [], glassware, instructions = "", notes = ""
-
     const newCocktail = new Cocktail(name, base, ingrArray, amntArray, glassware, instructions, notes);
 
     console.log(newCocktail);
@@ -113,10 +97,8 @@ function newRecipeFormSubmit() {
 
     Cocktail.userRecipes.push(newCocktail);
     saveToLocalStorage(Cocktail.userRecipes);
-
-    //STRETCH: call filterFunction() if applicable new recipe will now show in filtered array
-    //STRETCH: call renderFiltered() re-renders page so if new recipe meets requirements is now displayed on the page
 }
+
 function clearForm() {
     //clears all form fields
     const recipeForm = document.getElementById('recipe-submit');

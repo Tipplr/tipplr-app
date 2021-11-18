@@ -8,7 +8,6 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="css/reset.css">
     <link rel="stylesheet" href="css/recipe.css">
-    <!-- <script src="appCollapse.js" defer></script> -->
     <script src="app.js" defer></script>
     <script src="recipe.js" defer></script>
     <title>Tipplr Recipes</title>
@@ -31,8 +30,6 @@
     </form>
 
     <h2 class="grid-item recipe-list-title">My Recipes</h2>
-    
-    <!-- <button type="button" class="collapsible">Enter Recipe</button> -->
 
     <form class="grid-item recipe-form" id="recipe-submit">
 
@@ -60,9 +57,19 @@
             
         <div>
             <label for="glassware">Glassware</label>
-            <input type="text" name="glassware" id="glassware" required>
+            <select name="glassware" id="glassware" required>
+              <option value="collins">Collins</option>
+              <option value="coupe">Coupe</option>
+              <option value="dblof">Dbl Old Fashioned</option>
+              <option value="flute">Flute</option>
+              <option value="martini">Martini</option>
+              <option value="mule">Mule mug</option>
+              <option value="nicknora">Nick & Nora</option>
+              <option value="nosing">Nosing glass</option>
+              <option value="shot">Shot glass</option>
+              <option value="wine">Wine glass</option>
+            </select>
         </div>
-        
         <div>
             <label for="instructions">Instructions</label>
             <input type="text" name="instruct" id="instruct" required>
