@@ -105,32 +105,6 @@ function loadObjects() {
     alphabetize(Ingredient.userInventory);
 }
 
-function renderIngrList() {
-    //call getLocalStorage('ingredients')
-    //write to DOM a table of ingredients and type from userInventory
-}
-function changeInventoryEventListener() {
-    //add an event listener to the add new + button and to the - button next to each ingredient in list
-}
-function inventoryHandler() {
-    //if + button is clicked, call showForm()
-    //if - button is clicked call removeIngredient()
-    //this should alert the user to confirm
-}
-function showForm() {
-    //makes form fields visible to the user on the inventory page
-    //name, type 
-    //submit
-}
-function addIngredient() {
-    //function called on form submit
-    //pushes ingredient into userInventory array
-    //call saveAndRenderInv()
-}
-function removeIngredient() {
-    //remove clicked ingredient from the userInventory array
-    //saveAndRenderInv() 
-}
 function saveToLocalStorage(object) {
     // saves userInventory to local Storage
     //checks if the ingredient being uploaded is a Cocktail object or an Ingredient Object
@@ -142,17 +116,10 @@ function saveToLocalStorage(object) {
         localStorage.setItem('ingredients', JSON.stringify(object));
     }
 }
-function clearTable() {
-    //erases rows in table
-}
+
 function clearChildren(id) {
     const parentElem = document.getElementById(id);
     parentElem.replaceChildren();
-}
-function saveAndRenderInv() {
-    //call saveToLocalStorage()
-    //call clearTable()
-    //call renderIngrList()
 }
 
 function generateCocktails() {
