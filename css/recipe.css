@@ -23,6 +23,7 @@
 
 .body-grid-container {
     display: grid;
+
     grid-template-columns: 19.4% 58% 19.4%;
     grid-template-rows: 4rem 2rem auto minmax(35rem, auto) 5rem;
     grid-gap: 1.8rem;
@@ -45,6 +46,7 @@
 .right-margin {
     background-color: var(--bg-secondary);
     width: auto;
+
 }
 
 header {
@@ -209,7 +211,7 @@ button:hover {
 
 .recipe-list-grid {
     grid-column: 2;
-    grid-row: 4;
+    grid-row: 3;
     display: grid;
     grid-template-columns: 33% 33% 33%;
     grid-auto-rows: 6rem;
@@ -321,19 +323,17 @@ button:hover {
         font-size: 1.5rem;
         grid-row: 3;
     }
-    /* .collapsible {
+    .collapsible {
         cursor: pointer;
         position: absolute;
         top: 9.5rem;
         left: 15%;
-    } */
+    }
 
     .recipe-form {
-        /* display: none; */
-        /* overflow: hidden; */
-        /* position: absolute; */
-        grid-column: 2;
-        grid-row: 4;
+        display: none;
+        overflow: hidden;
+        position: absolute;
         left: 15%;
         top: 11rem;
         width: 70%;
@@ -341,7 +341,7 @@ button:hover {
 
     .recipe-list-grid {
         grid-column: 2;
-        grid-row: 5;
+        grid-row: 4;
         display: grid;
         grid-template-columns: 50% 50%;
     }

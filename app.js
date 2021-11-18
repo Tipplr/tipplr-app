@@ -51,7 +51,6 @@ Ingredient.userInventory = []; // array of user ingredient objects
 Ingredient.userPlusBasicIngr = []; //array of basic and user ingredients
 Ingredient.basic = []; // array of basic ingredients
 Ingredient.missingIngredients = [];
-Ingredient.removalIndex;
 
 let isOnRecipePage = false;
 
@@ -70,49 +69,51 @@ function alphabetize(array) {
         let stringa = a.name.toLowerCase();
         let stringb = b.name.toLowerCase();
 
-        if (stringa < stringb) {
+        if (stringa < stringb){
             return -1;
         }
-        if (stringa > stringb) {
+        if (stringa > stringb){
             return 1;
         }
         return 0;
     });
 }
 
-function loadObjects() {
+function loadObjects(){
     let storedCocktails = getLocalStorage('cocktails');
     let cocktail;
 
     let storedIngredients = getLocalStorage('ingredients');
     let ingredient;
 
+
     if (storedCocktails) {
         Cocktail.all = [];
         Cocktail.userRecipes = [];
-        generateCocktails();
-        for (let i = 0; i < storedCocktails.length; i += 1) {
-            cocktail = new Cocktail(storedCocktails[i].name, storedCocktails[i].base, storedCocktails[i].ingr, storedCocktails[i].amount, storedCocktails[i].glassware, storedCocktails[i].instructions, storedCocktails[i].notes);
 
-            Cocktail.userRecipes.push(cocktail); //pushes this cocktail back into userRecipes array
+        generateCocktails();
+        for(let i = 0; i < storedCocktails.length; i += 1){
+           cocktail = new Cocktail (storedCocktails[i].name, storedCocktails[i].base, storedCocktails[i].ingr, storedCocktails[i].amount, storedCocktails[i].glassware, storedCocktails[i].instructions, storedCocktails[i].notes);
+        
+           Cocktail.userRecipes.push(cocktail); //pushes this cocktail back into userRecipes array
         }
     } else {
         generateCocktails();
     }
 
-    if (storedIngredients) {
+    if (storedIngredients){
         Ingredient.all = [];
         Ingredient.basic = [];
         Ingredient.userInventory = [];
         Ingredient.userPlusBasicIngr = [];
         basicIngredients()
-        for (let i = 0; i < storedIngredients.length; i += 1) {
+        for(let i = 0; i < storedIngredients.length; i += 1){
             ingredient = new Ingredient(storedIngredients[i].name, storedIngredients[i].type);
 
             Ingredient.userInventory.push(ingredient);
             Ingredient.userPlusBasicIngr.push(ingredient);
         }
-    } else {
+    } else{
         basicIngredients();
     }
 
@@ -121,14 +122,17 @@ function loadObjects() {
 }
 
 
+
+
 function saveToLocalStorage(objectNameString) {
+
     //checks if the ingredient being uploaded is a Cocktail object or an Ingredient Object
-    // Saves respective object array to local Storage
-    
-    if (objectNameString === 'Cocktail') {
-        localStorage.setItem('cocktails', JSON.stringify(Cocktail.userRecipes));
-    } else if (objectNameString === 'Ingredient'){
-        localStorage.setItem('ingredients', JSON.stringify(Ingredient.userInventory));
+    const objectName = object[0].constructor.name
+
+    if (objectName === 'Cocktail') {
+        localStorage.setItem('cocktails', JSON.stringify(object));
+    } else {
+        localStorage.setItem('ingredients', JSON.stringify(object));
     }
 }
 
@@ -185,11 +189,13 @@ function generateCocktails() {
     ]
 
     builtInRecipeData.forEach(drink => new Cocktail(...drink));
+
 }
 
 function basicIngredients() {
     let basic;
     let basicArray = [
+
         ["Rittenhouse Rye", "Whiskey"],//TEST remove before deploy
         ["Roku", "Gin"],//TEST remove before deploy
         ["Bacardi", "Rum"],//TEST remove before deploy
@@ -208,6 +214,7 @@ function basicIngredients() {
         ["Olive Brine", "Juice"]
     ];
     for (let i = 0; i < basicArray.length; i += 1) {
+
         basic = new Ingredient(basicArray[i][0], basicArray[i][1]);
         Ingredient.basic.push(basic);
         Ingredient.userPlusBasicIngr.push(basic);
@@ -373,3 +380,4 @@ function renderRecipeCard(event) {
         recipeCard.append(cancel);
     }
 }
+
