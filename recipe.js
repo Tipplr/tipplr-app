@@ -1,24 +1,22 @@
-let coll = document.getElementsByClassName('collapsible');
+// let coll = document.getElementsByClassName('collapsible');
 let add = document.getElementById('plus');
 let minusBtn = document.getElementById('minus');
 let resetBtn = document.getElementById('recipeResetBtn');
 let i;
-// incrementor for new specs id
-// starts at 1 because initial field is 0
 
-let collapsingFunction = function () {
-    this.classList.toggle('active');
-    let content = this.nextElementSibling;
-    if (content.style.display === 'block') {
-        content.style.display = 'none';
-    } else {
-        content.style.display = 'block'
-    }
-}
+// let collapsingFunction = function () {
+//     this.classList.toggle('active');
+//     let content = this.nextElementSibling;
+//     if (content.style.display === 'block') {
+//         content.style.display = 'none';
+//     } else {
+//         content.style.display = 'block'
+//     }
+// }
 
-for (i = 0; i < coll.length; i += 1) {
-    coll[i].addEventListener("click", collapsingFunction)
-}
+// for (i = 0; i < coll.length; i += 1) {
+//     coll[i].addEventListener("click", collapsingFunction)
+// }
 
 let newSpecsIndex = 1;
 
@@ -26,7 +24,8 @@ let divArray = [];
 
 let addFunction = function (event) {
 
-    event.preventDefault()
+    event.preventDefault();
+
     const specForm = document.getElementById('inputSpecs');
     const newSpecDiv = document.createElement('div');
     const newSpecIngrInput = document.createElement('input');
@@ -58,17 +57,10 @@ let addFunction = function (event) {
 
     divArray.push(newSpecDiv);
 
-    console.log('newSpecDiv Id: ' + newSpecDiv);
-    console.log('newSpecsIndex count before increment: ' + newSpecsIndex);
-
     newSpecsIndex += 1;
-
-    console.log('newSpecsIndex count after increment: ' + newSpecsIndex);
 }
 
 add.addEventListener('click', addFunction)
-
-let index = 0;
 
 let minusFunction = function (event) {
 
@@ -99,17 +91,24 @@ function showNewRecipeForm() {
     //changes CSS display styling to properly display the recipe card pop-up form
     // show pop-up card form
 }
-function addRecipeHandler(event) {
-    //call showNewRecipeForm()
-    event.preventDefault();
-    newRecipeFormSubmit();
-    showNewRecipeForm();
-    clearForm();
-}
 
+// Refactor to switch statement with one listener on recipe form
 const form = document.getElementById('recipe-submit');
 form.addEventListener('submit', addRecipeHandler);
 form.addEventListener('reset', handleResetClick);
+
+function addRecipeHandler(event) {
+    //call showNewRecipeForm()
+    event.preventDefault();
+
+    for (i = 0; i < coll.length; i += 1) {
+
+    }
+    newRecipeFormSubmit();
+    clearForm();
+
+
+}
 
 function newRecipeFormSubmit() {
     // calls new Cocktail construtor
@@ -125,7 +124,7 @@ function newRecipeFormSubmit() {
     let ingrArray = [];
     let amntArray = [];
     // put ingr and amount into arrays
-    for (let i = 0; i < newSpecsId; i += 1) {
+    for (let i = 0; i < newSpecsIndex; i += 1) {
         const ingr = document.getElementById(`specs-ingr-${i}`).value;
         ingrArray.push(ingr);
         console.log('ingrArray: ' + ingrArray);
@@ -164,6 +163,7 @@ function handleResetClick() {
     divArray = [];
     // reset specs index counter
     newSpecsIndex = 1;
+
 }
 
 function closeFormOnSubmit() {

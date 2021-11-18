@@ -33,7 +33,7 @@ html {
 .body-grid-container {
     display: grid;
     grid-template-columns: 12.4% 69.32% 12.5%;
-    grid-template-rows: 4rem 2rem auto;
+    grid-template-rows: 4rem 2rem auto auto;
     grid-gap: 2.5rem;
 }
 
@@ -67,20 +67,22 @@ h1 {
     justify-self: right;
 }
 
-.collapsible {
+/* .collapsible {
     cursor: pointer;
     position: absolute;
     top: 14.3%;
     left: 15%;
-}
+} */
 
 .recipe-form {
-    display: none;
-    overflow: hidden;
-    position: absolute;
+    /* display: none; */
+    /* overflow: hidden; */
+    /* position: absolute; */
+    grid-auto-rows: 3;
     left: 15%;
     top: 17.3%;
     width: 70%;
+    justify-self: center;
 }
 
 #inputSpecs > div{ 
@@ -137,17 +139,19 @@ h1 {
         font-size: 1.5rem;
         grid-row: 3;
     }
-    .collapsible {
+    /* .collapsible {
         cursor: pointer;
         position: absolute;
         top: 9.5rem;
         left: 15%;
-    }
+    } */
 
     .recipe-form {
-        display: none;
-        overflow: hidden;
-        position: absolute;
+        /* display: none; */
+        /* overflow: hidden; */
+        /* position: absolute; */
+        grid-column: 2;
+        grid-row: 4;
         left: 15%;
         top: 11rem;
         width: 70%;
@@ -155,7 +159,7 @@ h1 {
 
     .recipe-list-grid {
         grid-column: 2;
-        grid-row: 4;
+        grid-row: 5;
         display: grid;
         grid-template-columns: 50% 50%;
     }
