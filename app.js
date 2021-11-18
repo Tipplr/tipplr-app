@@ -42,39 +42,15 @@ Ingredient.basic = []; // array of basic ingredients
 Ingredient.userPlusBasicIngr = []; //array of basic and user ingredients
 Ingredient.missingIngredients = [];
 
-// Ingredients as inventory object
-// recipe item (Ingred instance with qty/unit values)
-// Specs instance would be constructed of mult. recipe items
-
-//Functions List
-//Enter website (age verification)
-//display minimum birth date for 21 years old
-// "were you born before ___ or after?"
-//Base website (on load after age check)
 function getLocalStorage(key) {
-    //for access to user-entered cocktails in userRecipes[]
-    //combine built-in cocktails with user cocktails into allCocktails []
     // get userInventory[]
     if (key === 'cocktails') {
         return JSON.parse(localStorage.getItem('cocktails'));
     } else if (key === 'ingredients') {
         return JSON.parse(localStorage.getItem('ingredients'));
     }
-    // STRETCH: get allTags[] 
 }
-// function renderThumbnails(array = Cocktail.all) {
-//     //render array of allCocktails
-//     //render specifically the name and base property of Cocktail object
-//     array.forEach((e, index) => {
-//         const recipeList = document.getElementById('recipe-list-grid');
-//         let renderRecipe = document.createElement('div');
 
-//         recipeList.appendChild(renderRecipe);
-//         renderRecipe.setAttribute('class', 'recipe-card');
-//         renderRecipe.setAttribute('id', `${index}`);
-//         renderRecipe.innerHTML = `${e.name} with a base of ${e.base}`;
-//     })
-// }
 function alphabetize(array) {
     //pass in array of objects and alphabetize that array by name property
     array.sort((a, b) => {
@@ -128,15 +104,6 @@ function loadObjects() {
     alphabetize(Cocktail.all);
     alphabetize(Ingredient.userInventory);
 }
-// User story #1: ability to filter the provided cocktail recipe list to view only the recipes possible with current inventory
-// eventlistener on button click
-
-
-//User story #2 input ingredients I own, and have the website track it
-
-// happens when user navs to/refreshes inventory page
-//get array of ingredient objects stored in the userInventory array
-//parse JSON
 
 function renderIngrList() {
     //call getLocalStorage('ingredients')
@@ -165,7 +132,7 @@ function removeIngredient() {
     //saveAndRenderInv() 
 }
 function saveToLocalStorage(object) {
-    // DONE saves userInventory to local Storage
+    // saves userInventory to local Storage
     //checks if the ingredient being uploaded is a Cocktail object or an Ingredient Object
     const objectName = object[0].constructor.name
 
@@ -187,9 +154,6 @@ function saveAndRenderInv() {
     //call clearTable()
     //call renderIngrList()
 }
-
-
-//User story #3 enter and store my own recipe
 
 //User story #4 save drinks my friends like, and filter by them
 //within the recipe card...
@@ -274,7 +238,6 @@ function generateCocktails() {
 
     builtInRecipeData.forEach(drink => new Cocktail(...drink));
 }
-
 
 function basicIngredients() {
     let basic;
