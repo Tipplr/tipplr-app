@@ -51,6 +51,7 @@ Ingredient.userInventory = []; // array of user ingredient objects
 Ingredient.userPlusBasicIngr = []; //array of basic and user ingredients
 Ingredient.basic = []; // array of basic ingredients
 Ingredient.missingIngredients = [];
+Ingredient.removalIndex;
 
 function getLocalStorage(key) {
     // get userInventory[]
@@ -115,15 +116,15 @@ function loadObjects() {
     alphabetize(Ingredient.userInventory);
 }
 
-function saveToLocalStorage(object) {
-    // saves userInventory to local Storage
-    //checks if the ingredient being uploaded is a Cocktail object or an Ingredient Object
-    const objectName = object[0].constructor.name
 
-    if (objectName === 'Cocktail') {
-        localStorage.setItem('cocktails', JSON.stringify(object));
-    } else {
-        localStorage.setItem('ingredients', JSON.stringify(object));
+function saveToLocalStorage(objectNameString) {
+    //checks if the ingredient being uploaded is a Cocktail object or an Ingredient Object
+    // Saves respective object array to local Storage
+    
+    if (objectNameString === 'Cocktail') {
+        localStorage.setItem('cocktails', JSON.stringify(Cocktail.userRecipes));
+    } else if (objectNameString === 'Ingredient'){
+        localStorage.setItem('ingredients', JSON.stringify(Ingredient.userInventory));
     }
 }
 
