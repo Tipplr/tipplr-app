@@ -60,8 +60,8 @@ function renderRecipeCard(event) {
 
         let icon = document.createElement('img');
         icon.setAttribute('class', 'icon');
-        icon.src = tempRecipe.glassware;
-        icon.alt = 'glassware';
+        icon.src = glasswareIcons[tempRecipe.glassware];
+        icon.alt = tempRecipe.glassware;
         recipeCard.append(icon);
 
         let ingrs = document.createElement('ul');
