@@ -303,63 +303,51 @@ loadObjects();
 // User story #5 which ingredient would most broaden the drinks possible 
 
 function mvb() {
-    // console.log(Cocktail.all);
-    let tempArray = [];
-    let numberArray = [];
-    let finalArray = [];
-    // console.log(Ingredient.userPlusBasicIngr);
-    // look through Cocktail.all and find similar NEEDS for drinks
-    // compare the most needed item to the users inventory
-    // this will need to be tucked in a while loop to not stop until it finds something the user is missing
-    console.log(Cocktail.all);
-    Cocktail.all.forEach(e => {
-        e.ingr.forEach(i => {
-            tempArray.push(i);
+
+    let tempArray = []; // stores all ingredients for safe handling 
+    let numberArray = []; // makes an array of 0's, for each element in tempArray
+    let combinedArray = []; // array to hold outputs of tempArray and numberArray
+
+    Cocktail.filtered.forEach(cocktailArray => {
+        cocktailArray.ingr.forEach(i => {
+            tempArray.push(i.toLowerCase()); // stores ingredients in massive array of all ingredients for all recipes
         })
     })
-
-    console.log(tempArray);
-    tempArray.forEach(i => {
-        let tempValueOfI = 0;
-        numberArray.push(tempValueOfI);
+    // console.log(tempArray);
+    tempArray.forEach(singleIngr => {
+        let tempValue = 0;
+        numberArray.push(tempValue); // generates array of 0's with length equal to tempArray length
     })
-
+    // console.log(numberArray);
     tempArray.forEach(ingredient => {
         let tempIngr = ingredient
         tempArray.forEach((i, index) => {
             if (tempArray[index] === tempIngr) {
-                numberArray[index] += 1;
+                numberArray[index] += 1; // inscreases value based on how many times an ingredient shows up in tempArray
             }
         })
     })
     // console.log(numberArray);
     tempArray.forEach((e, index) => {
-        finalArray.push([`${numberArray[index]}`, `${tempArray[index]}`])
-    })
-
+        combinedArray.push([`${numberArray[index]}`, `${tempArray[index]}`])
+    }) // combines tempArray and numberArray based on indices of both, to assign numbers to ingredients
+    // the higher the number, the more often in shows up in current recipes
+    console.log(combinedArray);
+    let newArray = new Set(combinedArray.map(JSON.stringify));
+    let finalArray = Array.from(newArray).map(JSON.parse); // gets rid of duplicates and creates finalArray
+    // finalArray will be used to compare to Ingredients.missingIngredients array
     finalArray.sort(function (a, b) {
         // console.log(a[0]);
         return b[0] - a[0];
     });
-
-    let newArray = new Set(finalArray.map(JSON.stringify));
-    let newerArray = Array.from(newArray).map(JSON.parse);
-
-    console.log(newerArray);
-    // finalArray.forEach(array => {
-    //     let placeHolderArray = array;
-    //     console.log(placeHolderArray);
-    //     finalArray.forEach((i, index) => {
-    //         // if (finalArray[index] === placeHolderArray) {
-    //         //     finalArray.pop(finalArray[index]);
-    //         // }
-    //     })
-    // })
-    // tempArray.forEach((i, index) => {
-    //     // console.log(i);
-    //     if (tempArray.includes(i)) {
-    //         finalArray[index] += 1;
-    //     }
-    // })
+    // sorts finalArray from most needed ingredient to least needed ingredient, based on numerical value
+    // console.log(finalArray);
+    let stopper = 0;
+    finalArray.forEach(e => {
+        if (Ingredient.missingIngredients.includes(e[1]) && stopper === 0) {
+            console.log(`wow, ${e[1]} will allow you to make ${e[0]} more cocktails`);
+            stopper += 1;
+        }
+    })
 }
 mvb();
