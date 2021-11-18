@@ -236,7 +236,7 @@ button:hover {
     font-size: 2rem;
     display: grid;
     grid-template-columns: 46% 27% 27%;
-    grid-template-rows: 15% auto 25% 25%;
+    grid-template-rows: 15% auto auto auto;
     overflow: auto;
 }
 
@@ -248,9 +248,8 @@ button:hover {
 }
 
 .icon {
-    grid-column: 2;
-    grid-row: 1;
-    /* background-color: black; */
+    grid-column: 3;
+    grid-row: 2;
     margin: auto 0;
     color: white;
     width: 75px;

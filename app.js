@@ -53,6 +53,8 @@ Ingredient.basic = []; // array of basic ingredients
 Ingredient.missingIngredients = [];
 Ingredient.removalIndex;
 
+let isOnRecipePage = false;
+
 function getLocalStorage(key) {
     // get userInventory[]
     if (key === 'cocktails') {
@@ -297,11 +299,12 @@ function renderThumbnails(array = Cocktail.all) {
 }
 
 function renderRecipeCard(event) {
+    console.log('inside renderRecipeCard funct', isOnRecipePage);
     //change from hidden to shown
     // TODO add event listener for nav left, right, return to list
     let array;
 
-    if (Cocktail.userRecipes.length > 0) {
+    if (isOnRecipePage === true) {
         array = Cocktail.userRecipes;
 
     } else if (Cocktail.filtered.length > 0) {
@@ -310,6 +313,7 @@ function renderRecipeCard(event) {
     } else {
         array = Cocktail.all;
     }
+
     let clicked = event.target.id;
 
     let recipeCard = document.getElementById('popup');
