@@ -147,7 +147,7 @@ function filterHandler(event) {
 
 function filterDrinksPossible(tolerance, array = Cocktail.all) {
     // tolerance of 0 if currently possible, tolerance of 1 for one-ingredient-away
-    Cocktail.filtered = []; // STRETCH: Change the logic so mult. filters causes multiple passes of array through this function. Allow deselection or clearing of filters.
+    Cocktail.filtered = [];
     Ingredient.missingIngredients = [];
     let inventoryNames = Ingredient.userPlusBasicIngr.map(element => element.name.toLowerCase());
     let inventoryTypes = Ingredient.userPlusBasicIngr.map(element => element.type.toLowerCase());
@@ -185,16 +185,6 @@ function filterDrinksBySpirit(base, array = Cocktail.all) {
         }
     });
     return Cocktail.filtered;
-}
-
-function renderFiltered() {
-    //update the displayed cocktails
-}
-
-
-function searchBar() { // STRETCH
-    //updates displayFiltered based on cocktail name entered (returns 1 cocktail or more if smart)
-    //call renderFiltered()
 }
 
 
