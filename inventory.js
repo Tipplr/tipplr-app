@@ -67,26 +67,32 @@ function addIngredient(event) {
 }
 
 function confirmRemove(event){
-    let id = event.target.id;
+    let id = event.target.id; //remove-0
+    let idText = id.slice(0, 6);//remove
+    Ingredient.removalIndex = id.slice(-1);//0  //Ingredient.removalIndex
     let removePrompt = document.getElementById('confirm-remove');
     let ingrToRemove = document.getElementById('ingr-to-remove');
 
-    if(id.slice(0, 6) === 'remove'){
-        ingrToRemove.textContent = `Please confirm removal of Ingredient: ${Ingredient.userInventory[id.slice(-1)].name}`
+    if(idText === 'remove'){
+        ingrToRemove.textContent = `Please confirm removal of Ingredient: ${Ingredient.userInventory[Ingredient.removalIndex].name}`
         removePrompt.classList.remove('hidden');
-        removePrompt.addEventListener('click', function(promptEvent){
-            if (promptEvent.target.id === 'rmv'){
-                // removeIngredient(id);
-                Ingredient.userInventory.splice(id.slice(-1), 1);
-                removePrompt.classList.add('hidden');
-                saveToLocalStorage('Ingredient');
-                clearIngrTable();
-                renderIngrTable();
-            } else if (promptEvent.target.id === 'cnl'){
-                removePrompt.classList.add('hidden');
-            }
-        });
+        removePrompt.addEventListener('click', inventoryRemoval);
     }   
+}
+
+function inventoryRemoval(promptEvent){
+    let removePrompt = document.getElementById('confirm-remove');
+    if (promptEvent.target.id === 'rmv'){
+        // removeIngredient(id);
+        Ingredient.userInventory.splice(Ingredient.removalIndex, 1);
+        removePrompt.classList.add('hidden');
+        removePrompt.removeEventListener('click', inventoryRemoval);
+        saveToLocalStorage('Ingredient');
+        clearIngrTable();
+        renderIngrTable();
+    } else if (promptEvent.target.id === 'cnl'){
+        removePrompt.classList.add('hidden');
+    }
 }
 
 //Function Execution Order:
