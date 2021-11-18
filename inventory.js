@@ -45,8 +45,6 @@ function toggleFormDisplay() {
     form.addEventListener('submit', addIngredient);
 }
 
-
-
 function addIngredient(event) {
     event.preventDefault();
 
@@ -57,7 +55,7 @@ function addIngredient(event) {
     Ingredient.userInventory.push(ingredient);
     Ingredient.userPlusBasicIngr.push(ingredient);
     alphabetize(Ingredient.userInventory);
-    saveToLocalStorage(Ingredient.userInventory);
+    saveToLocalStorage('Ingredient');
 
     clearIngrTable();
     renderIngrTable();
@@ -79,7 +77,7 @@ function confirmRemove(event){
                 // removeIngredient(id);
                 Ingredient.userInventory.splice(id.slice(-1), 1);
                 removePrompt.classList.add('hidden');
-                saveToLocalStorage(Ingredient.userInventory);
+                saveToLocalStorage('Ingredient');
                 clearIngrTable();
                 renderIngrTable();
             } else if (promptEvent.target.id === 'cnl'){
@@ -88,7 +86,6 @@ function confirmRemove(event){
         });
     }   
 }
-
 
 //Function Execution Order:
 loadObjects();
