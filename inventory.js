@@ -69,8 +69,10 @@ function addIngredient(event) {
 function confirmRemove(event){
     let id = event.target.id;
     let removePrompt = document.getElementById('confirm-remove');
+    let ingrToRemove = document.getElementById('ingr-to-remove');
 
     if(id.slice(0, 6) === 'remove'){
+        ingrToRemove.textContent = `Please confirm removal of Ingredient: ${Ingredient.userInventory[id.slice(-1)].name}`
         removePrompt.classList.remove('hidden');
         removePrompt.addEventListener('click', function(promptEvent){
             if (promptEvent.target.id === 'rmv'){
