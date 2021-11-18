@@ -1,6 +1,17 @@
 'use strict';
 let allTags = []; //holds all tags 
-let glasswareIcons = []; // holds filepaths for images
+const glasswareIcons = {
+  collins: "assets/icons/collins.png",
+  coupe: "assets/icons/coupe.png",
+  dbl - of: "assets/icons/dbl-of.png",
+  flute: "assets/icons/flute.png",
+  martini: "assets/icons/martini.png",
+  mule: "assets/icons/mule.png",
+  nick - nora: "assets/icons/nick-nora.png",
+  nosing: "assets/icons/nosing.png",
+  shot: "assets/icons/shot.png",
+  wine: "assets/icons/wine.png",
+}; // holds filepaths for images
 // "drink" as shorthand for "Cocktail object instance"
 
 const Cocktail = function (name, base, ingr = [], amount = [], glassware, instructions = "", notes = "") { // user-gen or from API, also template for mock dataset
