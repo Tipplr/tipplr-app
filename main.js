@@ -69,7 +69,7 @@ function renderRecipeCard(event) {
         for (let i = 0; i < tempRecipe.ingr.length; i += 1) {
             let oneIng = document.createElement('li');
             ingrs.append(oneIng);
-            oneIng.innerHTML = `${i + 1}) ${tempRecipe.ingr[i]} - ${tempRecipe.amount[i]}`
+            oneIng.innerHTML = `${tempRecipe.amount[i]} - ${tempRecipe.ingr[i]}`
         }
 
         let howToMake = document.createElement('p');
@@ -133,6 +133,7 @@ function filterHandler(event) {
             break;
         case "filter-08":
             filterDrinksPossible(1);
+            mvb();
             break;
         case "filter-09":
             filterDrinksBySpirit('other');
