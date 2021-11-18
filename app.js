@@ -12,7 +12,6 @@ const glasswareIcons = {
   shot: "assets/icons/shot.png",
   wine: "assets/icons/wine.png",
 }; // holds filepaths for images
-// "drink" as shorthand for "Cocktail object instance"
 
 const Cocktail = function (name, base, ingr = [], amount = [], glassware, instructions = "", notes = "") { // user-gen or from API, also template for mock dataset
     this.name = name;
@@ -49,8 +48,8 @@ const Ingredient = function (name, type) {
 
 Ingredient.all = [];
 Ingredient.userInventory = []; // array of user ingredient objects
-Ingredient.basic = []; // array of basic ingredients
 Ingredient.userPlusBasicIngr = []; //array of basic and user ingredients
+Ingredient.basic = []; // array of basic ingredients
 Ingredient.missingIngredients = [];
 
 // Ingredients as inventory object
@@ -297,9 +296,15 @@ function basicIngredients() {
         ["Dry Vermouth", "Vermouth"],//TEST remove before deploy
         ["Campari", "Liqueur"],//TEST remove before deploy
         ["Angostura Bitters", "Bitters"],//TEST remove before deploy
-        ["Simple Syrup", "Basics"],
-        ["Lime", "Basics"],
-        ["Lemon", "Basics"]
+        ["Simple Syrup", "Syrup/Sweetener"],
+        ["Demerara Syrup", "Syrup/Sweetener"],
+        ["Lime", "Juice"],
+        ["Lemon", "Juice"],
+        ["Orange", "Juice"],
+        ["Cranberry", "Juice"],
+        ["Pineapple", "Juice"],
+        ["Grapefruit", "Juice"],
+        ["Olive Brine", "Juice"]
     ];
     for (let i = 0; i < basicArray.length; i += 1) {
         basic = new Ingredient(basicArray[i][0], basicArray[i][1]);
