@@ -342,8 +342,10 @@ function mvb() {
         return b[0] - a[0];
     });
 
-    console.log(finalArray);
-    console.log(finalArray.indexOf(['5', 'Lemon']));
+    let newArray = new Set(finalArray.map(JSON.stringify));
+    let newerArray = Array.from(newArray).map(JSON.parse);
+
+    console.log(newerArray);
     // finalArray.forEach(array => {
     //     let placeHolderArray = array;
     //     console.log(placeHolderArray);
