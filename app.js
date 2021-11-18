@@ -228,6 +228,7 @@ function basicIngredients() {
 
 loadObjects();
 
+// determine which ingredient would most broaden the drinks possible
 function mvb() {
 
     let tempArray = []; // stores all ingredients for safe handling 
@@ -253,7 +254,6 @@ function mvb() {
             }
         })
     })
-    // console.log(numberArray);
     tempArray.forEach((e, index) => {
         combinedArray.push([`${numberArray[index]}`, `${tempArray[index]}`])
     }) // combines tempArray and numberArray based on indices of both, to assign numbers to ingredients
@@ -263,11 +263,9 @@ function mvb() {
     let finalArray = Array.from(newArray).map(JSON.parse); // gets rid of duplicates and creates finalArray
     // finalArray will be used to compare to Ingredients.missingIngredients array
     finalArray.sort(function (a, b) {
-        // console.log(a[0]);
         return b[0] - a[0];
     });
     // sorts finalArray from most needed ingredient to least needed ingredient, based on numerical value
-    // console.log(finalArray);
     let stopper = 0;
     finalArray.forEach(e => {
         if (Ingredient.missingIngredients.includes(e[1]) && stopper === 0) {
