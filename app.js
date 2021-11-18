@@ -41,6 +41,7 @@ Ingredient.userInventory = []; // array of user ingredient objects
 Ingredient.basic = []; // array of basic ingredients
 Ingredient.userPlusBasicIngr = []; //array of basic and user ingredients
 Ingredient.missingIngredients = [];
+Ingredient.removalIndex;
 
 // Ingredients as inventory object
 // recipe item (Ingred instance with qty/unit values)
