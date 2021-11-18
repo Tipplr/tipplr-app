@@ -36,16 +36,9 @@ function clearIngrTable() {
 function inventoryEventListeners() {
     //add an event listener to the add new + button and to the - button next to each ingredient in list
     document.getElementById('add-inventory').addEventListener("click", toggleFormDisplay);
-    document.getElementById('inventory-table').addEventListener('click', inventoryHandler);
+    document.getElementById('inventory-table').addEventListener('click', confirmRemove);
 }
-function inventoryHandler(event) {
-    confirmRemove(event);
-    clearIngrTable();
-    renderIngrTable();
-    //if + button is clicked, call showForm()
-    //if - button is clicked call removeIngredient()
-    //this should alert the user to confirm
-}
+
 function toggleFormDisplay() {
     const form = document.querySelector(".inventory-form");
     form.classList.toggle('hidden');
@@ -75,33 +68,27 @@ function addIngredient(event) {
     document.querySelector('#bottle-type').value = '';
 }
 
-function promptRemove(event){
+function confirmRemove(event){
     let id = event.target.id;
     let removePrompt = document.getElementById('confirm-remove');
 
     if(id.slice(0, 6) === 'remove'){
-        removePrompt.classList.toggle('hidden');
-        removePrompt.addEventListener('click', confirmRemove);
+        removePrompt.classList.remove('hidden');
+        removePrompt.addEventListener('click', function(promptEvent){
+            if (promptEvent.target.id === 'rmv'){
+                // removeIngredient(id);
+                Ingredient.userInventory.splice(id.slice(-1), 1);
+                removePrompt.classList.add('hidden');
+                saveToLocalStorage(Ingredient.userInventory);
+                clearIngrTable();
+                renderIngrTable();
+            } else if (promptEvent.target.id === 'cnl'){
+                removePrompt.classList.add('hidden');
+            }
+        });
     }   
 }
 
-function confirmRemove(event){
-    if (event.target.id === 'rmv'){
-        removeIngredient(id);
-    } else if (event.target.id === 'cnl'){
-        removePrompt.classList.toggle('hidden');
-    }
-}
-
-function removeIngredient(id) {
-    //remove clicked ingredient from the userInventory array
-    //saveAndRenderInv()
-    if(id.slice(0, 6) === 'remove'){
-        Ingredient.userInventory.splice(id.slice(-1), 1);
-        saveToLocalStorage(Ingredient.userInventory);
-    }
-
-}
 
 //Function Execution Order:
 loadObjects();
