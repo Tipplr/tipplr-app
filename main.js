@@ -4,101 +4,11 @@ recipeListEventListener.addEventListener('click', renderRecipeCard);
 const filterButtons = document.getElementById('filter-buttons');
 filterButtons.addEventListener('click', filterHandler);
 
-function renderThumbnails(array = Cocktail.all) {
-    //render array of allCocktails
-    //render specifically the name and base property of Cocktail object
-    array.forEach((e, index) => {
-        const recipeList = document.getElementById('recipe-list-grid');
-        let renderRecipe = document.createElement('div');
-        let recipeTitle = document.createElement('h2');
-        let recipeBase = document.createElement('p');
 
-        recipeList.appendChild(renderRecipe);
-        renderRecipe.setAttribute('class', 'recipe-card');
-        renderRecipe.setAttribute('id', `${index}`);
-
-        renderRecipe.appendChild(recipeTitle);
-        recipeTitle.setAttribute('id', `${index}`);
-        recipeTitle.innerHTML = `${e.name}`;
-        // renderRecipe.innerHTML = `<h2>${e.name}</h2> <br>Base: ${e.base}`;
-        renderRecipe.appendChild(recipeBase);
-        recipeBase.setAttribute('id', `${index}`);
-        recipeBase.innerHTML = `Base: ${e.base}`;
-    })
-}
-renderThumbnails();
-
-function renderRecipeCard(event) {
-    //change from hidden to shown
-    // TODO add event listener for nav left, right, return to list
-    let array;
-
-    if (Cocktail.filtered.length > 0) {
-        array = Cocktail.filtered;
-    } else {
-        array = Cocktail.all;
-    }
-    let clicked = event.target.id;
-
-    let recipeCard = document.getElementById('popup');
-    let recipeCardbg = document.getElementById('popup-outline');
-    let antiScroll = document.getElementById('body');
-
-    let tempRecipe = array[clicked];
-
-    if (tempRecipe) {
-
-        antiScroll.classList.add('no-scroll');
-        recipeCard.classList.remove('hidden');
-        recipeCard.classList.add('recipe-grid');
-        recipeCardbg.classList.remove('hidden');
-
-        let recipeName = document.createElement('h4');
-        recipeName.setAttribute('class', 'rendered-title');
-        recipeCard.append(recipeName);
-        recipeName.innerHTML = `${tempRecipe.name}`
-
-        let icon = document.createElement('img');
-        icon.setAttribute('class', 'icon');
-        icon.src = glasswareIcons[tempRecipe.glassware];
-        icon.alt = tempRecipe.glassware;
-        recipeCard.append(icon);
-
-        let ingrs = document.createElement('ul');
-        ingrs.setAttribute('class', 'ingredients-list');
-        recipeCard.append(ingrs);
-
-        for (let i = 0; i < tempRecipe.ingr.length; i += 1) {
-            let oneIng = document.createElement('li');
-            ingrs.append(oneIng);
-            oneIng.innerHTML = `${tempRecipe.amount[i]} - ${tempRecipe.ingr[i]}`
-        }
-
-        let howToMake = document.createElement('p');
-        howToMake.setAttribute('class', 'how-make');
-        recipeCard.append(howToMake);
-        howToMake.innerHTML = `How to make: ${tempRecipe.instructions}`
-
-        let notes = document.createElement('p');
-        notes.setAttribute('class', 'notes');
-        recipeCard.append(notes);
-        notes.innerHTML = `Notes: ${tempRecipe.notes}`
-
-        let cancel = document.createElement('button');
-        cancel.setAttribute('class', 'close-popup');
-        cancel.innerHTML = '&#x2715'
-        cancel.addEventListener('click', function () {
-            recipeCard.innerHTML = '';
-            recipeCard.classList.remove('recipe-grid');
-            recipeCard.classList.add('hidden');
-            recipeCardbg.classList.add('hidden');
-            antiScroll.classList.remove('no-scroll');
-        })
-        recipeCard.append(cancel);
-    }
-}
 const clearFilter = document.getElementById('clear-filter');
 clearFilter.addEventListener('click', clearFilterHandler);
+
+renderThumbnails();
 
 function clearFilterHandler() {
     // event.preventDefault();
