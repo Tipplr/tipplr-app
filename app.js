@@ -313,12 +313,10 @@ function mostValueIngr() {
             tempArray.push(i.toLowerCase()); // stores ingredients in massive array of all ingredients for all recipes
         })
     })
-    // console.log(tempArray);
     tempArray.forEach(singleIngr => {
         let tempValue = 0;
         numberArray.push(tempValue); // generates array of 0's with length equal to tempArray length
     })
-    // console.log(numberArray);
     tempArray.forEach(ingredient => {
         let tempIngr = ingredient
         tempArray.forEach((i, index) => {
@@ -327,21 +325,17 @@ function mostValueIngr() {
             }
         })
     })
-    // console.log(numberArray);
     tempArray.forEach((e, index) => {
         combinedArray.push([`${numberArray[index]}`, `${tempArray[index]}`])
     }) // combines tempArray and numberArray based on indices of both, to assign numbers to ingredients
     // the higher the number, the more often in shows up in current recipes
-    console.log(combinedArray);
     let newArray = new Set(combinedArray.map(JSON.stringify));
     let finalArray = Array.from(newArray).map(JSON.parse); // gets rid of duplicates and creates finalArray
     // finalArray will be used to compare to Ingredients.missingIngredients array
     finalArray.sort(function (a, b) {
-        // console.log(a[0]);
         return b[0] - a[0];
     });
     // sorts finalArray from most needed ingredient to least needed ingredient, based on numerical value
-    // console.log(finalArray);
     let stopper = 0;
     finalArray.forEach(e => {
         if (Ingredient.missingIngredients.includes(e[1]) && stopper === 0) {
@@ -350,7 +344,7 @@ function mostValueIngr() {
             missingAlert.setAttribute('id', 'ingredient-alert');
             appendHere.appendChild(missingAlert);
 
-            missingAlert.innerHTML = `wow, ${e[1]} will allow you to make ${e[0]} more cocktails`
+            missingAlert.innerHTML = `Adding ${e[1]} to your inventory will allow you to make ${e[0]} more cocktail(s)`
             stopper += 1;
         }
     })
@@ -360,5 +354,8 @@ function mostValueIngr() {
 function removeMostValueIngr() {
     let appendHere = document.getElementById('recipe-list-title');
     let missingAlert = document.getElementById('ingredient-alert');
-    appendHere.removeChild(missingAlert);
+    if (missingAlert) {
+        appendHere.removeChild(missingAlert);
+    }
 }
+

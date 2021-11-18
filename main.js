@@ -105,7 +105,7 @@ function clearFilterHandler() {
     clearChildren('recipe-list-grid');
     renderThumbnails(Cocktail.all);
     Cocktail.filtered = [];
-    // filterDrinksPossible(0);
+    removeMostValueIngr();
 }
 
 function filterHandler(event) {
@@ -140,6 +140,7 @@ function filterHandler(event) {
             break;
         case "filter-08":
             filterDrinksPossible(1);
+            removeMostValueIngr();
             mostValueIngr();
             break;
         case "filter-09":
