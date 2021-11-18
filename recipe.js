@@ -3,6 +3,8 @@ let add = document.getElementById('plus');
 let minusBtn = document.getElementById('minus');
 let resetBtn = document.getElementById('recipeResetBtn');
 let i;
+let newSpecsIndex = 1;
+let divArray = [];
 
 // let collapsingFunction = function () {
 //     this.classList.toggle('active');
@@ -17,10 +19,6 @@ let i;
 // for (i = 0; i < coll.length; i += 1) {
 //     coll[i].addEventListener("click", collapsingFunction)
 // }
-
-let newSpecsIndex = 1;
-
-let divArray = [];
 
 let addFunction = function (event) {
 
@@ -60,23 +58,18 @@ let addFunction = function (event) {
     newSpecsIndex += 1;
 }
 
-add.addEventListener('click', addFunction)
-
 let minusFunction = function (event) {
 
     event.preventDefault();
     const specForm = document.getElementById('inputSpecs');
-    console.log('specForm.lastChild: ' + specForm.lastChild.id)
-    // will throw error if no new spec fields created
-    console.log('divArray before pop(): ' + divArray);
     if (divArray.length > 0) {
         divArray.pop();
         specForm.lastChild.remove();
         newSpecsIndex -= 1;
     }
-    console.log('newSpecsIndex current count: ' + newSpecsIndex);
 }
 
+add.addEventListener('click', addFunction)
 minusBtn.addEventListener('click', minusFunction);
 
 // function recipeEventListener() {
@@ -100,20 +93,13 @@ form.addEventListener('reset', handleResetClick);
 function addRecipeHandler(event) {
     //call showNewRecipeForm()
     event.preventDefault();
-
-    for (i = 0; i < coll.length; i += 1) {
-
-    }
     newRecipeFormSubmit();
     clearForm();
-
-
 }
 
 function newRecipeFormSubmit() {
     // calls new Cocktail construtor
     // pushes form values into Cocktail constructor
-    // grab field input
 
     const name = form.recipename.value;
     const base = form.base.value;
@@ -163,9 +149,4 @@ function handleResetClick() {
     divArray = [];
     // reset specs index counter
     newSpecsIndex = 1;
-
-}
-
-function closeFormOnSubmit() {
-
 }
