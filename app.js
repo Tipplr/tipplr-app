@@ -155,40 +155,6 @@ function saveAndRenderInv() {
     //call renderIngrList()
 }
 
-//User story #4 save drinks my friends like, and filter by them
-//within the recipe card...
-function tagEventListener() {
-    //listens for event
-}
-function displayField() {
-    //displays friend field and 'add' button
-}
-function addTagButton() {
-    //pushes friend name to this.tags array
-    //save allTags to local storage
-}
-
-
-// Call vvv
-// let almostPossible = filterDrinks(1); //argument of tolerance = 1. Uses userInventory, allCocktails. Outputs array to almostPossible
-// (# userInventory IN this.specs) === specs.length-1) 
-// an array of cocktails for which all ingredients except one can be found in userInventory[]
-// this COULD be the same function as the filter for "is possible", with an argument of 1 passed as the "tolerance". When the function gets used for "is possible", we would pass an argument of 0. 
-// get highYieldBottle and corresponding newBottleRecipes[]    
-// from almostPossible[] or at the same time, create array of one-off missing ingredients
-// .reduce() oneOff[] to get total additional cocktails possible per missing ingredient
-// .sort() to get highYieldBottle, the highest number of new possible drinks 
-// use highYieldBottle to .filter() through specs in almostPossible[] to produce newBottleRecipes[]
-// render highYieldBottle and highYieldRecipes[]
-
-
-
-// User story #6 quick access to the app’s cocktail recipes and search feature with minimal clicks/prompts
-// primarily HTML/CSS driven
-// User story #7 alert notifying me that site users must be at least 21 years old
-//this is accomplished at the page load
-
-// const Cocktail = function(name, base, specs = [], glassware, instructions = "", notes = "", tags = [], possible, almostPossible)    
 function generateCocktails() {
     let builtInRecipeData = [
         // ["name", "base", ingr[], amt[], "glass", "instr", "notes"],
@@ -261,9 +227,6 @@ function basicIngredients() {
 }
 
 loadObjects();
-
-//const negroni = new Cocktail("Negroni", 'Gin', ['Gin', 'Campari', 'Sweet Vermouth'], ['1 oz', '1 oz', '1 oz'], 'Rocks');
-// User story #5 which ingredient would most broaden the drinks possible 
 
 function mvb() {
 
