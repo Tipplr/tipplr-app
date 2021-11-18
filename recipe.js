@@ -112,7 +112,7 @@ function newRecipeFormSubmit() {
     console.log('newCocktail Instructions: ' + newCocktail.instructions);
 
     Cocktail.userRecipes.push(newCocktail);
-    saveToLocalStorage(Cocktail.userRecipes);
+    saveToLocalStorage('Cocktail');
 
     //STRETCH: call filterFunction() if applicable new recipe will now show in filtered array
     //STRETCH: call renderFiltered() re-renders page so if new recipe meets requirements is now displayed on the page
