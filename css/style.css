@@ -203,6 +203,7 @@ button:hover {
     grid-template-columns: 46% 27% 27%;
     grid-template-rows: 15% auto auto auto;
     overflow: auto;
+    grid-row-gap: 15px;
 }
 
 .rendered-title {
@@ -215,10 +216,9 @@ button:hover {
 .icon {
     grid-column: 3;
     grid-row: 2;
-    margin: auto 0;
     color: white;
-    width: 75px;
-    height: 75px;
+    width: 100px;
+    max-height: 100px;
 }
 
 .ingredients-list {
@@ -234,12 +234,14 @@ button:hover {
 .how-make {
     grid-column: 1 / 4;
     grid-row: 3;
-    padding-top: 1.2rem;
+    font-family: var(--ff-primary);
+    /* padding-top: 1.2rem; */
 }
 
 .notes {
     grid-column: 1 / 4;
-    grid-row: 4;
+    grid-row: 5;
+    font-family: var(--ff-primary);
 }
 
 #popup-outline {

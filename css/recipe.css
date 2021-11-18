@@ -102,6 +102,7 @@ body button,
     font-size: 1.5rem;
     cursor: pointer;
     color: var(--fc-title2);
+    line-height: 10px;
 }
 
 #plus,
@@ -116,6 +117,18 @@ button:active {
 
 button:hover {
     background-color: #352F37;
+}
+
+input:hover {
+    background-color: #352F37;
+}
+
+#recipeSubmitBtn:active {
+    border: 2.5px solid green;
+}
+
+#recipeResetBtn:active {
+    border: 2.5px solid var(--alert-red);
 }
 
 #recipe-list-title {
@@ -213,7 +226,6 @@ button:hover {
     display: grid;
     grid-template-columns: 33% 33% 33%;
     grid-auto-rows: 6rem;
-    /* overflow: scroll; */
 }
 
 .recipe-list-grid > div {
@@ -238,6 +250,7 @@ button:hover {
     grid-template-columns: 46% 27% 27%;
     grid-template-rows: 15% auto auto auto;
     overflow: auto;
+    grid-row-gap: 15px;
 }
 
 .rendered-title {
@@ -250,10 +263,9 @@ button:hover {
 .icon {
     grid-column: 3;
     grid-row: 2;
-    margin: auto 0;
     color: white;
-    width: 75px;
-    height: 75px;
+    width: 100px;
+    max-height: 100px;
 }
 
 .ingredients-list {
@@ -269,12 +281,14 @@ button:hover {
 .how-make {
     grid-column: 1 / 4;
     grid-row: 3;
-    padding-top: 1.2rem;
+    font-family: var(--ff-primary);
+    /* padding-top: 1.2rem; */
 }
 
 .notes {
     grid-column: 1 / 4;
-    grid-row: 4;
+    grid-row: 5;
+    font-family: var(--ff-primary);
 }
 
 #popup-outline {
