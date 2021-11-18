@@ -7,10 +7,12 @@ function renderIngrTable() {
         const trEl = document.createElement('tr');
         tbodyEl.appendChild(trEl);
 
-        const tdElemRemove = document.createElement('td')
+        const tdElemRemove = document.createElement('td');
         trEl.appendChild(tdElemRemove);
-        tdElemRemove.id = `remove-${i}`;
-        tdElemRemove.textContent = "⛔";
+        const btnElem = document.createElement('button');
+        tdElemRemove.appendChild(btnElem);
+        btnElem.id = `remove-${i}`;
+        btnElem.textContent = "X";
         
         const tdElemName = document.createElement('td')
         trEl.appendChild(tdElemName);
@@ -37,7 +39,7 @@ function inventoryEventListeners() {
     document.getElementById('inventory-table').addEventListener('click', inventoryHandler);
 }
 function inventoryHandler(event) {
-    removeIngredient(event);
+    confirmRemove(event);
     clearIngrTable();
     renderIngrTable();
     //if + button is clicked, call showForm()
@@ -73,11 +75,27 @@ function addIngredient(event) {
     document.querySelector('#bottle-type').value = '';
 }
 
-function removeIngredient(event) {
+function promptRemove(event){
+    let id = event.target.id;
+    let removePrompt = document.getElementById('confirm-remove');
+
+    if(id.slice(0, 6) === 'remove'){
+        removePrompt.classList.toggle('hidden');
+        removePrompt.addEventListener('click', confirmRemove);
+    }   
+}
+
+function confirmRemove(event){
+    if (event.target.id === 'rmv'){
+        removeIngredient(id);
+    } else if (event.target.id === 'cnl'){
+        removePrompt.classList.toggle('hidden');
+    }
+}
+
+function removeIngredient(id) {
     //remove clicked ingredient from the userInventory array
     //saveAndRenderInv()
-    let id = event.target.id;
-
     if(id.slice(0, 6) === 'remove'){
         Ingredient.userInventory.splice(id.slice(-1), 1);
         saveToLocalStorage(Ingredient.userInventory);
