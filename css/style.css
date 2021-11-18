@@ -71,6 +71,10 @@ header {
     grid-column: 2;
 }
 
+p {
+    font-family: var(--ff-highlights);
+}
+
 header a {
     color: var(--fc-title);
     text-decoration: none;
