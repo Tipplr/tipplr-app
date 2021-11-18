@@ -80,6 +80,9 @@ header a {
     text-decoration: none;
     font-family: var(--ff-title);
 }
+header li {
+    font-size: 1.6rem;
+}
 
 h1 {
     font-size: 3.5rem;
