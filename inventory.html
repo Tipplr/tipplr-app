@@ -27,20 +27,24 @@
 
     <h2 class="inventory-list-title">Your Inventory</h2>
 
-    <button type="button" id="add-inventory" class="add-invt">Add Inventory</button>
+    <button type="button" id="add-inventory" class="add-invt">Add To Inventory</button>
 
     <form class="inventory-form hidden">
 
         <div>
             <fieldset>
+                <div class="input-flex">
                 <label for="Bottle Name">Bottle Name</label>
                 <input type="text" name="bottleName" id="bottle-name" required>
+                </div>
+                <div class="input-flex">
                 <label for="Bottle Type">Bottle Type</label>
                 <input type="text" name="bottleType" id="bottle-type" required>
-                </fieldset>
+                </div>
+            </fieldset>
         </div>
 
-        <input type="submit" value="Submit">
+        <input class='sbmtbtn' type="submit" value="Submit">
     </form>
 
     <!--when pushing grid items here, assign index to items, and use that index to determine column and row placement-->
