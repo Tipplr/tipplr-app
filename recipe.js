@@ -1,8 +1,27 @@
+let coll = document.getElementsByClassName('collapsible');
 let add = document.getElementById('plus');
 let minusBtn = document.getElementById('minus');
 let resetBtn = document.getElementById('recipeResetBtn');
 let i;
+// incrementor for new specs id
+// starts at 1 because initial field is 0
+
+let collapsingFunction = function () {
+    this.classList.toggle('active');
+    let content = this.nextElementSibling;
+    if (content.style.display === 'block') {
+        content.style.display = 'none';
+    } else {
+        content.style.display = 'block'
+    }
+}
+
+for (i = 0; i < coll.length; i += 1) {
+    coll[i].addEventListener("click", collapsingFunction)
+}
+
 let newSpecsIndex = 1;
+
 let divArray = [];
 
 isOnRecipePage = true;
@@ -16,8 +35,7 @@ renderThumbnails(Cocktail.userRecipes);
 
 let addFunction = function (event) {
 
-    event.preventDefault();
-
+    event.preventDefault()
     const specForm = document.getElementById('inputSpecs');
     const newSpecDiv = document.createElement('div');
     const newSpecIngrInput = document.createElement('input');
@@ -49,22 +67,35 @@ let addFunction = function (event) {
 
     divArray.push(newSpecDiv);
 
+    console.log('newSpecDiv Id: ' + newSpecDiv);
+    console.log('newSpecsIndex count before increment: ' + newSpecsIndex);
+
     newSpecsIndex += 1;
+
+    console.log('newSpecsIndex count after increment: ' + newSpecsIndex);
 }
+
+add.addEventListener('click', addFunction)
+
+let index = 0;
 
 let minusFunction = function (event) {
 
     event.preventDefault();
     const specForm = document.getElementById('inputSpecs');
+    console.log('specForm.lastChild: ' + specForm.lastChild.id)
+    // will throw error if no new spec fields created
+    console.log('divArray before pop(): ' + divArray);
     if (divArray.length > 0) {
         divArray.pop();
         specForm.lastChild.remove();
         newSpecsIndex -= 1;
     }
+    console.log('newSpecsIndex current count: ' + newSpecsIndex);
 }
 
-add.addEventListener('click', addFunction)
 minusBtn.addEventListener('click', minusFunction);
+
 
 const form = document.getElementById('recipe-submit');
 form.addEventListener('submit', addRecipeHandler);
@@ -74,14 +105,20 @@ function addRecipeHandler(event) {
     //call showNewRecipeForm()
     // event.preventDefault();
     newRecipeFormSubmit();
+    showNewRecipeForm();
     clearForm();
     clearChildren('recipe-list-grid');
     renderThumbnails(Cocktail.userRecipes);
 }
 
+const form = document.getElementById('recipe-submit');
+form.addEventListener('submit', addRecipeHandler);
+form.addEventListener('reset', handleResetClick);
+
 function newRecipeFormSubmit() {
     // calls new Cocktail construtor
     // pushes form values into Cocktail constructor
+    // grab field input
 
     const name = form.recipename.value;
     const base = form.base.value;
@@ -92,7 +129,7 @@ function newRecipeFormSubmit() {
     let ingrArray = [];
     let amntArray = [];
     // put ingr and amount into arrays
-    for (let i = 0; i < newSpecsIndex; i += 1) {
+    for (let i = 0; i < newSpecsId; i += 1) {
         const ingr = document.getElementById(`specs-ingr-${i}`).value;
         ingrArray.push(ingr);
         console.log('ingrArray: ' + ingrArray);
@@ -107,7 +144,7 @@ function newRecipeFormSubmit() {
     console.log('newCocktail Instructions: ' + newCocktail.instructions);
 
     Cocktail.userRecipes.push(newCocktail);
-    saveToLocalStorage('Cocktail');
+    saveToLocalStorage(Cocktail.userRecipes);
 
     //STRETCH: call filterFunction() if applicable new recipe will now show in filtered array
     //STRETCH: call renderFiltered() re-renders page so if new recipe meets requirements is now displayed on the page
