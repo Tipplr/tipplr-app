@@ -16,7 +16,6 @@ function clearFilterHandler() {
     renderThumbnails(Cocktail.all);
     Cocktail.filtered = [];
     removeMostValueIngr();
-
 }
 
 function filterHandler(event) {

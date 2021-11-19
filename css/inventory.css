@@ -64,8 +64,8 @@ p {
 
 input, 
 select {
-    background-color: hsla(191, 21%, 58%, 1);
-    color: black;
+    background-color: var(--bg-secondary);
+    color: var(--fc-primary);
 }
 
 label {
@@ -103,7 +103,12 @@ button:hover {
 }
 
 input:hover {
-    background-color: #352F37;
+    background-color: var(--bg-accent);
+    }
+
+    .recipe-form input,
+    .recipe-form select {
+      color: var(--fc-title);
 }
 
 .inventory-list-title {
@@ -163,6 +168,10 @@ input:hover {
     margin-top: .4rem;
 }
 
+#ingr-to-remove {
+  font-size: 2rem;
+}
+
 #confirm-remove button {
     background-color: var(--bg-accent);
     color: var(--fc-title2);
@@ -177,11 +186,32 @@ input:hover {
     margin: 0 auto;
 }
 
+#inventory-table text {
+  padding-left: 15px;
+}
+
+#inventory-table button {
+  height: 1.5rem;
+  width: 1.5rem;
+  left: 93%;
+  top: 1.8rem;
+  background-color: var(--alert-red);
+  color: aliceblue;
+  line-height: 19px;
+  margin: auto;
+}
+
+#inventory-table button {
+  display: flex;
+  justify-content: center;
+}
+
 table,
 th,
 td {
     border: 1px solid black;
     background-color: var(--fc-primary);
+    font-family: var(--ff-highlights);
 }
 
 table {
@@ -230,5 +260,3 @@ table {
 .ingr-amnt-div {
     display: flex;
 }
-
-

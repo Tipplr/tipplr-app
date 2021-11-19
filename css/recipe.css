@@ -23,7 +23,6 @@
 
 .body-grid-container {
     display: grid;
-
     grid-template-columns: 19.4% 58% 19.4%;
     grid-template-rows: 4rem 2rem auto minmax(35rem, auto) 5rem;
     grid-gap: 1.8rem;
@@ -46,7 +45,6 @@
 .right-margin {
     background-color: var(--bg-secondary);
     width: auto;
-
 }
 
 header {
@@ -66,7 +64,7 @@ p {
 
 input, 
 select {
-    background-color: hsla(191, 21%, 58%, 1);
+    background-color: var(--bg-secondary);
     color: black;
 }
 
@@ -122,7 +120,7 @@ button:hover {
 }
 
 input:hover {
-    background-color: #352F37;
+    background-color: var(--bg-accent);
 }
 
 #recipeSubmitBtn:active {
@@ -198,6 +196,11 @@ input:hover {
     grid-gap: 1rem;
 }
 
+.recipe-form input,
+.recipe-form select {
+  color: var(--fc-title);
+}
+
 .recipe-form > div {
     display: flex;
     grid-column: span 2;
@@ -223,7 +226,7 @@ input:hover {
 
 .recipe-list-grid {
     grid-column: 2;
-    grid-row: 3;
+    grid-row: 4;
     display: grid;
     grid-template-columns: 33% 33% 33%;
     grid-auto-rows: 6rem;
@@ -336,17 +339,21 @@ input:hover {
         font-size: 1.5rem;
         grid-row: 3;
     }
-    .collapsible {
+    /* .collapsible {
         cursor: pointer;
         position: absolute;
         top: 9.5rem;
         left: 15%;
     }
 
+    */
+
     .recipe-form {
-        display: none;
-        overflow: hidden;
-        position: absolute;
+        /* display: none; */
+        /* overflow: hidden; */
+        /* position: absolute; */
+        grid-column: 2;
+        grid-row: 4;
         left: 15%;
         top: 11rem;
         width: 70%;
@@ -354,7 +361,7 @@ input:hover {
 
     .recipe-list-grid {
         grid-column: 2;
-        grid-row: 4;
+        grid-row: 5;
         display: grid;
         grid-template-columns: 50% 50%;
     }

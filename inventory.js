@@ -7,10 +7,12 @@ function renderIngrTable() {
         const trEl = document.createElement('tr');
         tbodyEl.appendChild(trEl);
 
-        const tdElemRemove = document.createElement('td')
+        const tdElemRemove = document.createElement('td');
         trEl.appendChild(tdElemRemove);
-        tdElemRemove.id = `remove-${i}`;
-        tdElemRemove.textContent = "⛔";
+        const btnElem = document.createElement('button');
+        tdElemRemove.appendChild(btnElem);
+        btnElem.id = `remove-${i}`;
+        btnElem.textContent = "X";
         
         const tdElemName = document.createElement('td')
         trEl.appendChild(tdElemName);
@@ -31,24 +33,16 @@ function clearIngrTable() {
 }
     //call getLocalStorage('ingredients')
     //write to DOM a table of ingredients and type from userInventory
-function changeInventoryEventListener() {
+function inventoryEventListeners() {
     //add an event listener to the add new + button and to the - button next to each ingredient in list
     document.getElementById('add-inventory').addEventListener("click", toggleFormDisplay);
     document.getElementById('inventory-table').addEventListener('click', confirmRemove);
-}
-function inventoryHandler() {
-    //if + button is clicked, call showForm()
-    //if - button is clicked call removeIngredient()
-    //this should alert the user to confirm
 }
 function toggleFormDisplay() {
     const form = document.querySelector(".inventory-form");
     form.classList.toggle('hidden');
     form.addEventListener('submit', addIngredient);
 }
-
-
-
 function addIngredient(event) {
     event.preventDefault();
 
@@ -59,7 +53,7 @@ function addIngredient(event) {
     Ingredient.userInventory.push(ingredient);
     Ingredient.userPlusBasicIngr.push(ingredient);
     alphabetize(Ingredient.userInventory);
-    saveToLocalStorage(Ingredient.userInventory);
+    saveToLocalStorage('Ingredient');
 
     clearIngrTable();
     renderIngrTable();
@@ -69,8 +63,6 @@ function addIngredient(event) {
     document.querySelector('#bottle-name').value = '';
     document.querySelector('#bottle-type').value = '';
 }
-
-
 function confirmRemove(event){
     let id = event.target.id; //remove-0
     let idText = id.slice(0, 6);//remove
@@ -98,10 +90,9 @@ function inventoryRemoval(promptEvent){
     } else if (promptEvent.target.id === 'cnl'){
         removePrompt.classList.add('hidden');
     }
-
 }
 
 //Function Execution Order:
 loadObjects();
 renderIngrTable();
-changeInventoryEventListener();
+inventoryEventListeners();

@@ -276,7 +276,7 @@ button:hover {
 @media screen and (max-width: 950px) {
     .body-grid-container {
         grid-template-columns: 6.5% 80% 6.5%;
-        grid-template-rows: 4rem 2rem .8rem 13.5rem 1.6rem minmax(39rem, auto) .8rem 26rem;
+        grid-template-rows: 4rem 2rem .8rem 13.5rem 1.6rem auto .8rem 26rem;
         grid-gap: 3%;
     }
     .left-margin {
@@ -314,6 +314,7 @@ button:hover {
         justify-content: center;
         grid-template-columns: 48.5% 48.5%;
         grid-gap: .5rem;
+        background-size: contain;
     }
 
     .recipe-grid {
