@@ -140,9 +140,13 @@ button:hover {
 }
 
 #ingredient-alert {
+    width: auto;
     font-size: 1.5rem;
     color: var(--fc-primary);
-    padding-top: .2rem;
+    font-family: var(--ff-primary);
+    padding-top: 1em;
+    line-height: 1.3em;
+    padding-left: 3rem;
 }
 
 #recipe-list-grid {
