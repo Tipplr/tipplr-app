@@ -260,12 +260,15 @@ function mostValueIngr() {
             missingAlert.setAttribute('id', 'ingredient-alert');
             appendHere.appendChild(missingAlert);
 
-            missingAlert.innerHTML = `Adding ${e[1]} to your inventory will allow you to make ${e[0]} more cocktail(s)`
+            if (e[0] > 1) {
+                missingAlert.innerHTML = `Based on your inventory, acquiring ${e[1]} will allow you to make ${e[0]} additional cocktails`
+            } else {
+                missingAlert.innerHTML = `Based on your inventory, acquiring ${e[1]} will allow you to make ${e[0]} additional cocktail`
+            }
             stopper += 1;
         }
     })
 }
-// mostValueIngr();
 
 function removeMostValueIngr() {
     let appendHere = document.getElementById('recipe-list-title');
