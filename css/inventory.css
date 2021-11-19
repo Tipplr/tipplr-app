@@ -90,7 +90,8 @@ h1 {
 h2 {
     font-family: var(--ff-highlights);
     color: var(--fc-title2);
-    font-size: 2rem;
+    text-align: center;
+    font-size: 2.5rem;
 }
 
 button:active {
@@ -162,7 +163,18 @@ input:hover {
     grid-row: 4;
     margin: 0 auto;
 }
-
+.center {
+    position: relative;
+    left: 43%;
+    height: 30px;
+    width: 15%;
+    font-family: var(--ff-highlights);
+    background-color: var(--bg-accent);
+    color: var(--fc-title2);
+}
+.center:active {
+    border: 2.8px solid green;
+}
 @media screen and (max-width: 950px) {
 
     .body-grid-container {

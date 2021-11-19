@@ -216,7 +216,6 @@ input:hover {
     grid-column: 2;
     grid-row: 2;
     text-align: center;
-    font-family: var(--ff-title);
     font-size: 2.5rem;
 }
 
