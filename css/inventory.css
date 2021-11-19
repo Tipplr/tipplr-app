@@ -104,11 +104,11 @@ button:hover {
 
 input:hover {
     background-color: var(--bg-accent);
-    }
+}
 
-    .recipe-form input,
-    .recipe-form select {
-      color: var(--fc-title);
+.recipe-form input,
+.recipe-form select {
+    color: var(--fc-title);
 }
 
 .inventory-list-title {
@@ -169,7 +169,11 @@ input:hover {
 }
 
 #ingr-to-remove {
+<<<<<<< HEAD
   font-size: 2rem;
+=======
+    font-size: 2rem;
+>>>>>>> demo
 }
 
 #confirm-remove button {
@@ -187,6 +191,7 @@ input:hover {
 }
 
 #inventory-table text {
+<<<<<<< HEAD
   padding-left: 15px;
 }
 
@@ -204,6 +209,24 @@ input:hover {
 #inventory-table button {
   display: flex;
   justify-content: center;
+=======
+    padding-left: 15px;
+}
+#inventory-table button {
+    height: 1.5rem;
+    width: 1.5rem;
+    left: 93%;
+    top: 1.8rem;
+    background-color: var(--alert-red);
+    color: aliceblue;
+    line-height: 19px;
+    margin: auto;
+}
+
+#inventory-table button {
+    display: flex;
+    justify-content: center;
+>>>>>>> demo
 }
 
 table,

@@ -198,7 +198,7 @@ input:hover {
 
 .recipe-form input,
 .recipe-form select {
-  color: var(--fc-title);
+    color: var(--fc-title);
 }
 
 .recipe-form > div {
