@@ -6,7 +6,6 @@ let newSpecsIndex = 1;
 let divArray = [];
 
 isOnRecipePage = true;
-console.log(isOnRecipePage);
 
 const recipeListEventListener = document.getElementById('recipe-list-grid');
 recipeListEventListener.addEventListener('click', renderRecipeCard);
@@ -95,16 +94,13 @@ function newRecipeFormSubmit() {
     for (let i = 0; i < newSpecsIndex; i += 1) {
         const ingr = document.getElementById(`specs-ingr-${i}`).value;
         ingrArray.push(ingr);
-        console.log('ingrArray: ' + ingrArray);
+
         const amnt = document.getElementById(`specs-amnt-${i}`).value;
         amntArray.push(amnt);
-        console.log('amntArray: ' + amntArray);
+
     }
 
     const newCocktail = new Cocktail(name, base, ingrArray, amntArray, glassware, instructions, notes);
-
-    console.log(newCocktail);
-    console.log('newCocktail Instructions: ' + newCocktail.instructions);
 
     Cocktail.userRecipes.push(newCocktail);
     saveToLocalStorage('Cocktail');
