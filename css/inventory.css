@@ -90,7 +90,8 @@ h1 {
 h2 {
     font-family: var(--ff-highlights);
     color: var(--fc-title2);
-    font-size: 2rem;
+    text-align: center;
+    font-size: 2.5rem;
 }
 
 button:active {
@@ -153,14 +154,53 @@ input:hover {
     grid-column: 2;
     grid-row: 4;
     margin: 0 auto;
-    width: 60%;
-    height: 6rem;
+    width: 80%;
+    height: 7rem;
+    border: 3px solid var(--alert-red);
+}
+
+#confirm-remove * {
+    margin-top: .4rem;
+}
+
+#confirm-remove button {
+    background-color: var(--bg-accent);
+    color: var(--fc-title2);
+    font-family: var(--ff-highlights);
+    position: relative;
+    left: 43.3%;
 }
 
 #inventory-table {
     grid-column: 2;
     grid-row: 4;
     margin: 0 auto;
+}
+
+table,
+th,
+td {
+    border: 1px solid black;
+    background-color: var(--fc-primary);
+}
+
+table {
+    width: 50rem;
+    border: 3px solid var(--bg-accent);
+}
+
+.center {
+    position: relative;
+    left: 43%;
+    height: 30px;
+    width: 15%;
+    font-family: var(--ff-highlights);
+    background-color: var(--bg-accent);
+    color: var(--fc-title2);
+}
+
+.center:active {
+    border: 2.8px solid green;
 }
 
 @media screen and (max-width: 950px) {
