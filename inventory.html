@@ -15,7 +15,7 @@
 </head>
 
 <body class='body-grid-container'>
-    <header class='grid-item'>
+    <header>
         <h1><a href="index.html">Tipplr</a></h1>
         <nav>
             <ul class='nav-bar'>
@@ -25,16 +25,11 @@
         </nav>
     </header>
 
-    <form class="grid-item search-bar">
-        <input type="text" placeholder="Search..">
-        <button type="submit"><i class="fa fa-search"></i></button>
-    </form>
+    <h2 class="inventory-list-title">Your Inventory</h2>
 
-    <h2 class="grid-item inventory-list-title">Your Inventory</h2>
+    <button type="button" id="add-inventory" class="add-invt">Add Inventory</button>
 
-    <button type="button" id="add-inventory" class="collapsible">Add Inventory</button>
-
-    <form class="grid-item inventory-form hidden">
+    <form class="inventory-form hidden">
 
         <div>
             <fieldset>
@@ -49,7 +44,7 @@
     </form>
 
     <!--when pushing grid items here, assign index to items, and use that index to determine column and row placement-->
-    <section id="inventory-table" class="grid-item inventory-list-grid">
+    <section id="inventory-table" class="inventory-list-grid">
         <table>
             <thead>
                 <tr>
@@ -71,6 +66,8 @@
             </div>
         </div>
     </section>
+    <div class='left-margin'></div>
+    <div class='right-margin'></div>
 </body>
 
 </html>
