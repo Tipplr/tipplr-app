@@ -71,7 +71,7 @@ function addIngredient(event) {
 function confirmRemove(event){
     let id = event.target.id; //remove-0
     let idText = id.slice(0, 6);//remove
-    Ingredient.removalIndex = id.slice(-1);//0  //Ingredient.removalIndex
+    Ingredient.removalIndex = id.slice(7, id.length); //0  //Ingredient.removalIndex
     let removePrompt = document.getElementById('confirm-remove');
     let ingrToRemove = document.getElementById('ingr-to-remove');
 
