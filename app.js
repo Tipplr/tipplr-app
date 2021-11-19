@@ -198,6 +198,7 @@ function basicIngredients() {
 //         ["Campari", "Liqueur"],//TEST remove before deploy
 //         ["Angostura Bitters", "Bitters"],//TEST remove before deploy
         ["Simple Syrup", "Syrup/Sweetener"],
+        ["Simple", "Syrup/Sweetener"],
         ["Demerara Syrup", "Syrup/Sweetener"],
         ["Lime", "Juice"],
         ["Lemon", "Juice"],
