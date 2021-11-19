@@ -190,13 +190,13 @@ function generateCocktails() {
 function basicIngredients() {
     let basic;
     let basicArray = [
-        ["Rittenhouse Rye", "Whiskey"],//TEST remove before deploy
-        ["Roku", "Gin"],//TEST remove before deploy
-        ["Bacardi", "Rum"],//TEST remove before deploy
-        ["Sweet Vermouth", "Vermouth"],//TEST remove before deploy
-        ["Dry Vermouth", "Vermouth"],//TEST remove before deploy
-        ["Campari", "Liqueur"],//TEST remove before deploy
-        ["Angostura Bitters", "Bitters"],//TEST remove before deploy
+//         ["Rittenhouse Rye", "Whiskey"],//TEST remove before deploy
+//         ["Roku", "Gin"],//TEST remove before deploy
+//         ["Bacardi", "Rum"],//TEST remove before deploy
+//         ["Sweet Vermouth", "Vermouth"],//TEST remove before deploy
+//         ["Dry Vermouth", "Vermouth"],//TEST remove before deploy
+//         ["Campari", "Liqueur"],//TEST remove before deploy
+//         ["Angostura Bitters", "Bitters"],//TEST remove before deploy
         ["Simple Syrup", "Syrup/Sweetener"],
         ["Demerara Syrup", "Syrup/Sweetener"],
         ["Lime", "Juice"],
