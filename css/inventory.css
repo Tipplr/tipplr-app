@@ -1,0 +1,262 @@
+@import url('https://fonts.googleapis.com/css2?family=Anton&family=Martel:wght@600&family=Praise&family=Russo+One&family=Shippori+Antique&display=swap');
+
+:root {
+    --ff-primary: 'Martel', serif;
+    --ff-highlights: 'Anton', sans-serif;
+    --ff-highlights-2: 'Praise', cursive;
+    --ff-title: 'Russo One', sans-serif;
+
+    --bg-primary:  hsla(210, 12%, 29%, 1);
+    --alert-red: #B4184C;
+    --bg-secondary: #352F37;
+    --fc-primary: #feecd8;
+    --fc-title: aliceblue;
+    --fc-title2: #DCAB6B;
+    --bg-accent: #153243;
+}
+
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+.body-grid-container {
+    display: grid;
+    grid-template-columns: 19.4% 58% 19.4%;
+    grid-template-rows: 4rem 2rem 2rem 10rem auto 45rem;
+    grid-gap: 1.8rem;
+    background-color: var(--bg-primary);
+}
+
+.left-margin {
+    grid-column: 1;
+    grid-row: 1 / -1;
+    background-image: linear-gradient(rgba(19, 12, 1, 0.9),rgba(4,9,30,0.65)),url(../assets/left.png);
+    background-size: cover;
+}
+.right-margin {
+    grid-column: 3;
+    grid-row: 1 / -1;
+    background-image: linear-gradient(rgba(19, 12, 1, 0.9),rgba(4,9,30,0.65)),url(../assets/right2.png);
+    background-size: cover;
+}
+.left-margin,
+.right-margin {
+    background-color: var(--bg-secondary);
+    width: auto;
+}
+
+header {
+    font-family: var(--ff-primary);
+    align-items: center;
+    margin-left: 1.2rem;
+    margin-right: 1.2rem;
+    margin-top: .5rem;
+    display: flex;  
+    justify-content: space-between;
+    grid-column: 2;
+}
+
+p {
+    font-family: var(--ff-highlights);
+}
+
+input, 
+select {
+    background-color: var(--bg-secondary);
+    color: var(--fc-primary);
+}
+
+label {
+ font-family: var(--ff-highlights);
+ font-size: 2.2rem;
+}
+
+header a {
+    color: var(--fc-title);
+    text-decoration: none;
+    font-family: var(--ff-title);
+}
+
+header li {
+    font-size: 1.6rem;
+}
+
+h1 {
+    font-size: 3.5rem;
+}
+
+h2 {
+    font-family: var(--ff-highlights);
+    color: var(--fc-title2);
+    text-align: center;
+    font-size: 2.5rem;
+}
+
+button:active {
+    border: 2.5px solid green;
+}
+
+button:hover {
+    background-color: #352F37;
+}
+
+input:hover {
+    background-color: var(--bg-accent);
+    }
+
+    .recipe-form input,
+    .recipe-form select {
+      color: var(--fc-title);
+}
+
+.inventory-list-title {
+    grid-column: 2;
+    grid-row: 2;
+    text-align: center;
+}
+
+.add-invt {
+    width: 12rem;
+    height: 3rem;
+    margin: auto;
+    background-color: var(--bg-accent);
+    color: var(--fc-primary);
+    font-family: var(--ff-highlights);
+    font-size: 1.5rem;
+    cursor: pointer;
+    color: var(--fc-title2);
+    line-height: 10px;
+}
+
+.hidden {
+    display: none;
+}
+
+.inventory-form {
+    width: 70%;
+    height: 10rem;
+    justify-self: center;
+    background-color: var(--fc-primary);
+    color: black;
+    border: 3px solid var(--bg-accent);
+    font-family: var(--ff-primary);
+    font-size: 1.7rem;
+    grid-column: 2;
+    grid-row: 4;
+    z-index: 1000;
+}
+
+.inventory-form .input-flex {
+    display: flex;
+    justify-content: space-between;
+    margin: 15px;
+}
+
+#confirm-remove {
+    background-color: var(--fc-primary);
+    grid-column: 2;
+    grid-row: 4;
+    margin: 0 auto;
+    width: 80%;
+    height: 7rem;
+    border: 3px solid var(--alert-red);
+}
+
+#confirm-remove * {
+    margin-top: .4rem;
+}
+
+#ingr-to-remove {
+  font-size: 2rem;
+}
+
+#confirm-remove button {
+    background-color: var(--bg-accent);
+    color: var(--fc-title2);
+    font-family: var(--ff-highlights);
+    position: relative;
+    left: 43.3%;
+}
+
+#inventory-table {
+    grid-column: 2;
+    grid-row: 4;
+    margin: 0 auto;
+}
+
+#inventory-table text {
+  padding-left: 15px;
+}
+
+#inventory-table button {
+  height: 1.5rem;
+  width: 1.5rem;
+  left: 93%;
+  top: 1.8rem;
+  background-color: var(--alert-red);
+  color: aliceblue;
+  line-height: 19px;
+  margin: auto;
+}
+
+#inventory-table button {
+  display: flex;
+  justify-content: center;
+}
+
+table,
+th,
+td {
+    border: 1px solid black;
+    background-color: var(--fc-primary);
+    font-family: var(--ff-highlights);
+}
+
+table {
+    width: 50rem;
+    border: 3px solid var(--bg-accent);
+}
+
+.center {
+    position: relative;
+    left: 43%;
+    height: 30px;
+    width: 15%;
+    font-family: var(--ff-highlights);
+    background-color: var(--bg-accent);
+    color: var(--fc-title2);
+}
+
+.center:active {
+    border: 2.8px solid green;
+}
+
+@media screen and (max-width: 950px) {
+
+    .body-grid-container {
+        grid-template-columns: 8.8% 80% 8.8%;
+        grid-template-rows: auto;
+        grid-gap: 2%;
+    }
+
+    header {
+        grid-column: 1/4;
+    }
+    .recipe-list-title {
+        font-size: 1.5rem;
+        grid-row: 3;
+    }
+
+    .recipe-list-grid {
+        grid-column: 2;
+        grid-row: 5;
+        display: grid;
+        grid-template-columns: 50% 50%;
+    }
+}
+
+.ingr-amnt-div {
+    display: flex;
+}
