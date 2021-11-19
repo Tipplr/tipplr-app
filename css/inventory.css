@@ -179,7 +179,7 @@ input:hover {
     width: 100%;
 }
 
-.recipe-form {
+.inventory-form {
     width: 70%;
     height: auto;
     justify-self: center;
@@ -190,73 +190,9 @@ input:hover {
     font-size: 1.7rem;
     display: grid;
     grid-template-columns: 47% 47%;
-    grid-template-rows: 25px 25px auto 25px 25px 25px 35px;
+    grid-template-rows: 25px 25px;
     padding: 2.5%;
     grid-gap: 1rem;
-}
-
-.recipe-form > div {
-    display: flex;
-    grid-column: span 2;
-    justify-content: space-between;
-}
-
-.recipe-form #inputSpecs {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    grid-auto-rows: 25px;
-}
-
-.recipe-form .ingr-amnt-div{   
-    grid-column: 2;
-}
-
-.recipe-list-title {
-    grid-column: 2;
-    grid-row: 2;
-    text-align: center;
-    font-family: var(--ff-title);
-    font-size: 2.5rem;
-}
-
-.recipe-list-grid {
-    grid-column: 2;
-    grid-row: 4;
-    display: grid;
-    grid-template-columns: 33% 33% 33%;
-    grid-auto-rows: 6rem;
-}
-
-.recipe-list-grid > div {
-    height: 60%;
-    border: 2px solid black;
-    margin: auto;
-    width: 80%;
-}
-
-.recipe-grid {
-    z-index: 1000;
-    width: 80%;
-    height: 80%;
-    position: fixed;
-    left: 10%;
-    top: 10%;
-    padding: 3rem;
-    background-color: var(--fc-primary);
-    font-family: var(--ff-primary);
-    font-size: 2rem;
-    display: grid;
-    grid-template-columns: 46% 27% 27%;
-    grid-template-rows: 15% auto auto auto;
-    overflow: auto;
-    grid-row-gap: 15px;
-}
-
-.rendered-title {
-    grid-column: span 3;
-    font-size: 3.5rem;
-    margin: auto;
-    color: var(--bg-accent);
 }
 
 .icon {
