@@ -302,7 +302,6 @@ function renderThumbnails(array = Cocktail.all) {
 }
 
 function renderRecipeCard(event) {
-    console.log('inside renderRecipeCard funct', isOnRecipePage);
     //change from hidden to shown
     // TODO add event listener for nav left, right, return to list
     let array;
