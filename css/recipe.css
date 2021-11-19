@@ -64,7 +64,7 @@ p {
 
 input, 
 select {
-    background-color: hsla(191, 21%, 58%, 1);
+    background-color: var(--bg-secondary);
     color: black;
 }
 
@@ -120,7 +120,7 @@ button:hover {
 }
 
 input:hover {
-    background-color: #352F37;
+    background-color: var(--bg-accent);
 }
 
 #recipeSubmitBtn:active {
@@ -194,6 +194,11 @@ input:hover {
     grid-template-rows: 25px 25px auto 25px 25px 25px 35px;
     padding: 2.5%;
     grid-gap: 1rem;
+}
+
+.recipe-form input,
+.recipe-form select {
+    color: var(--fc-title);
 }
 
 .recipe-form > div {
