@@ -4,16 +4,16 @@
 
 ## Authors
 
-- [Andrew Enyeart](https://github.com/aenyeart)
-- [Daniel Jackson](https://github.com/daniel-jacks)
-- [Erik Savage](https://github.com/eriksavage)
-- [Spencer Tower](https://github.com/SpencerTower)
+- Andrew Enyeart - [GitHub](https://github.com/aenyeart) - [LinkedIn](https://www.linkedin.com/in/andrewenyeart/)
+- Daniel Jackson - [GitHub](https://github.com/daniel-jacks) - [LinkedIn](https://www.linkedin.com/in/daniel-jacks/)
+- Erik Savage - [GitHub](https://github.com/eriksavage) - [LinkedIn](https://www.linkedin.com/in/erikksavage/)
+- Spencer Tower - [GitHub](https://github.com/SpencerTower) - [LinkedIn](https://www.linkedin.com/in/spencertower/)
 
 ---
 
 ## Project Description
 
-Tipplr enables users to catalog their home liquor inventory and save cocktail recipes, but it goes a step further by _selectively displaying recipes that the user currently has the ingredients for_. It also compares the list of recipes to figure out which one ingredient, if added to the user's collection, would most increase the number of new cocktails they can make!
+Tipplr enables users to catalog their home liquor inventory and save cocktail recipes, but it goes a step further by _selectively displaying recipes that the user currently has all the ingredients for or recipes that the user is only **one** ingredient away from_. And for the user looking to expand their cocktail repertoire without buying dozens of esoteric ingredients, Tipplr also lets the user know which _one_ ingredient they could purchase that would _most_ increase the number of new cocktails they can make!
 
 ## Background
 
@@ -34,22 +34,22 @@ Andrew is a bartender by trade with a substantial collection of bottles at home 
 #### Home Page
 
 - 'Filter recipes by':
-- filter recipes by base alcohol type
-- filter by '1 ingredient away' - shows user which recipes they are on ingredient away from making
+  - filter recipes by base alcohol type
+  - filter by '1 ingredient away' - shows user which recipes they are on ingredient away from making
 - 'Recipes list':
-- displays filtered recipes
+  - displays filtered recipes
 
 #### My Inventory
 
-- add inventory - allows user to input bottle name / type
 - renders a list of users current inventory
-- allows user to remove inventory items from list
+- add - allows user to input bottle name / type
+- remove - allows user to remove inventory items from list
 
 #### My Recipes
 
-- add new recipe
 - displays user created recipes
-- takes recipe name, base, ingredients / amount, glassware, instructions, notes
+- add new recipe
+  - takes recipe name, base, ingredients / amount, glassware, instructions, notes
 
 #### Storage
 
